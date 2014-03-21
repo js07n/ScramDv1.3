@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="30dp"
+    android:paddingTop="100dp"
+    android:background="@color/white">
+    
+    <TextView
+    android:id="@+id/mTextField"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="300dp"
+    android:layout_marginLeft="0dp"
+    android:layout_marginRight="30dp"
+    android:textSize="50sp"
+    android:gravity="right"
+    ></TextView>
+
+</RelativeLayout>

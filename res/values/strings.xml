@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, ParseStarterProjectActivity!</string>
+    <string name="app_name">ScramD</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="c_user">Create User</string>
+    
+    <string name="logout">Logout</string>
+    
+    <string name="add">ADD</string>
+    <string name="remove">REMOVE</string>
+    <string name="username">Username</string>
+    
+    <string name="send_challenge">Send Challenge</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="cancel">Cancel</string>
+    
+    
+    
+    <string name="dialog_diff">Select Difficulty</string>
+    <string name="play">Play</string>
+
+    
+    <string name="dialog_win">Select Difficulty</string>
+    <string name="play_again">Play Again</string>
+    <string name="main_menu">Main Menu</string>
+
+    
+    <string name="title">ScramD</string>
+    
+	<string name="solo">Solo</string>
+    <string name="friends">Friends</string>
+    <string name="settings">Settings</string>
+    
+    
+    <string name="dialog_friends"> </string>
+    <string name="current_games">Current Games</string>
+    <string name="select_image">Select Image</string>
+    <string name="camera">Camera</string>
+    
+    <string name="display">display</string>
+    
+    
+    <color name="white">#FFFFFF</color>
+</resources>
