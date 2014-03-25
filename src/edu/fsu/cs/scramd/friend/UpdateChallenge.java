@@ -2,19 +2,11 @@ package edu.fsu.cs.scramd.friend;
 
 import org.json.JSONArray;
 
-import android.text.GetChars;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
-import com.parse.Parse;
-import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
-import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -22,7 +14,6 @@ import com.parse.SaveCallback;
 import edu.fsu.cs.scramd.data.DatabaseHandler;
 import edu.fsu.cs.scramd.data.Friend;
 import edu.fsu.cs.scramd.data.UserAccount;
-import android.app.Activity;
 import android.content.Context;
 
 
