@@ -221,6 +221,7 @@ public class UpdateChallenge {
 				    	{
 				    		ua.setSentBy(user);
 				    		ua.setSendTo(sentBy);
+				    		ua.setScore(-1);
 				    	}
 				    	ua.saveInBackground(new SaveCallback(){
 
@@ -251,17 +252,46 @@ public class UpdateChallenge {
 	}
 	
 	
+	
+	//03.26.14
 	public void update(UserAccount challenge)
 	{
-		final int tScore = challenge.getInt("score");
-		Friend friend = db.getFriendByObjectId(challenge.getObjectId());
+		final int tScore = challenge.getInt("score");		
+		ParseUser sentBy= challenge.getParseUser("sentBy");
 		
+		
+		//fetch ParseUser object info.
+		try {
+			sentBy.fetch();
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		if(!isUserAFriend(sentBy.getUsername()))
+		{	    	    	    		    	    	    		
+			//if user isn't a friend,
+			//then create an entry for them in the database
+			addToFriendList(sentBy.getUsername(), "wait", null, challenge.getObjectId(), tScore);				
+		}
+		
+		
+
 		if(tScore == 0)
 		{
-			
+			//No updates on App DB necessary
 		}
 		else
 		{					
+			//save image to database
+			Friend friend = db.getFriend(sentBy.getUsername());
+			
+
+			//update status
+			friend.setStatus("wait");
+			if(friend.getObjectId().equals(""))
+				friend.setObjectId(challenge.getObjectId());
+			
 			if (tScore < 10)
 			{
 				//user won
@@ -276,19 +306,13 @@ public class UpdateChallenge {
 			db.updateFriend(friend);
 		}
 		
-		ParseUser sb = ParseUser.getCurrentUser();
-    	//get information on User that sent challenge
-    	try 
-    	{
-			sb = challenge.getSentBy().fetchIfNeeded();
-		} 
-    	catch (ParseException e1) 
-		{				
-			e1.printStackTrace();
-		}
+
     	
-		updateChallengeOnServer(sb.getUsername(), challenge.getObjectId(), "Done");
+		updateChallengeOnServer(sentBy.getUsername(), challenge.getObjectId(), "Done");
 	}
+	
+	
+	
 	
 	
 	public static void calculateWinner(final String friendName, int uScore)
@@ -351,8 +375,45 @@ public class UpdateChallenge {
 		
 	}
 	
-	public static void done(UserAccount challenge)
+	public void done(UserAccount challenge)
 	{
+		ParseUser sentBy= challenge.getParseUser("sentBy");
 		
-	}
-}
+		
+		//fetch ParseUser object info.
+		try {
+			sentBy.fetch();
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		//If user is not a friend,
+		// make user into a friend.
+		if(!isUserAFriend(sentBy.getUsername()))
+		{	    	    	    		    	    	    		
+			//if user isn't a friend,
+			//then create an entry for them in the database
+			addToFriendList(sentBy.getUsername(), "fight", null, challenge.getObjectId(), -1);				
+		}
+		else
+		{					
+			//save image to database
+			Friend friend = db.getFriend(sentBy.getUsername());
+			
+
+			//update status
+			friend.setStatus("fight");
+			if(friend.getObjectId().equals(""))
+				friend.setObjectId(challenge.getObjectId());			
+			
+			db.updateFriend(friend);
+		}// end Else //friend is on App DB
+		
+		//Should the status be "" or "Done"
+		updateChallengeOnServer(sentBy.getUsername(), challenge.getObjectId(), "");
+		
+	}//end Done Method
+	
+	
+}//end UpdateChallenge Class

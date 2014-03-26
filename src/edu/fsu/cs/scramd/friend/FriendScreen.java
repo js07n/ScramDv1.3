@@ -293,14 +293,13 @@ public class FriendScreen extends Activity {
 				     	}
 				     	else if(status.equals("Update"))
 				      	{
-				     		//03.21.14
-				     		// THIS NEEDS DEBUGGING
-				     		//updateChallenge.update(challenge);
+				     		//03.21.14				     		
+				     		updateChallenge.update(challenge);
 				    	    		
 				    	}
 				      	else if(status.equals("Done"))
 				      	{
-				      		//change sendTo so that user stops downloading Challenge
+				      		updateChallenge.done(challenge);
 				    	    		
 				      	}
 					}// end for loop
