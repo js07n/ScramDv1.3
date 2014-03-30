@@ -144,6 +144,8 @@ public class FriendScreen extends Activity {
 		//Check if friendList is null //will crash if it is
 		if(user.getJSONArray("friendList") != null)
 		{
+			System.out.println("Friendlist is NOT null");
+			
 			//Retrieve friendlist from user object
 			JSONArray jarr = user.getJSONArray("friendList");
 
@@ -177,6 +179,7 @@ public class FriendScreen extends Activity {
 		//TESTING - GET FRIENDS FROM APP DB		
 		if(db.getFriendsCount() != 0)
 		{
+			System.out.println("DB does NOT have ZERO friends");
 			Toast.makeText(getApplicationContext(), "DB " + Integer.toString(db.getFriendsCount()), Toast.LENGTH_SHORT).show();
 			List<Friend> friends = db.getAllFriends();
 			freunde = new String[db.getFriendsCount()];
@@ -237,11 +240,14 @@ public class FriendScreen extends Activity {
 				}
 			});
 			
-		}
+		}//DB has zero friends
 		else
+		{
 			Toast.makeText(getApplicationContext(), "DB has ZERO entries", Toast.LENGTH_SHORT).show();
+			//03.30.2014
+			freunde[0] = new String("");
 		//END TESTING
-		
+		}
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.item_friend, 
 				R.id.lvtv, freunde);
