@@ -166,6 +166,39 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		return friendList;
 	}
 
+	
+
+	
+	//Getting all friends
+	public List<Friend> getAllFriendsForAdapter(){
+		//Getting All Query
+		List<Friend> friendList = new ArrayList<Friend>();
+		
+		//Select All Query
+		String selectQuery = "SELECT * FROM " + TABLE_FRIENDS;
+		
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		
+		//Looping through all rows and adding to list.
+		if(cursor.moveToFirst()){
+			do{
+				Friend friend = new Friend();
+				
+				friend.setUsername(cursor.getString(0));
+				friend.setStatus(cursor.getString(1));
+				friend.setUScore(cursor.getInt(4));
+				friend.setOScore(cursor.getInt(5));
+				//Adding contact to list
+				friendList.add(friend);
+			}while(cursor.moveToNext());
+		}
+		
+		return friendList;
+	}
+	
+	
+	
 	//Getting Friends count
 	public int getFriendsCount(){
 		   int count = 0;
@@ -183,6 +216,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		    return count;
 	}
 
+		
+	
 	//Updating single Friend
 	public int updateFriend(Friend friend){
 		SQLiteDatabase db = this.getWritableDatabase();

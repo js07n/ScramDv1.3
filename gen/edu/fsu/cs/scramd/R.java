@@ -34,7 +34,7 @@ public final class R {
         public static final int solo4=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a002d;
+        public static final int action_settings=0x7f0a002e;
         public static final int addBtn=0x7f0a0005;
         public static final int addEt=0x7f0a0004;
         public static final int camera_photo_button=0x7f0a0022;
@@ -53,6 +53,7 @@ public final class R {
         public static final int logInBtn=0x7f0a000e;
         public static final int logout_button=0x7f0a0029;
         public static final int lv=0x7f0a0002;
+        public static final int lvStatus=0x7f0a002d;
         public static final int lvtv=0x7f0a002c;
         public static final int mTextField=0x7f0a000a;
         public static final int mailEt=0x7f0a000c;
