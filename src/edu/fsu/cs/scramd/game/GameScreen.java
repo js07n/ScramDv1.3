@@ -571,8 +571,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                    int bottom = location[1] + view.getHeight();  //this is weird !! i have to add height myself
                 
                    //This shows the actual coordinates of the display on the screen.
-                 Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
-               		                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
+                 //Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
+               		//                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
                    
                    Rect boundz = new Rect(location[0], location[1], right, bottom);
                   
