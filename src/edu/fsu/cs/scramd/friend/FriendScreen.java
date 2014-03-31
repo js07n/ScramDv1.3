@@ -1,6 +1,8 @@
 package edu.fsu.cs.scramd.friend;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -21,6 +23,8 @@ import edu.fsu.cs.scramd.data.DatabaseHandler;
 import edu.fsu.cs.scramd.data.Friend;
 import edu.fsu.cs.scramd.data.UserAccount;
 import android.app.Activity;
+import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -32,7 +36,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -141,9 +148,14 @@ public class FriendScreen extends Activity {
 		
 		String[] freunde;
 		
+		
+		
+		
 		//Check if friendList is null //will crash if it is
 		if(user.getJSONArray("friendList") != null)
 		{
+			System.out.println("Friendlist is NOT null");
+			
 			//Retrieve friendlist from user object
 			JSONArray jarr = user.getJSONArray("friendList");
 
@@ -170,56 +182,90 @@ public class FriendScreen extends Activity {
 		
 		
 
-
-			
+		SimpleAdapter adaptert = null;
+		
 		
 		
 		//TESTING - GET FRIENDS FROM APP DB		
 		if(db.getFriendsCount() != 0)
 		{
+			System.out.println("DB does NOT have ZERO friends");
 			Toast.makeText(getApplicationContext(), "DB " + Integer.toString(db.getFriendsCount()), Toast.LENGTH_SHORT).show();
-			List<Friend> friends = db.getAllFriends();
+			List<Friend> friends = db.getAllFriendsForAdapter();
 			freunde = new String[db.getFriendsCount()];
 			for(int i = 0; i < friends.size(); i++)
 				freunde[i] = friends.get(i).getUsername();
 			
-
+			
+			//Testing JS - 03.30.14
+	        // create the grid item mapping
+	        String[] from = new String[] {"username", "status"};
+	        int[] to = new int[] { R.id.lvtv, R.id.lvStatus};
+	 
+	        // prepare the list of all records
+	        List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
+	        for(int i = 0; i < friends.size(); i++){
+	            HashMap<String, String> map = new HashMap<String, String>();
+	            map.put("username", friends.get(i).getUsername());
+	            map.put("status", friends.get(i).getStatus());
+	            map.put("uScore", Integer.toString(friends.get(i).getUScore()));
+	            //etc. need other fields
+	            fillMaps.add(map);
+	        }
+	 
+	        // fill in the grid_item layout
+	        adaptert = new SimpleAdapter(this, fillMaps, R.layout.item_friend, from, to);
+	        
+			lv.setAdapter(adaptert);
+	        
+			//Testing END
+			
+			
 			
 			//TESTING 02.25.14
 			lv.setOnItemClickListener(new OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int arg2, long arg3) {
-					//Toast.makeText(getApplicationContext(), arg0.getAdapter().getItem(arg2).toString(), Toast.LENGTH_SHORT).show();
+					
+					// JS - 03.30.2014
+					String username = arg0.getAdapter().getItem(arg2).getClass().toString();
+										
+					@SuppressWarnings("unchecked")
+					HashMap<String,String> hm = (HashMap<String, String>) arg0.getItemAtPosition(arg2);
+					username = hm.get("username");
+					//JS - END
+					
+					//Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT).show();
 					
 					//fight Status
 					//if(db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus().equals("fight"))
-					if(db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus().equals("fight"))
+					if(db.getFriend(username).getStatus().equals("fight"))
 					{
 						Toast.makeText(getApplicationContext(), 
-								db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus(), 
+								db.getFriend(username).getStatus(), 
 								Toast.LENGTH_SHORT).show();
 						
 						// Send Friend Name to Dialog Bundle
 						Bundle dialogBundle = new Bundle();	        			        			
-						dialogBundle.putString("friendName", arg0.getAdapter().getItem(arg2).toString());					
+						dialogBundle.putString("friendName", username);					
 						cameraD.setArguments(dialogBundle);
 						//cameraD.setCancelable(false);
 						cameraD.show(getFragmentManager(), "DialogCamera");
 					}
 					//play Status
-					else if(db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus().equals("play"))
+					else if(db.getFriend(username).getStatus().equals("play"))
 					{
 						Toast.makeText(getApplicationContext(), 
-								db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus(), 
+								db.getFriend(username).getStatus(), 
 								Toast.LENGTH_SHORT).show();
 						
-						String friendName = arg0.getAdapter().getItem(arg2).toString();
+						//String friendName = arg0.getAdapter().getItem(arg2).toString();
 						
 			        	// Send Game Type to Dialog Fragment
 			        	Bundle dialogBundle = new Bundle();	        			        			
 						dialogBundle.putString("GameType", "friend");
-						dialogBundle.putString("friendName", friendName);
+						dialogBundle.putString("friendName", username);
 						//dialogBundle.putBoolean("fromMenu", true);
 			        	playD.setArguments(dialogBundle);
 			        	playD.setCancelable(false);
@@ -228,7 +274,7 @@ public class FriendScreen extends Activity {
 					else
 					{
 						Toast.makeText(getApplicationContext(), 
-								db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus(), 
+								db.getFriend(username).getStatus(), 
 								Toast.LENGTH_SHORT)
 								.show();
 					}
@@ -237,16 +283,26 @@ public class FriendScreen extends Activity {
 				}
 			});
 			
-		}
+		}//DB has zero friends
 		else
+		{
 			Toast.makeText(getApplicationContext(), "DB has ZERO entries", Toast.LENGTH_SHORT).show();
+			//03.30.2014
+			freunde[0] = new String("");
+			
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.item_friend, 
+					R.id.lvtv, freunde);
+			
+			lv.setAdapter(adapter);
 		//END TESTING
+		}
+
+
 		
+
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.item_friend, 
-				R.id.lvtv, freunde);
-		
-		lv.setAdapter(adapter);
+
+
 
 		
 	}
@@ -497,4 +553,3 @@ public class FriendScreen extends Activity {
 	
 	
 }
-

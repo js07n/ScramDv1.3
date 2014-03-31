@@ -1,8 +1,12 @@
 package edu.fsu.cs.scramd.main;
 
+import java.util.List;
+
 import com.parse.ParseUser;
 
 import edu.fsu.cs.scramd.R;
+import edu.fsu.cs.scramd.data.DatabaseHandler;
+import edu.fsu.cs.scramd.data.Friend;
 import edu.fsu.cs.scramd.friend.*;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,6 +24,8 @@ public class MenuScreen extends Activity implements OnClickListener {
 	DialogDifficulty soloD;
 	
 	Button friendsB;
+	Button settingsB;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,7 @@ public class MenuScreen extends Activity implements OnClickListener {
 		soloD = new DialogDifficulty();
 		
 		friendsB = (Button) findViewById(R.id.friendsB);
-						
+		settingsB = (Button) findViewById(R.id.settingsB);
 	}
 
 	@Override
@@ -60,9 +66,11 @@ public class MenuScreen extends Activity implements OnClickListener {
 			//friendIntent.putExtra("currUser", ParseUser.getCurrentUser().getObjectId());
 			startActivity(friendIntent);
 			
+		}else if(v == settingsB){
+		
+			Intent settingsIntent = new Intent(this, Settings.class);
+			startActivity(settingsIntent);
 		}
-//		else
-//			;
 	}
 
 }

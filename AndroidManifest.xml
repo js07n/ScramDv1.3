@@ -59,9 +59,14 @@
 		<activity android:name=".data.SharedPrefs"></activity>
 		<activity android:name=".main.SignUp"></activity>
 		<activity android:name=".main.MenuScreen"></activity>              
-        <activity android:name=".friend.FriendScreen"></activity>        
+        <activity 
+            android:name=".friend.FriendScreen"
+         	android:launchMode="singleInstance">
+        </activity>        
         <activity android:name=".game.GameScreen"></activity>        
         <activity android:name=".camera.CameraActivity"></activity>
+        <activity android:name=".main.Settings"></activity>
+        <activity android:name=".main.About"></activity>
         
         
     </application>

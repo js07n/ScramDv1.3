@@ -35,15 +35,6 @@
         android:layout_alignLeft="@+id/passEt"
         android:layout_marginLeft="37dp"
         android:text="Sign Up" />
-    
-  	<Button
-        android:id="@+id/loBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/suBtn"
-        android:layout_marginLeft="37dp"
-        android:onClick="logOut"
-        android:text="Log out" />
 
     <TextView
         android:id="@+id/passTv"
@@ -88,5 +79,14 @@
         android:layout_marginTop="16dp"
         android:text="Login"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <TextView
+        android:id="@+id/whatPassTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passEt"
+        android:layout_below="@+id/passEt"
+        android:text="I'm dumb, what's my pass?"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
