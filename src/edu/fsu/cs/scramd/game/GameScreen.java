@@ -10,12 +10,15 @@ import edu.fsu.cs.scramd.friend.DialogDifficulty;
 import edu.fsu.cs.scramd.friend.UpdateChallenge;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -98,6 +101,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         //set up ViewGroup //start from a blank XML file
         //Image pieces will be attached to ViewGroup
+        
         _root = (ViewGroup)findViewById(R.id.root);
         
 
@@ -159,7 +163,17 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         // Header = the black strip that tells the time, battery life, etc.
         // fixed!! changed theme in Manifest file.  set it to no title bar.
         
+        //JS - TESTING - 03.30.2014
         
+        Display screenDisplay = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        screenDisplay.getSize(size);
+
+        	xOFFSET = (size.x / 8) / 2;
+        	yOFFSET = ((size.y / 4) / 2 )+ 75;
+	
+        //TESTING END
+        		
         // ***********************************************************************************************
         
     	//Fetch Image  
@@ -198,7 +212,15 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         // width and height of image pieces
         // Since pieces are squares, width = height
         //chunk = b.getWidth()/DIFFICULTY; //only works if image is 900x900
-        chunk = 900 / DIFFICULTY; //TEMPORARY SOLUTION?
+        int iSize = (size.x/10) * 9;
+
+        
+        
+        chunk = iSize / DIFFICULTY; //TEMPORARY SOLUTION?
+        
+        
+        //Recalibrate iSize so that it prevents further mathematical precision errors
+        iSize  = (iSize / DIFFICULTY) * DIFFICULTY;
         
         Log.v("CHUNK", Integer.toString(chunk));
         Log.v("real width", Integer.toString(b.getWidth()));
@@ -259,21 +281,28 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         // TrackArray is used to determine which display goes where on screen
         int z = 0;
         
-        	for(int y = 0; y < 900; y += chunk)
+        for(int y = 0; y < iSize; y += chunk)
+        {
+        	for(int x = 0; x < iSize; x += chunk)
         	{
-        		for(int x = 0; x < 900; x += chunk)
-        		{
-        			RelativeLayout.LayoutParams lparams = new RelativeLayout.LayoutParams(900, 900); 
-        			lparams.leftMargin = x;
-        			lparams.topMargin = y;
-        			lparams.width = chunk;
-        			lparams.height = chunk;
-        			display[TrackArray[z++]].setLayoutParams(lparams);
+        		
+    			RelativeLayout.LayoutParams lparams = new RelativeLayout.LayoutParams(iSize, iSize); 
+    			lparams.leftMargin = x;
+    			lparams.topMargin = y;
+    			lparams.width = chunk;
+    			lparams.height = chunk;
+    			display[TrackArray[z++]].setLayoutParams(lparams);
 
-        			Log.v("x  y", Integer.toString(x) + "  " + Integer.toString(y));
-        		}        	        	        	
-        	}
+    			Log.v("x  y", Integer.toString(x) + "  " + Integer.toString(y));
+    			//!!! this is temp patch up to fix math issues
+        	}      	        	        	
+        }
         
+        
+        //TESTING 03.31.2014 - JS
+        _root.setPadding(xOFFSET, yOFFSET-75, 0, 0);
+        
+        System.out.println("Padding complete");
         
         for (int i = 0; i < NumOfPieces; i++)
         {
@@ -296,15 +325,19 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         //Create boundary coordinates for each region that images can be placed on.
         bounds = new Rect[NumOfPieces];
         
-        z = 0;        
-    	for(int y = (0 + yOFFSET); y < (900 + yOFFSET); y += chunk)
+        z = 0;
+        
+    	for(int y = (0 + yOFFSET); y < (iSize + yOFFSET); y += chunk)
     	{
-    		for(int x = (0 + xOFFSET); x < (900 + xOFFSET); x += chunk)
+    		for(int x = (0 + xOFFSET); x < (iSize + xOFFSET); x += chunk)
     		{
+		
     			bounds[z++] = new Rect (x, y, x+chunk, y+chunk);
 
     			Log.e("x  y", Integer.toString(x) + "  " + Integer.toString(y));
-    		}        	        	        	
+    			
+    		}
+    		
     	}
 
 
@@ -314,7 +347,13 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	//if(GameType.equals("solo"))
     	//{
     		// TIMER !!!
-        	mTextField = (TextView) findViewById(R.id.mTextField);
+        	//mTextField = (TextView) findViewById(R.id.mTextField);
+    	
+    		mTextField = new TextView(this);
+    		LayoutParams params = new LayoutParams(xOFFSET*8, 100);
+    		params.setMargins(xOFFSET, 1000, 0, 0);
+    		mTextField.setLayoutParams(params);
+    		
         	
     		time = 30000;
     		//startCDTimer();
@@ -532,8 +571,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                    int bottom = location[1] + view.getHeight();  //this is weird !! i have to add height myself
                 
                    //This shows the actual coordinates of the display on the screen.
-                 //Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
-               		//                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
+                 Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
+               		                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
                    
                    Rect boundz = new Rect(location[0], location[1], right, bottom);
                   

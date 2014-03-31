@@ -3,10 +3,10 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="30dp"
-    android:paddingTop="100dp"
+    android:paddingLeft="0dp"
+    android:paddingTop="0dp"
     android:background="@color/white">
-    
+<!--    
     <TextView
     android:id="@+id/mTextField"
     android:layout_width="match_parent"
@@ -17,5 +17,5 @@
     android:textSize="50sp"
     android:gravity="right"
     ></TextView>
-
+-->
 </RelativeLayout>
