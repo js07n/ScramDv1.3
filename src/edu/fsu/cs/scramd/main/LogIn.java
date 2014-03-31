@@ -27,6 +27,7 @@ import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 import com.parse.SaveCallback;
 
 import edu.fsu.cs.scramd.R;
@@ -34,12 +35,16 @@ import edu.fsu.cs.scramd.friend.FriendScreen;
 
 import android.R.string;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LogIn extends Activity {
@@ -49,12 +54,14 @@ public class LogIn extends Activity {
 	//**************************************************************
 	String userEmail;
 	String userPassword;
+	String idkPassMail;
 	EditText uMail;
 	EditText uPass;
 	Button signUp;
 	Button logIn;
 	Intent suIntent;
 	Intent menuIntent;
+	TextView whatPass;
 	
 	
 	
@@ -73,9 +80,7 @@ public class LogIn extends Activity {
 		logIn = (Button) findViewById(R.id.logInBtn);
 		suIntent = new Intent(this, SignUp.class);
 		menuIntent = new Intent(this, MenuScreen.class);
-		//menuIntent = new Intent(this, FriendScreen.class);
-		
-		//ParseUser currentUser;
+		whatPass = (TextView) findViewById(R.id.whatPassTv);
 
 		
 		
@@ -165,6 +170,45 @@ public class LogIn extends Activity {
 			}
 		});
 		
+		//*********************************************************
+		// Pass Reset On Click Listener
+		//*********************************************************
+		whatPass.setOnClickListener(new View.OnClickListener() {
+			
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onClick(View v) {
+				final EditText passIn = new EditText(LogIn.this);
+				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+		                  LinearLayout.LayoutParams.MATCH_PARENT,
+		                  LinearLayout.LayoutParams.MATCH_PARENT);
+				passIn.setLayoutParams(lp); 
+				
+		        AlertDialog getPass = new AlertDialog.Builder(LogIn.this).create();
+		        getPass.setTitle("Enter Email Address");
+		        getPass.setView(passIn);
+		        
+		        getPass.setButton("OK", new DialogInterface.OnClickListener() {
+		        	public void onClick(DialogInterface dialog, int which) {
+		        		idkPassMail = passIn.getText().toString();
+		                        
+		        		ParseUser.requestPasswordResetInBackground(idkPassMail,
+		        			new RequestPasswordResetCallback() {
+		        				public void done(ParseException e) {
+		        					if (e == null) {
+		        						//Good
+		        					} else {
+		        						//Bad
+		        					}
+		        				}
+		            		});   
+		        	}
+		         });
+
+		        getPass.show();
+			}
+		});
+		
 	}
 
 	@Override
@@ -172,28 +216,6 @@ public class LogIn extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.log_in, menu);
 		return true;
-	}
-
-	
-	public void logOut(View v)
-	{
-		
-		ParseUser.logOut();
-		
-		// Associate the device with a user
-    	//ParseInstallation installation = new ParseInstallation();
-    	ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-    	//installation.put("objectId", ParseInstallation.getCurrentInstallation().getObjectId().toString());
-    	installation.put("user","");
-		installation.saveInBackground(new SaveCallback() {
-			
-			@Override
-			public void done(ParseException e) {
-				if(e == null)
-					Toast.makeText(getApplicationContext(), ParseUser.getCurrentUser().getUsername(), Toast.LENGTH_SHORT).show();
-				
-			}
-		});
 	}
 	
 }

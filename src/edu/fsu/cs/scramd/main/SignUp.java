@@ -19,6 +19,9 @@ package edu.fsu.cs.scramd.main;
 //********************************************************************************
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
@@ -75,32 +78,75 @@ public class SignUp extends Activity{
 			@Override
 			public void onClick(View v) {
 		
-			firstName = firstText.getText().toString();
-			lastName = lastText.getText().toString();
-			email = emailText.getText().toString();
-			password = pass2Text.getText().toString();
+			// *********************************************************
+			// * Sign Up error checks.
+			// * 	First Name & Last Name
+			// *	 Error displayed when: String == null or  == " "
+			// *					       String < 2 or > 12
+			// *						   String != a letter
+			// *	Email validated through isEmailValid()
+			// * 	Password
+			// *	 Error Displayed when: String == null or == " "
+			// * 						   String < 2 or pass2 != pass3
+			// *********************************************************
+			if( firstText.getText().toString() == null || firstText.getText().toString() == " " || 
+					firstText.getText().toString().length() < 2 || firstText.getText().toString().length() > 12
+					|| !isAlpha(firstText.getText().toString()))
+				firstText.setError( "First Name is invalid." );
 			
-			//*********************************************************
-			// Save new user data into Parse.com Data Storage
-			//*********************************************************
-			ParseUser user = new ParseUser();
-			user.setUsername(email);
-			//user.setEmail(email);
-			user.setPassword(password);
-			//user.put("FirstName", firstName);
-			//user.put("LastName", lastName);
+			else if( lastText.getText().toString() == null || lastText.getText().toString() == " " || 
+					lastText.getText().toString().length() < 2 || lastText.getText().toString().length() > 12
+					|| !isAlpha(lastText.getText().toString()))
+				lastText.setError( "Last Name is invalid." );
 			
-			user.signUpInBackground(new SignUpCallback(){
-				public void done(com.parse.ParseException e){
-					if(e==null){
-						firstText.setText("");
-						finish();
-					}else{
-						//itdidntwork
-						Toast.makeText(getApplicationContext(), "false", Toast.LENGTH_SHORT).show();
+			else if(!isEmailValid(emailText.getText().toString()))
+				emailText.setError("Email is Invalid. Please Re-Enter.");
+			
+			else if(pass2Text.getText().toString() == null || pass2Text.getText().toString() == " "
+					|| pass2Text.getText().toString().length() < 2)
+				pass2Text.setError("Password is invalid. Please choose another password.");
+			
+			else if(!pass2Text.getText().toString().equals(pass3Text.getText().toString()))
+			{
+				pass3Text.setError("Password does not match.");
+			
+				Toast.makeText(getApplicationContext(), pass2Text.getText().toString(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), pass3Text.getText().toString(), Toast.LENGTH_SHORT).show();
+			}
+			else{	
+				//Clears errors once entries are valid.
+				firstText.setError(null);
+				lastText.setError(null);
+				emailText.setError(null);
+				pass2Text.setError(null);
+				
+				firstName = firstText.getText().toString();
+				lastName = lastText.getText().toString();
+				email = emailText.getText().toString();
+				password = pass2Text.getText().toString();
+				
+				//*********************************************************
+				// Save new user data into Parse.com Data Storage
+				//*********************************************************
+				ParseUser user = new ParseUser();
+				user.setUsername(email);
+				//user.setEmail(email);
+				user.setPassword(password);
+				//user.put("FirstName", firstName);
+				//user.put("LastName", lastName);
+				
+				user.signUpInBackground(new SignUpCallback(){
+					public void done(com.parse.ParseException e){
+						if(e==null){
+							firstText.setText("");
+							finish();
+						}else{
+							//itdidntwork
+							Toast.makeText(getApplicationContext(), "false", Toast.LENGTH_SHORT).show();
+						}
 					}
-				}
-			});
+					});
+				};
 			}
 		});
 		
@@ -121,6 +167,42 @@ public class SignUp extends Activity{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.log_in, menu);
 		return true;
+	}
+	
+	// **********************************
+	// * Checks if the string contains
+	// * only characters.
+	// **********************************
+	public boolean isAlpha(String name) {
+	    char[] chars = name.toCharArray();
+
+	    for (char c : chars) {
+	        if(!Character.isLetter(c)) {
+	            return false;
+	        }
+	    }
+
+	    return true;
+	}
+	
+	// ***************************************************
+	// * method is used for checking valid email id format.
+	// *
+	// * @param email
+	// * @return boolean true for valid false for invalid
+	// ***************************************************
+	public static boolean isEmailValid(String email) {
+	    boolean isValid = false;
+
+	    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+	    CharSequence inputStr = email;
+
+	    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(inputStr);
+	    if (matcher.matches()) {
+	        isValid = true;
+	    }
+	    return isValid;
 	}
 }
 
