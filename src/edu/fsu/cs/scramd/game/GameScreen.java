@@ -432,6 +432,10 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 				// Launch Dialog Fragment
 				soloD.show(getFragmentManager(), "DialogDifficulty");
 			}
+			else
+			{
+				gameOver(0);
+			}
         }
 
         @Override
@@ -716,37 +720,9 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                     }
                     else //GameType == friendplay
                     {
-                    	//03.19.2014
-                    	//save temp Score on DB
-                    	//change status on DB
-                    	if(friendName != null)
-                    	{
-                    		System.out.println(friendName);
-                    		Friend friend = db.getFriend(friendName);
-                    		
-                    		
-                    		//-1 means that there was no previous score and this 
-                    		// is the first score that will be recorded for the challenge.
-                    		if(friend.getTScore() == -1)
-                    		{
-                    			friend.setTScore(DIFFICULTY-2);
-                    			friend.setStatus("fight"); //So that user will be allowed to send back a challenge
-                    		}
-                    		else //This game contains the second score and a winner should be awarded points.
-                    		{
-                    			//THIS MUST BE CHANGED!!!!!
-                    			UpdateChallenge.calculateWinner(friendName, DIFFICULTY-2);
-                    			friend.setStatus("wait");
-                    		}
-                    		
-                    		db.updateFriend(friend);
-                    		
-                    		//!!!
-                    		// CODE NEEDED HERE TO DISPLAY WINNER AND TO END ACTIVITY.
-                    	}
-                    	
-                    }
-                }
+                    	gameOver(DIFFICULTY-2);
+                    }//end Else GameType == friendPlay
+                }//end if(win == true)
  
                 
                 break;
@@ -766,6 +742,41 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         _root.invalidate();
                      
         return true;
+	}
+	
+	
+	private void gameOver(int score)
+	{
+	 	//04.01.2014
+    	//save temp Score on DB
+    	//change status on DB
+    	if(friendName != null)
+    	{
+    		System.out.println(friendName);
+    		Friend friend = db.getFriend(friendName);
+    		
+    		
+    		//-1 means that there was no previous score and this 
+    		// is the first score that will be recorded for the challenge.
+    		if(friend.getTScore() == -1)
+    		{
+    			friend.setTScore(score);
+    			friend.setStatus("fight"); //So that user will be allowed to send back a challenge
+    		}
+    		else //This game contains the second score and a winner should be awarded points.
+    		{
+    			//THIS MUST BE CHANGED!!!!!
+    			UpdateChallenge.calculateWinner(friendName, score);
+    			friend.setStatus("wait");
+    		}
+    		
+    		db.updateFriend(friend);
+    		
+    		//!!!
+    		// CODE NEEDED HERE TO DISPLAY WINNER AND TO END ACTIVITY.
+    	}//end if friendName != null
+    	
+    	this.finish();
 	}
 	
     public void onBackPressed() {

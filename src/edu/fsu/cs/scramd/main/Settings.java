@@ -1,11 +1,16 @@
 package edu.fsu.cs.scramd.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import edu.fsu.cs.scramd.R;
+import edu.fsu.cs.scramd.data.DatabaseHandler;
+import edu.fsu.cs.scramd.data.Friend;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -74,6 +79,23 @@ public class Settings extends Activity implements OnClickListener {
 		}
 		else if(v == loTv){
 			ParseUser.logOut();
+			
+			DatabaseHandler db = new DatabaseHandler(this);
+			
+			//If there are friends on the Database,
+			// then delete them
+			if(db.getFriendsCount() != 0)
+			{
+				//Retrieve friendlist
+				List<Friend> friendList = db.getAllFriends();
+								
+				//Remove friends from Database one by one
+				for (int i = 0; i < db.getFriendsCount(); i++)
+				{
+					db.deleteFriend(friendList.get(i));				
+				}
+			}
+			
 			
 			// Associate the device with a user
 	    	//ParseInstallation installation = new ParseInstallation();
