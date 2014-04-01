@@ -776,7 +776,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		// CODE NEEDED HERE TO DISPLAY WINNER AND TO END ACTIVITY.
     	}//end if friendName != null
     	
-    	((Activity) getApplicationContext()).finish();
+    	this.finish();
     	
 	}
 	

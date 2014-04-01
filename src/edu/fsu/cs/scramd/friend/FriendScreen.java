@@ -289,11 +289,12 @@ public class FriendScreen extends Activity {
 			Toast.makeText(getApplicationContext(), "DB has ZERO entries", Toast.LENGTH_SHORT).show();
 			//03.30.2014
 			freunde[0] = new String("");
-			
+/*			
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.item_friend, 
 					R.id.lvtv, freunde);
 			
 			lv.setAdapter(adapter);
+*/			
 		//END TESTING
 		}
 
@@ -358,6 +359,8 @@ public class FriendScreen extends Activity {
 				      		updateChallenge.done(challenge);
 				    	    		
 				      	}
+				      	else
+				      		;
 					}// end for loop
 			    	    	
 				}// end if objects.size == 0
@@ -544,12 +547,14 @@ public class FriendScreen extends Activity {
 				}
 			}
 		});
-				
+									
+	}//end saveList()
+	
+	
+	public void onResume()
+	{
+		super.onResume();
+		refreshList();
 	}
-	
-	
-	
 
-	
-	
 }

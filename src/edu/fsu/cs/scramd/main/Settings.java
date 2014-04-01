@@ -3,7 +3,10 @@ package edu.fsu.cs.scramd.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils.Permissions.User;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -78,6 +81,13 @@ public class Settings extends Activity implements OnClickListener {
 			startActivity(i);
 		}
 		else if(v == loTv){
+			JSONArray jarr = new JSONArray();								
+			
+			ParseUser user = ParseUser.getCurrentUser();
+			user.put("friendList", jarr);
+			
+			user.saveInBackground();
+			
 			ParseUser.logOut();
 			
 			DatabaseHandler db = new DatabaseHandler(this);
@@ -86,6 +96,8 @@ public class Settings extends Activity implements OnClickListener {
 			// then delete them
 			if(db.getFriendsCount() != 0)
 			{
+
+
 				//Retrieve friendlist
 				List<Friend> friendList = db.getAllFriends();
 								
