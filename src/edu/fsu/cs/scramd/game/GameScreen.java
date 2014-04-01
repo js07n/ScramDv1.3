@@ -158,6 +158,10 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         NumOfPieces = DIFFICULTY * DIFFICULTY;
         
         
+        //this is status bar at top of screen that tells battery status, etc.
+        int statusBarHeight = getStatusBarHeight(); 
+        
+        
         // change these offsets to determine where the moving pieces will be on the screen.
         // offsets are 3*(paddingValue in XML file)
         xOFFSET = 90;
@@ -171,9 +175,13 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         Point size = new Point();
         screenDisplay.getSize(size);
 
-        	xOFFSET = (size.x / 10) / 2;
-        	yOFFSET = ((size.y / 4) / 2 )+ 75;
+        xOFFSET = (size.x / 10) / 2;
+        yOFFSET = ((size.y / 4) / 2 )+ statusBarHeight;
 	
+        System.out.println("Status bar height  " + statusBarHeight);
+        System.out.println("xOFFSET  " + xOFFSET);
+        System.out.println("yOFFSET  " + yOFFSET);	
+        	
         //TESTING END
         		
         // ***********************************************************************************************
@@ -302,7 +310,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         
         //TESTING 03.31.2014 - JS
-        _root.setPadding(xOFFSET, yOFFSET-75, 0, 0);
+        _root.setPadding(xOFFSET, yOFFSET-statusBarHeight, 0, 0);  //yOFFSET-75
         
         System.out.println("Padding complete");
         
@@ -328,6 +336,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         bounds = new Rect[NumOfPieces];
         
         z = 0;
+        
+        System.out.println("chunk " + chunk);
         
     	for(int y = (0 + yOFFSET); y < (iSize + yOFFSET); y += chunk)
     	{
@@ -356,21 +366,21 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		timerTV.setGravity(1);
     		
     		
-    		//timerTV.settext
+    		
     		timerTV.setBackgroundColor(Color.BLACK);
-    		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+    		RelativeLayout.LayoutParams timerParams = new RelativeLayout.LayoutParams(
     				LayoutParams.WRAP_CONTENT, 
     				LayoutParams.WRAP_CONTENT);
     		//LayoutParams params = new LayoutParams(size.x, size.y);
     		
-    		params.width = size.x / 3;
+    		timerParams.width = size.x / 3;
     		
-    		params.height = LayoutParams.WRAP_CONTENT;
+    		timerParams.height = LayoutParams.WRAP_CONTENT;
     		
-    		params.setMargins((size.x/2) - (params.width/2) - xOFFSET, iSize + (size.y/8), 0, 0);
+    		timerParams.setMargins((size.x/2) - (timerParams.width/2) - xOFFSET, iSize + (size.y/8), 0, 0);
     		//params.setMargins(100, 0, 0, 0);
     		//timerTV.setLayoutParams(params);
-    		_root.addView(timerTV, params);
+    		_root.addView(timerTV, timerParams);
     		
     		//this.addContentView(timerTV, params);
 
@@ -386,6 +396,19 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 
 
 
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+  }
+    
+    
+    
+    
+    
     public class MyCounter extends CountDownTimer{
 
         public MyCounter(long millisInFuture, long countDownInterval) {
