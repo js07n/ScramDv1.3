@@ -776,7 +776,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		// CODE NEEDED HERE TO DISPLAY WINNER AND TO END ACTIVITY.
     	}//end if friendName != null
     	
-    	this.finish();
+    	((Activity) getApplicationContext()).finish();
+    	
 	}
 	
     public void onBackPressed() {

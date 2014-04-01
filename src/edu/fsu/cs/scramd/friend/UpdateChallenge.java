@@ -268,7 +268,7 @@ public class UpdateChallenge {
 			e.printStackTrace();
 		}
 		
-		if(!isUserAFriend(sentBy.getUsername()))
+		if(!isUserAFriend(sentBy.getUsername()) || db.getFriendsCount() == 0)
 		{	    	    	    		    	    	    		
 			//if user isn't a friend,
 			//then create an entry for them in the database
@@ -390,7 +390,7 @@ public class UpdateChallenge {
 		
 		//If user is not a friend,
 		// make user into a friend.
-		if(!isUserAFriend(sentBy.getUsername()))
+		if(!isUserAFriend(sentBy.getUsername()) || db.getFriendsCount() == 0)
 		{	    	    	    		    	    	    		
 			//if user isn't a friend,
 			//then create an entry for them in the database
