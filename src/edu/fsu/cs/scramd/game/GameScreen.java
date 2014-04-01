@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
@@ -22,6 +23,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -84,7 +86,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 	private static long time;//, timeTick; //timeTick is used for activity state resume,stop,etc
 	MyCounter cdTimer;
 	//CountDownTimer cdTimer;
-	TextView mTextField;
+	TextView timerTV;
 	
     
     @Override
@@ -169,7 +171,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         Point size = new Point();
         screenDisplay.getSize(size);
 
-        	xOFFSET = (size.x / 8) / 2;
+        	xOFFSET = (size.x / 10) / 2;
         	yOFFSET = ((size.y / 4) / 2 )+ 75;
 	
         //TESTING END
@@ -347,14 +349,32 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	//if(GameType.equals("solo"))
     	//{
     		// TIMER !!!
-        	//mTextField = (TextView) findViewById(R.id.mTextField);
+        	//timerTV = (TextView) findViewById(R.id.timerTV);
     	
-    		mTextField = new TextView(this);
-    		LayoutParams params = new LayoutParams(xOFFSET*8, 100);
-    		params.setMargins(xOFFSET, 1000, 0, 0);
-    		mTextField.setLayoutParams(params);
+    		timerTV = new TextView(this);
+    		timerTV.setTextSize(size.x/30);
+    		timerTV.setGravity(1);
     		
-        	
+    		
+    		//timerTV.settext
+    		timerTV.setBackgroundColor(Color.BLACK);
+    		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+    				LayoutParams.WRAP_CONTENT, 
+    				LayoutParams.WRAP_CONTENT);
+    		//LayoutParams params = new LayoutParams(size.x, size.y);
+    		
+    		params.width = size.x / 3;
+    		
+    		params.height = LayoutParams.WRAP_CONTENT;
+    		
+    		params.setMargins((size.x/2) - (params.width/2) - xOFFSET, iSize + (size.y/8), 0, 0);
+    		//params.setMargins(100, 0, 0, 0);
+    		//timerTV.setLayoutParams(params);
+    		_root.addView(timerTV, params);
+    		
+    		//this.addContentView(timerTV, params);
+
+    		
     		time = 30000;
     		//startCDTimer();
     		final MyCounter timer = new MyCounter(time,1000);
@@ -376,7 +396,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         public void onFinish() {
 			Toast.makeText(getApplicationContext(), "LOST!", Toast.LENGTH_SHORT).show();
 			
-			mTextField.setText("Done!");
+			timerTV.setText("Done!");
+			time = 0;
 			
 			if(GameType.equals("solo"))
 			{
@@ -392,7 +413,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 
         @Override
         public void onTick(long millisUntilFinished) {
-            mTextField.setText((millisUntilFinished/1000)+"");
+            timerTV.setText((millisUntilFinished/1000)+"");
             System.out.println("Timer  : " + (millisUntilFinished/1000));
             time = millisUntilFinished;
         }
@@ -442,7 +463,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	switch(i)
     	{
     		case 1:
-    			return R.drawable.solo1;   //NEED TO FIX!!
+    			return R.drawable.solo1;   
     		case 2:
     			return R.drawable.solo2;
     		case 3:
