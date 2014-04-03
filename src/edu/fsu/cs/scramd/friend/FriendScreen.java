@@ -4,6 +4,8 @@ package edu.fsu.cs.scramd.friend;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +30,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -63,6 +66,9 @@ public class FriendScreen extends Activity {
 	
 	UpdateChallenge updateChallenge;
 	
+	Timer refreshTimer;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);	
@@ -87,7 +93,7 @@ public class FriendScreen extends Activity {
         
         tabHost.addTab(spec1);
         tabHost.addTab(spec2);
-        
+                      
         tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			
 			@Override
@@ -96,7 +102,7 @@ public class FriendScreen extends Activity {
 				{
 			        //delete ALL FRIENDS THIS IS FOR TESTING ONLY!!!
 			        List<Friend> friends = db.getAllFriends();
-			        Toast.makeText(getApplicationContext(), "db size " + friends.size(), Toast.LENGTH_SHORT).show();
+			        //Toast.makeText(getApplicationContext(), "db size " + friends.size(), Toast.LENGTH_SHORT).show();
 					for(int i = 0; i < friends.size(); i++)
 					{
 						//friends.get(i).setUsername(Integer.toString(i));
@@ -128,7 +134,7 @@ public class FriendScreen extends Activity {
         
         //refreshList();
         downloadChallenges();
-        refreshList();
+        //refreshList();
 
       
 		
@@ -138,13 +144,15 @@ public class FriendScreen extends Activity {
         addET = (EditText) findViewById(R.id.addEt);
         removeET = (EditText) findViewById(R.id.removeEt);
         
+        
+
 	}
 	
 	
 
-	private void refreshList()
+	public void refreshList()
 	{		
-		Toast.makeText(getApplicationContext(), "Tab changed", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getApplicationContext(), "Tab changed", Toast.LENGTH_SHORT).show();
 		
 		String[] freunde;
 		
@@ -160,7 +168,7 @@ public class FriendScreen extends Activity {
 			JSONArray jarr = user.getJSONArray("friendList");
 
 			//!!! Show length
-			Toast.makeText(getApplicationContext(), Integer.toString(jarr.length()), Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), Integer.toString(jarr.length()), Toast.LENGTH_SHORT).show();
 			
 			// If friendlist is not empty then perform copy
 			if(jarr.length() != 0)
@@ -190,16 +198,23 @@ public class FriendScreen extends Activity {
 		if(db.getFriendsCount() != 0)
 		{
 			System.out.println("DB does NOT have ZERO friends");
-			Toast.makeText(getApplicationContext(), "DB " + Integer.toString(db.getFriendsCount()), Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), "DB " + Integer.toString(db.getFriendsCount()), Toast.LENGTH_SHORT).show();
 			List<Friend> friends = db.getAllFriendsForAdapter();
+			/*
 			freunde = new String[db.getFriendsCount()];
 			for(int i = 0; i < friends.size(); i++)
 				freunde[i] = friends.get(i).getUsername();
+			*/
 			
+			System.out.println("refreshList()");
+			
+			//Temp solution
+			int uScore = 0;
+			int oScore = 0;
 			
 			//Testing JS - 03.30.14
 	        // create the grid item mapping
-	        String[] from = new String[] {"username", "status", "uScore", "oScore"};
+	        String[] from = new String[] {"username", "status", "userScore", "oppScore"};
 	        int[] to = new int[] { R.id.lvtv, R.id.lvStatus, R.id.lvScoreMe, R.id.lvScoreFriend};
 	 
 	        // prepare the list of all records
@@ -208,9 +223,19 @@ public class FriendScreen extends Activity {
 	            HashMap<String, String> map = new HashMap<String, String>();
 	            map.put("username", friends.get(i).getUsername());
 	            map.put("status", friends.get(i).getStatus());
-	            map.put("uScore", Integer.toString(friends.get(i).getUScore()));
-	            map.put("oScore", Integer.toString(friends.get(i).getOScore()));
-	            //etc. need other fields
+	            map.put("userScore", Integer.toString(friends.get(i).getUScore()));
+	            map.put("oppScore", Integer.toString(friends.get(i).getOScore()));
+	            
+	            //TEMP SOLUTION
+	            //uScore = db.getFriend(friends.get(i).getUsername()).getUScore();
+	            //oScore = db.getFriend(friends.get(i).getUsername()).getOScore();
+	            
+	            //map.put("userScore", Integer.toString(uScore));
+	            //map.put("oppScore", Integer.toString(oScore));
+	            // END TEMP SOLUTION
+	           //System.out.println(friends.get(i).getUsername() + " " + Integer.toString(friends.get(i).getUScore()));
+
+	            
 	            fillMaps.add(map);
 	        }
 	 
@@ -243,9 +268,9 @@ public class FriendScreen extends Activity {
 					//if(db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus().equals("fight"))
 					if(db.getFriend(username).getStatus().equals("fight"))
 					{
-						Toast.makeText(getApplicationContext(), 
-								db.getFriend(username).getStatus(), 
-								Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getApplicationContext(), 
+								//db.getFriend(username).getStatus(), 
+								//Toast.LENGTH_SHORT).show();
 						
 						// Send Friend Name to Dialog Bundle
 						Bundle dialogBundle = new Bundle();	        			        			
@@ -257,9 +282,9 @@ public class FriendScreen extends Activity {
 					//play Status
 					else if(db.getFriend(username).getStatus().equals("play"))
 					{
-						Toast.makeText(getApplicationContext(), 
-								db.getFriend(username).getStatus(), 
-								Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getApplicationContext(), 
+								//db.getFriend(username).getStatus(), 
+								//Toast.LENGTH_SHORT).show();
 						
 						//String friendName = arg0.getAdapter().getItem(arg2).toString();
 						
@@ -274,10 +299,10 @@ public class FriendScreen extends Activity {
 					}
 					else
 					{
-						Toast.makeText(getApplicationContext(), 
-								db.getFriend(username).getStatus(), 
-								Toast.LENGTH_SHORT)
-								.show();
+						//Toast.makeText(getApplicationContext(), 
+							//	db.getFriend(username).getStatus(), 
+								//Toast.LENGTH_SHORT)
+								//.show();
 					}
 					
 					
@@ -287,7 +312,7 @@ public class FriendScreen extends Activity {
 		}//DB has zero friends
 		else
 		{
-			Toast.makeText(getApplicationContext(), "DB has ZERO entries", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), "DB has ZERO entries", Toast.LENGTH_SHORT).show();
 			//03.30.2014
 			freunde[0] = new String("");
 /*			
@@ -329,7 +354,7 @@ public class FriendScreen extends Activity {
 				else 
 				{
 //			   		Log.d("score", "Retrieved the object.");
-					Toast.makeText(getApplicationContext(), "found obj", Toast.LENGTH_SHORT).show();
+					//Toast.makeText(getApplicationContext(), "found obj", Toast.LENGTH_SHORT).show();
 			    	    	
 					for(int i = 0; i < objects.size(); i++)
 					{
@@ -412,7 +437,7 @@ public class FriendScreen extends Activity {
 	    	  
 	    	}); // end getFirstInBackground
 */		
-		
+		refreshList();
 	}
 	
 	
@@ -558,4 +583,12 @@ public class FriendScreen extends Activity {
 		refreshList();
 	}
 
+
+	protected void onDestroy() {
+	    super.onDestroy();
+	    if (db != null) {
+	        db.close();
+	    }
+
+	}
 }

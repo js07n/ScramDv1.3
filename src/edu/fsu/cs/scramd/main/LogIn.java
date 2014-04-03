@@ -20,18 +20,22 @@ import java.util.List;
 
 import android.os.Bundle;
 
+import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 import com.parse.SaveCallback;
 
 import edu.fsu.cs.scramd.R;
+import edu.fsu.cs.scramd.data.UserAccount;
 import edu.fsu.cs.scramd.friend.FriendScreen;
+import edu.fsu.cs.scramd.friend.UpdateChallenge;
 
 import android.R.string;
 import android.app.Activity;
@@ -82,6 +86,16 @@ public class LogIn extends Activity {
 		menuIntent = new Intent(this, MenuScreen.class);
 		whatPass = (TextView) findViewById(R.id.whatPassTv);
 
+		//JS - 04.03.2014
+		final ParseUser currentUser = ParseUser.getCurrentUser();
+
+		if (currentUser != null && currentUser.getUsername() != null) {
+			//Toast.makeText(LogIn.this, "Current user is found! " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
+			menuIntent.putExtra("currUser", currentUser.getObjectId());
+			startActivity(menuIntent);
+			this.finish();
+		}
+		// JS - END
 		
 		
 		//*********************************************************
@@ -107,7 +121,7 @@ public class LogIn extends Activity {
 				userEmail = uMail.getText().toString();
 				userPassword = uPass.getText().toString();
 				
-				Toast.makeText(getApplicationContext(), "username pass " + userEmail + " " + userPassword, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), "username pass " + userEmail + " " + userPassword, Toast.LENGTH_SHORT).show();
 				//For remembering who's logged in
 				//doesn't remember if you completely exit the app.
 				//Needs work
@@ -116,13 +130,13 @@ public class LogIn extends Activity {
 				//JS COMMENT OUT
 				
 								
-				ParseUser currentUser = ParseUser.getCurrentUser();
+				//ParseUser currentUser = ParseUser.getCurrentUser();
 				
 				
-				Toast.makeText(LogIn.this, "Current user is " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
+				//Toast.makeText(LogIn.this, "Current user is " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
 				
 				if (currentUser != null && currentUser.getUsername() != null) {
-					Toast.makeText(LogIn.this, "Current user is found! " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
+					//Toast.makeText(LogIn.this, "Current user is found! " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
 					menuIntent.putExtra("currUser", currentUser.getObjectId());
 					startActivity(menuIntent);
 				} else {
@@ -149,10 +163,13 @@ public class LogIn extends Activity {
 									public void done(ParseException e) {
 										if(e == null)
 										{
+											addFriendsToDB();
 									    	menuIntent.putExtra("currUser", ParseUser.getCurrentUser().getObjectId());
 								    		startActivity(menuIntent);
-										}else
-											Toast.makeText(LogIn.this, "cant' save installations obj", Toast.LENGTH_SHORT).show();
+								    		finish();
+										}
+										//else
+											//Toast.makeText(LogIn.this, "cant' save installations obj", Toast.LENGTH_SHORT).show();
 										
 									}
 								});
@@ -211,6 +228,59 @@ public class LogIn extends Activity {
 		
 	}
 
+	
+	
+	private void addFriendsToDB()
+	{
+		//retrieve objects from server
+	    ParseQuery<ParseObject> query = ParseQuery.getQuery("UserAccount");
+	    query.whereEqualTo("sendTo", ParseUser.getCurrentUser().getUsername());
+	    query.findInBackground(new FindCallback<ParseObject>(){ //"find" retrieves all results, not just one.
+
+			@Override
+			public void done(List<ParseObject> objects, ParseException e) {
+				if (objects == null || objects.size() == 0) 
+				{
+//			   		Log.d("score", "The getFirst request failed.");
+					System.out.println("Object is null");			    	    				    	    	
+			    } 
+				else 
+				{
+//			   		Log.d("score", "Retrieved the object.");
+					//Toast.makeText(getApplicationContext(), "found obj", Toast.LENGTH_SHORT).show();
+			    	    	
+					for(int i = 0; i < objects.size(); i++)
+					{
+						UserAccount challenge = (UserAccount) objects.get(i);
+		    	    	
+						System.out.println("Object is found");
+				    	    	
+				      	String status = challenge.getString("status");
+				    	    	
+				      	//testing 03.14.2014	    	    	    	    	
+				      	System.out.println("UpdateChallenge created");
+			  	    	if(challenge.getString("status") == null)
+		    	    	{
+			  	    		System.out.println("ChallengeStatus is null");
+		    	    	}	    	    	
+				     	else if(status.equals("Received"))
+				     	{
+				     		System.out.println("login activity - attempt to download received challenges");
+				     		UpdateChallenge updateChallenge = new UpdateChallenge(getApplicationContext());
+				     		updateChallenge.received(challenge);
+				     	}
+				      	else
+				      		;
+					}// end for loop
+			    	    	
+				}// end if objects.size == 0
+			}// end done
+		});// end findInBG
+		
+	}// end AddFriendsToDB MEthod
+	
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -10,6 +10,7 @@ import com.parse.PushService;
 import com.parse.ParseUser;
 
 import edu.fsu.cs.scramd.data.UserAccount;
+import edu.fsu.cs.scramd.friend.FriendScreen;
 
 import android.app.Application;
 

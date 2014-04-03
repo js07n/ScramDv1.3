@@ -14,6 +14,7 @@ import com.parse.SaveCallback;
 import edu.fsu.cs.scramd.data.DatabaseHandler;
 import edu.fsu.cs.scramd.data.Friend;
 import edu.fsu.cs.scramd.data.UserAccount;
+import edu.fsu.cs.scramd.game.GameScreen;
 import android.content.Context;
 
 
@@ -94,6 +95,9 @@ public class UpdateChallenge {
     					//Save oppnent's score if available
     					if(tScore != -1)
     						friend.setTScore(tScore);
+    					
+    					
+    					System.out.println("tScore " + tScore);
     					
     					//update status
     					friend.setStatus("play");
@@ -326,10 +330,11 @@ public class UpdateChallenge {
 		{
 			//game ends in Draw,
 			// no one is awarded points.
-			
+			System.out.println("Game ended in a Draw");
 		}
 		else if(uScore > oScore)
 		{
+			System.out.println("User wins " + uScore);
 			//User wins
 			//User is awarded points
 			wScore = uScore * 10;
@@ -339,6 +344,7 @@ public class UpdateChallenge {
 		}
 		else //(uScore < oScore)
 		{
+			System.out.println("Opp wins " + oScore);
 			//Opponent wins
 			//Opponent is awarded points
 			wScore = oScore;
@@ -408,7 +414,7 @@ public class UpdateChallenge {
 				friend.setObjectId(challenge.getObjectId());			
 			
 			db.updateFriend(friend);
-		}// end Else //friend is on App DB
+		}// end Else //friend is on App DB	
 		
 		//Should the status be "" or "Done"
 		updateChallengeOnServer(sentBy.getUsername(), challenge.getObjectId(), "");

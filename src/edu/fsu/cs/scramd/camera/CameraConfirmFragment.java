@@ -1,6 +1,9 @@
 package edu.fsu.cs.scramd.camera;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseACL;
@@ -186,6 +189,15 @@ public class CameraConfirmFragment extends Fragment {
 								ParsePush push = new ParsePush();
 								push.setQuery(userQuery); //pushQuery); // Set our Installation query			
 								push.setMessage("NEW CHALLENGE!");
+								JSONObject jobj = new JSONObject();
+								try {
+									jobj.putOpt("title", "ScramD");
+									jobj.putOpt("body", "This is some great content.");
+								} catch (JSONException e1) {
+									
+									e1.printStackTrace();
+								}
+								push.setData(jobj);
 								push.sendInBackground();
 								
 								//Change status on app DB

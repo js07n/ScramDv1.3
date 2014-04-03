@@ -125,9 +125,11 @@ public class Settings extends Activity implements OnClickListener {
 			
 			//Clears Activities on stack before returning to Login screen.
 			Intent intent = new Intent(this, LogIn.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
+			this.finish();
 		}
 	}
 	

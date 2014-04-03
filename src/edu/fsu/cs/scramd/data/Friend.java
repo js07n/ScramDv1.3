@@ -78,13 +78,13 @@ public class Friend {
 	//Get User Score
 	public int getUScore()
 	{
-		return this.tScore;
+		return this.uScore;
 	}
 	
 	//Get Opponent Score
 	public int getOScore()
 	{
-		return this.tScore;
+		return this.oScore;
 	}
 	
 	//Get Object Id

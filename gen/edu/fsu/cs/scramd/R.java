@@ -36,7 +36,7 @@ public final class R {
     public static final class id {
         public static final int about=0x7f0a0020;
         public static final int aboutTitle=0x7f0a0000;
-        public static final int action_settings=0x7f0a0043;
+        public static final int action_settings=0x7f0a0049;
         public static final int addBtn=0x7f0a0011;
         public static final int addEt=0x7f0a0010;
         public static final int camera_photo_button=0x7f0a0037;
@@ -54,12 +54,16 @@ public final class R {
         public static final int goNewBtn=0x7f0a0033;
         public static final int lastEt=0x7f0a0029;
         public static final int lastTv=0x7f0a0028;
+        public static final int lbottom=0x7f0a0044;
         public static final int lo=0x7f0a0025;
         public static final int logInBtn=0x7f0a0019;
         public static final int logout_button=0x7f0a003e;
+        public static final int ltop=0x7f0a0041;
         public static final int lv=0x7f0a000e;
-        public static final int lvStatus=0x7f0a0042;
-        public static final int lvtv=0x7f0a0041;
+        public static final int lvScoreFriend=0x7f0a0048;
+        public static final int lvScoreMe=0x7f0a0046;
+        public static final int lvStatus=0x7f0a0043;
+        public static final int lvtv=0x7f0a0042;
         public static final int made=0x7f0a0003;
         public static final int mailEt=0x7f0a0017;
         public static final int mailTv=0x7f0a001b;
@@ -98,10 +102,12 @@ public final class R {
         public static final int textView6=0x7f0a0009;
         public static final int textView7=0x7f0a000a;
         public static final int textView8=0x7f0a000b;
+        public static final int their=0x7f0a0047;
         public static final int tos=0x7f0a0023;
         public static final int version=0x7f0a0001;
         public static final int welcomeTv=0x7f0a0038;
         public static final int whatPassTv=0x7f0a001c;
+        public static final int your=0x7f0a0045;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;

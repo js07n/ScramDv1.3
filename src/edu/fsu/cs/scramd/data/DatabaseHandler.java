@@ -180,6 +180,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		
+		System.out.println("get all friends for adapter");
+		
 		//Looping through all rows and adding to list.
 		if(cursor.moveToFirst()){
 			do{
@@ -187,12 +189,22 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				
 				friend.setUsername(cursor.getString(0));
 				friend.setStatus(cursor.getString(1));
+				friend.setTScore(cursor.getInt(3));
 				friend.setUScore(cursor.getInt(4));
 				friend.setOScore(cursor.getInt(5));
 				//Adding contact to list
 				friendList.add(friend);
+				
+				System.out.println(cursor.getString(0) + " " + cursor.getInt(3));
+				System.out.println(cursor.getString(0) + " " + cursor.getInt(4));
+				System.out.println(cursor.getString(0) + " " + cursor.getInt(5));
 			}while(cursor.moveToNext());
 		}
+		
+	    if(cursor != null && !cursor.isClosed()){
+	        cursor.close();
+	    }   
+		
 		
 		return friendList;
 	}
@@ -219,7 +231,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		
 	
 	//Updating single Friend
-	public int updateFriend(Friend friend){
+	//public int updateFriend(Friend friend){
+	public void updateFriend(Friend friend){
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
@@ -234,9 +247,13 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		
 		//not using
 		System.out.println(friend.getUsername() + " " + friend.getStatus());
+		System.out.println(" u score & o Score " + friend.getUScore() + " " + friend.getOScore());
 		
 		//Updating row
-		return db.update(TABLE_FRIENDS, values, KEY_USERNAME + " =?", new String[]{String.valueOf(friend.getUsername())} );
+		//return db.update(TABLE_FRIENDS, values, KEY_USERNAME + " =?", new String[]{String.valueOf(friend.getUsername())} );
+		db.update(TABLE_FRIENDS, values, KEY_USERNAME + " =?", new String[]{String.valueOf(friend.getUsername())} );
+		db.close();
+		
 	}
 
 	//Delete single friend
@@ -250,5 +267,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		db.close();
 	}
 
+
+	
+	
 
 }
