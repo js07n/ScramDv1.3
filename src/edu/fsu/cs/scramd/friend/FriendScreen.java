@@ -199,8 +199,8 @@ public class FriendScreen extends Activity {
 			
 			//Testing JS - 03.30.14
 	        // create the grid item mapping
-	        String[] from = new String[] {"username", "status"};
-	        int[] to = new int[] { R.id.lvtv, R.id.lvStatus};
+	        String[] from = new String[] {"username", "status", "uScore", "oScore"};
+	        int[] to = new int[] { R.id.lvtv, R.id.lvStatus, R.id.lvScoreMe, R.id.lvScoreFriend};
 	 
 	        // prepare the list of all records
 	        List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
@@ -209,6 +209,7 @@ public class FriendScreen extends Activity {
 	            map.put("username", friends.get(i).getUsername());
 	            map.put("status", friends.get(i).getStatus());
 	            map.put("uScore", Integer.toString(friends.get(i).getUScore()));
+	            map.put("oScore", Integer.toString(friends.get(i).getOScore()));
 	            //etc. need other fields
 	            fillMaps.add(map);
 	        }

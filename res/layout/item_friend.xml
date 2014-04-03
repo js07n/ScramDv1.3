@@ -1,19 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
     
-    <TextView 
-        android:id="@+id/lvtv"
-        android:layout_width="0dp"
-    	android:layout_height="50dp"
-    	android:layout_weight="1.0"/>
+    <LinearLayout
+        android:id="@+id/ltop"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal" >
+    
+    	<TextView 
+        	android:id="@+id/lvtv"
+        	android:layout_width="0dp"
+    		android:layout_height="50dp"
+    		android:layout_weight="1.0"/>
 
-    <TextView 
-        android:id="@+id/lvStatus"
-        android:layout_width="0dp"
-    	android:layout_height="50dp"
-    	android:layout_weight="1.0"/>
+    	<TextView 
+        	android:id="@+id/lvStatus"
+        	android:layout_width="0dp"
+    		android:layout_height="50dp"
+    		android:layout_weight="1.0"/>
 
-</LinearLayout>
+	</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lbottom"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@+id/ltop"
+    	android:orientation="horizontal" >
+    	
+    	<RelativeLayout 
+        	android:layout_weight="1.0"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content">
+    
+    		<TextView
+    		    android:id="@+id/your"
+        		android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:text="your: "/>
+    
+    		<TextView 
+        		android:id="@+id/lvScoreMe"
+        		android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:layout_toRightOf="@+id/your"/>
+    	</RelativeLayout>
+
+    	<RelativeLayout 
+        	android:layout_weight="1.0"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content">
+    
+    		<TextView
+    		    android:id="@+id/their"
+        		android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:text="thier: "/>
+    
+    		<TextView 
+        		android:id="@+id/lvScoreFriend"
+        		android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:layout_toRightOf="@+id/their"/>
+    	</RelativeLayout>
+
+	</LinearLayout>
+
+    <!-- TextView
+        android:id="@+id/lvScoreme" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ltop"/-->
+    
+</RelativeLayout>
