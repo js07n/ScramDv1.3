@@ -38,60 +38,29 @@ public final class R {
     public static final class id {
         public static final int about=0x7f0a0020;
         public static final int aboutTitle=0x7f0a0000;
-<<<<<<< HEAD
-        public static final int action_settings=0x7f0a004a;
-        public static final int addBtn=0x7f0a0011;
-        public static final int addEt=0x7f0a0010;
-        public static final int camera_photo_button=0x7f0a0037;
-        public static final int camera_surface_view=0x7f0a0036;
-        public static final int cancelBtn=0x7f0a0031;
-        public static final int cancel_button=0x7f0a003e;
-        public static final int date=0x7f0a0002;
-        public static final int deleteAcc=0x7f0a0021;
-        public static final int emailEt=0x7f0a002b;
-        public static final int emailTv=0x7f0a002a;
-        public static final int firstEt=0x7f0a0027;
-        public static final int firstTv=0x7f0a0026;
-        public static final int fragmentContainer=0x7f0a0041;
-        public static final int friendsB=0x7f0a001e;
-        public static final int goNewBtn=0x7f0a0033;
-        public static final int lastEt=0x7f0a0029;
-        public static final int lastTv=0x7f0a0028;
-        public static final int lbottom=0x7f0a0045;
-        public static final int lo=0x7f0a0025;
-        public static final int logInBtn=0x7f0a0019;
-        public static final int logout_button=0x7f0a003f;
-        public static final int ltop=0x7f0a0042;
-        public static final int lv=0x7f0a000e;
-        public static final int lvScoreFriend=0x7f0a0049;
-        public static final int lvScoreMe=0x7f0a0047;
-        public static final int lvStatus=0x7f0a0044;
-        public static final int lvtv=0x7f0a0043;
-=======
-        public static final int action_settings=0x7f0a0041;
+        public static final int action_settings=0x7f0a0042;
         public static final int addBtn=0x7f0a0011;
         public static final int addEt=0x7f0a0010;
         public static final int camera_photo_button=0x7f0a0033;
         public static final int camera_surface_view=0x7f0a0032;
         public static final int cancelBtn=0x7f0a002c;
-        public static final int cancel_button=0x7f0a0034;
+        public static final int cancel_button=0x7f0a0035;
         public static final int date=0x7f0a0002;
         public static final int deleteAcc=0x7f0a0021;
         public static final int emailEt=0x7f0a0028;
         public static final int emailTv=0x7f0a0026;
-        public static final int fragmentContainer=0x7f0a0038;
+        public static final int fragmentContainer=0x7f0a0039;
         public static final int friendsB=0x7f0a001e;
         public static final int goNewBtn=0x7f0a002f;
-        public static final int lbottom=0x7f0a003c;
+        public static final int lbottom=0x7f0a003d;
         public static final int lo=0x7f0a0025;
         public static final int logInBtn=0x7f0a0019;
-        public static final int ltop=0x7f0a0039;
+        public static final int ltop=0x7f0a003a;
         public static final int lv=0x7f0a000e;
-        public static final int lvScoreFriend=0x7f0a0040;
-        public static final int lvScoreMe=0x7f0a003e;
-        public static final int lvStatus=0x7f0a003b;
-        public static final int lvtv=0x7f0a003a;
->>>>>>> 9a9d82a18b06b7c363c91de8c6a49beb78053c7d
+        public static final int lvScoreFriend=0x7f0a0041;
+        public static final int lvScoreMe=0x7f0a003f;
+        public static final int lvStatus=0x7f0a003c;
+        public static final int lvtv=0x7f0a003b;
         public static final int made=0x7f0a0003;
         public static final int mailEt=0x7f0a0017;
         public static final int mailTv=0x7f0a001b;
@@ -105,30 +74,16 @@ public final class R {
         public static final int passEdit=0x7f0a0024;
         public static final int passEt=0x7f0a0016;
         public static final int passTv=0x7f0a0018;
-<<<<<<< HEAD
-        public static final int photo_button=0x7f0a003c;
+        public static final int photo_button=0x7f0a0038;
         public static final int pp=0x7f0a0022;
-        public static final int preview_image=0x7f0a0040;
-        public static final int rect=0x7f0a0038;
+        public static final int preview_image=0x7f0a0036;
+        public static final int rect=0x7f0a0034;
         public static final int removeBtn=0x7f0a0013;
         public static final int removeEt=0x7f0a0012;
         public static final int root=0x7f0a0015;
-        public static final int save_button=0x7f0a003d;
-        public static final int sendToSpinner=0x7f0a003a;
+        public static final int save_button=0x7f0a0037;
         public static final int settingsB=0x7f0a001f;
         public static final int soloB=0x7f0a001d;
-        public static final int statusEt=0x7f0a003b;
-=======
-        public static final int photo_button=0x7f0a0037;
-        public static final int pp=0x7f0a0022;
-        public static final int preview_image=0x7f0a0035;
-        public static final int removeBtn=0x7f0a0013;
-        public static final int removeEt=0x7f0a0012;
-        public static final int root=0x7f0a0015;
-        public static final int save_button=0x7f0a0036;
-        public static final int settingsB=0x7f0a001f;
-        public static final int soloB=0x7f0a001d;
->>>>>>> 9a9d82a18b06b7c363c91de8c6a49beb78053c7d
         public static final int suBtn=0x7f0a001a;
         public static final int subBtn=0x7f0a002b;
         public static final int tab1=0x7f0a000d;
@@ -143,20 +98,11 @@ public final class R {
         public static final int textView6=0x7f0a0009;
         public static final int textView7=0x7f0a000a;
         public static final int textView8=0x7f0a000b;
-<<<<<<< HEAD
-        public static final int their=0x7f0a0048;
-        public static final int tos=0x7f0a0023;
-        public static final int version=0x7f0a0001;
-        public static final int welcomeTv=0x7f0a0039;
-        public static final int whatPassTv=0x7f0a001c;
-        public static final int your=0x7f0a0046;
-=======
-        public static final int their=0x7f0a003f;
+        public static final int their=0x7f0a0040;
         public static final int tos=0x7f0a0023;
         public static final int version=0x7f0a0001;
         public static final int whatPassTv=0x7f0a001c;
-        public static final int your=0x7f0a003d;
->>>>>>> 9a9d82a18b06b7c363c91de8c6a49beb78053c7d
+        public static final int your=0x7f0a003e;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
