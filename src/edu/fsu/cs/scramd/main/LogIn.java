@@ -90,7 +90,6 @@ public class LogIn extends Activity {
 		final ParseUser currentUser = ParseUser.getCurrentUser();
 
 		if (currentUser != null && currentUser.getUsername() != null) {
-			//Toast.makeText(LogIn.this, "Current user is found! " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
 			menuIntent.putExtra("currUser", currentUser.getObjectId());
 			startActivity(menuIntent);
 			this.finish();
@@ -121,44 +120,24 @@ public class LogIn extends Activity {
 				userEmail = uMail.getText().toString();
 				userPassword = uPass.getText().toString();
 				
-				//Toast.makeText(getApplicationContext(), "username pass " + userEmail + " " + userPassword, Toast.LENGTH_SHORT).show();
-				//For remembering who's logged in
-				//doesn't remember if you completely exit the app.
-				//Needs work
-				//should be in a service instead. whatever. thug life.
-				
-				//JS COMMENT OUT
-				
-								
-				//ParseUser currentUser = ParseUser.getCurrentUser();
-				
-				
-				//Toast.makeText(LogIn.this, "Current user is " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
-				
 				if (currentUser != null && currentUser.getUsername() != null) {
-					//Toast.makeText(LogIn.this, "Current user is found! " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
 					menuIntent.putExtra("currUser", currentUser.getObjectId());
 					startActivity(menuIntent);
 				} else {
 
-//if(true){				
-				  ////////////////////////////////////
-					// log in proccess 
-				///////////////////////////////////
-					
-					
-					
+
+					//*********************************************************
+					// LogIn Process
+					//*********************************************************
 					ParseUser.logInInBackground(userEmail, userPassword, new LogInCallback() {						
 						  public void done(ParseUser user, com.parse.ParseException e) {
 						    if (user != null) {
-						    	
-						    	
+
 						    	// Associate the device with a user						    	
 						    	ParseInstallation installation = ParseInstallation.getCurrentInstallation();						 
 						    	installation.put("user",ParseUser.getCurrentUser().getUsername());
 								installation.saveInBackground(new SaveCallback() {
 								
-									
 									@Override
 									public void done(ParseException e) {
 										if(e == null)
@@ -167,22 +146,15 @@ public class LogIn extends Activity {
 									    	menuIntent.putExtra("currUser", ParseUser.getCurrentUser().getObjectId());
 								    		startActivity(menuIntent);
 								    		finish();
-										}
-										//else
-											//Toast.makeText(LogIn.this, "cant' save installations obj", Toast.LENGTH_SHORT).show();
-										
+										}										
 									}
 								});
 								//JS END
-								
-						   // 	menuIntent.putExtra("currUser", user.getObjectId());
-						    //	startActivity(menuIntent);
 						    } else {
 						    	Toast.makeText(LogIn.this, "Can't log on", Toast.LENGTH_SHORT).show();
 						    }
 						  }
 						});	
-			////////////////////////////////////
 				}
 			}
 		});
@@ -201,6 +173,9 @@ public class LogIn extends Activity {
 		                  LinearLayout.LayoutParams.MATCH_PARENT);
 				passIn.setLayoutParams(lp); 
 				
+				// *
+				// * Create Dialog to retrieve password.
+				// *
 		        AlertDialog getPass = new AlertDialog.Builder(LogIn.this).create();
 		        getPass.setTitle("Enter Email Address");
 		        getPass.setView(passIn);
@@ -213,15 +188,15 @@ public class LogIn extends Activity {
 		        			new RequestPasswordResetCallback() {
 		        				public void done(ParseException e) {
 		        					if (e == null) {
-		        						//Good
+		        						//Good to Go.
 		        					} else {
-		        						//Bad
+		        						Toast.makeText(getApplicationContext(), "Error: Unable to retrieve password at this time.", 
+		        								Toast.LENGTH_LONG).show();
 		        					}
 		        				}
 		            		});   
 		        	}
 		         });
-
 		        getPass.show();
 			}
 		});
@@ -232,8 +207,10 @@ public class LogIn extends Activity {
 	
 	private void addFriendsToDB()
 	{
-		//retrieve objects from server
-	    ParseQuery<ParseObject> query = ParseQuery.getQuery("UserAccount");
+		// *
+		// * Retrieve objects from server
+	    // *
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("UserAccount");
 	    query.whereEqualTo("sendTo", ParseUser.getCurrentUser().getUsername());
 	    query.findInBackground(new FindCallback<ParseObject>(){ //"find" retrieves all results, not just one.
 
@@ -241,14 +218,10 @@ public class LogIn extends Activity {
 			public void done(List<ParseObject> objects, ParseException e) {
 				if (objects == null || objects.size() == 0) 
 				{
-//			   		Log.d("score", "The getFirst request failed.");
 					System.out.println("Object is null");			    	    				    	    	
 			    } 
 				else 
-				{
-//			   		Log.d("score", "Retrieved the object.");
-					//Toast.makeText(getApplicationContext(), "found obj", Toast.LENGTH_SHORT).show();
-			    	    	
+				{	    	    	
 					for(int i = 0; i < objects.size(); i++)
 					{
 						UserAccount challenge = (UserAccount) objects.get(i);

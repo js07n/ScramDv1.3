@@ -43,9 +43,7 @@ public class CameraConfirmFragment extends Fragment {
 	private Button photoButton;
 	private Button saveButton;
 	private Button cancelButton;
-	private Button logoutButton;
 	private TextView status;
-	private Spinner sendSpinner;
 	private ParseImageView imagePreview;	
 	
 	private String friendName;
@@ -56,6 +54,8 @@ public class CameraConfirmFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		db = new DatabaseHandler(getActivity());
+		
+		startCamera();
 	}
 	
 	@Override
@@ -63,10 +63,7 @@ public class CameraConfirmFragment extends Fragment {
 			Bundle SavedInstanceState){
 		
 			View v = inflater.inflate(R.layout.fragment_camera_confirm, parent, false);
-			
-			status = ((EditText) v.findViewById(R.id.statusEt));
-			
-			
+
 			
 			Bundle b = getArguments();			
 			if(b != null)
@@ -80,9 +77,9 @@ public class CameraConfirmFragment extends Fragment {
 				
 				@Override
 				public void onClick(View v) {
-						InputMethodManager imm = (InputMethodManager) getActivity()
-							.getSystemService(Context.INPUT_METHOD_SERVICE);
-					imm.hideSoftInputFromWindow(status.getWindowToken(), 0);
+				//		InputMethodManager imm = (InputMethodManager) getActivity()
+				//			.getSystemService(Context.INPUT_METHOD_SERVICE);
+				//	imm.hideSoftInputFromWindow(status.getWindowToken(), 0);
 					startCamera();
 				}
 			});
@@ -231,22 +228,6 @@ public class CameraConfirmFragment extends Fragment {
 				}
 			});
 			
-			//*********************************************************
-			// Logout Button Listener
-			//*********************************************************
-			logoutButton = ((Button) v.findViewById(R.id.logout_button));
-			logoutButton.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					//ParseUser.logOut();
-					//ParseUser currentUser = ParseUser.getCurrentUser();
-					//finish();
-					// ^^ Not working b/c there is no intent asking to return data ^^^
-					// ****************************************************************
-					Toast.makeText(getActivity().getApplicationContext(), "LogOut", Toast.LENGTH_SHORT).show();
-				}
-			});
 			
 			//Until usee has taken a photo, hide the preview
 			imagePreview = (ParseImageView) v.findViewById(R.id.preview_image);
@@ -257,16 +238,15 @@ public class CameraConfirmFragment extends Fragment {
 	}
 	
 	/*
-	 * All data entry about a Meal object is managed from the NewMealActivity.
+	 * All data entry about a object is managed from the New Activity.
 	 * When the user wants to add a photo, we'll start up a custom
-	 * CameraFragment that will let them take the photo and save it to the Meal
-	 * object owned by the NewMealActivity. Create a new CameraFragment, swap
-	 * the contents of the fragmentContainer (see activity_new_meal.xml), then
-	 * add the NewMealFragment to the back stack so we can return to it when the
+	 * CameraFragment that will let them take the photo and save it to the
+	 * object owned by the New Activity. Create a new CameraFragment, swap
+	 * the contents of the fragmentContainer, then
+	 * add the New Fragment to the back stack so we can return to it when the
 	 * camera is finished.
 	 */
 	public void startCamera() {
-		Toast.makeText(getActivity(), "cam", Toast.LENGTH_SHORT).show();
 		Fragment cameraFragment = new CameraFragment();
 		FragmentTransaction transaction = getActivity().getFragmentManager()
 				.beginTransaction();
@@ -276,7 +256,7 @@ public class CameraConfirmFragment extends Fragment {
 	}	
 	
 	/*
-	 * On resume, check and see if a meal photo has been set from the
+	 * On resume, check and see if a photo has been set from the
 	 * CameraFragment. If it has, load the image in this fragment and make the
 	 * preview image visible.
 	 */

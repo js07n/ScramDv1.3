@@ -45,8 +45,6 @@ public class SignUp extends Activity{
 	//**************************************************************
 	// Declaration
 	//**************************************************************
-	EditText firstText;
-	EditText lastText;
 	EditText emailText;
 	EditText pass2Text;
 	EditText pass3Text;
@@ -62,8 +60,6 @@ public class SignUp extends Activity{
 		//**************************************************************
 		// Initialization
 		//**************************************************************
-		firstText = (EditText) findViewById(R.id.firstEt);
-		lastText = (EditText) findViewById(R.id.lastEt);
 		emailText = (EditText) findViewById(R.id.emailEt);
 		pass2Text = (EditText) findViewById(R.id.pass2Et);
 		pass3Text = (EditText) findViewById(R.id.pass3Et);
@@ -80,26 +76,12 @@ public class SignUp extends Activity{
 		
 			// *********************************************************
 			// * Sign Up error checks.
-			// * 	First Name & Last Name
-			// *	 Error displayed when: String == null or  == " "
-			// *					       String < 2 or > 12
-			// *						   String != a letter
 			// *	Email validated through isEmailValid()
 			// * 	Password
 			// *	 Error Displayed when: String == null or == " "
 			// * 						   String < 2 or pass2 != pass3
 			// *********************************************************
-			if( firstText.getText().toString() == null || firstText.getText().toString() == " " || 
-					firstText.getText().toString().length() < 2 || firstText.getText().toString().length() > 12
-					|| !isAlpha(firstText.getText().toString()))
-				firstText.setError( "First Name is invalid." );
-			
-			else if( lastText.getText().toString() == null || lastText.getText().toString() == " " || 
-					lastText.getText().toString().length() < 2 || lastText.getText().toString().length() > 12
-					|| !isAlpha(lastText.getText().toString()))
-				lastText.setError( "Last Name is invalid." );
-			
-			else if(!isEmailValid(emailText.getText().toString()))
+			if(!isEmailValid(emailText.getText().toString()))
 				emailText.setError("Email is Invalid. Please Re-Enter.");
 			
 			else if(pass2Text.getText().toString() == null || pass2Text.getText().toString() == " "
@@ -115,13 +97,9 @@ public class SignUp extends Activity{
 			}
 			else{	
 				//Clears errors once entries are valid.
-				firstText.setError(null);
-				lastText.setError(null);
 				emailText.setError(null);
 				pass2Text.setError(null);
 				
-				firstName = firstText.getText().toString();
-				lastName = lastText.getText().toString();
 				email = emailText.getText().toString();
 				password = pass2Text.getText().toString();
 				
@@ -130,19 +108,16 @@ public class SignUp extends Activity{
 				//*********************************************************
 				ParseUser user = new ParseUser();
 				user.setUsername(email);
-				//user.setEmail(email);
 				user.setPassword(password);
-				//user.put("FirstName", firstName);
-				//user.put("LastName", lastName);
+
 				
 				user.signUpInBackground(new SignUpCallback(){
 					public void done(com.parse.ParseException e){
 						if(e==null){
-							firstText.setText("");
 							finish();
 						}else{
-							//itdidntwork
-							Toast.makeText(getApplicationContext(), "false", Toast.LENGTH_SHORT).show();
+							//It Didn't Work
+							Toast.makeText(getApplicationContext(), "Sign Up Error.", Toast.LENGTH_SHORT).show();
 						}
 					}
 					});
