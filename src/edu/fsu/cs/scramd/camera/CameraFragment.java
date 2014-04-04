@@ -10,11 +10,13 @@ import com.parse.SaveCallback;
 
 import edu.fsu.cs.scramd.R;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.drawable.GradientDrawable;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
@@ -24,10 +26,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
+import android.view.Display;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -39,14 +44,43 @@ public class CameraFragment extends Fragment {
 	private SurfaceView surfaceView;
 	private ParseFile photoFile;
 	private Button photoButton;
+	private ImageView imageView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState){
 		View v = inflater.inflate(R.layout.fragment_camera, parent, false);
+		//View v = inflater.inflate(R.layout.fragment_camera, parent);
+		
 		
 		photoButton = (Button) v.findViewById(R.id.camera_photo_button);
-	
+		imageView = (ImageView) v.findViewById(R.id.rect);
+		surfaceView = (SurfaceView) v.findViewById(R.id.camera_surface_view);
+		
+		Display screenDisplay = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        screenDisplay.getSize(size);
+        
+        
+        
+        
+        //TESTING - JS - 04.04.2014
+        //This makes Camera Display platform independent.
+        //RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(size.x, ((size.x/3)* 4));
+        surfaceView.setLayoutParams(new RelativeLayout.LayoutParams(size.x, ((size.x/3)* 4)));
+        
+        
+        imageView.setLayoutParams(new RelativeLayout.LayoutParams(size.x, size.x/3));
+        
+        
+        RelativeLayout.LayoutParams params1 = (android.widget.RelativeLayout.LayoutParams) photoButton.getLayoutParams();        
+        params1.height = size.x/8;
+        photoButton.setLayoutParams(params1);
+        
+
+        
+        //TESTING END - JS
+        
 		if (camera == null) {
 			try {
 
@@ -96,7 +130,7 @@ public class CameraFragment extends Fragment {
 		// * Surface stuff. Does Things.
 		// **************************************
 		
-		surfaceView = (SurfaceView) v.findViewById(R.id.camera_surface_view);
+
 		
 
 		

@@ -38,6 +38,8 @@
     <string name="current_games">Current Games</string>
     <string name="select_image">Select Image</string>
     <string name="camera">Camera</string>
+    <string name="RSV">Reshape Surface View</string>
+    <string name="shoot">SHOOT</string>
     
     <string name="display">display</string>
     
