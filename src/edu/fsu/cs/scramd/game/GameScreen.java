@@ -387,7 +387,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		//this.addContentView(timerTV, params);
 
     		
-    		time = 30000;
+    		time = 15000 + (15000 * (DIFFICULTY - 2));//30000;
     		//startCDTimer();
     		final MyCounter timer = new MyCounter(time,1000);
     	//} 

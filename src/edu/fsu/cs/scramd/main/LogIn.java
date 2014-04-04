@@ -142,11 +142,15 @@ public class LogIn extends Activity {
 									public void done(ParseException e) {
 										if(e == null)
 										{
-											addFriendsToDB();
+											addFriendsToDB();	
 									    	menuIntent.putExtra("currUser", ParseUser.getCurrentUser().getObjectId());
 								    		startActivity(menuIntent);
 								    		finish();
-										}										
+
+										}
+										else
+											System.out.println("Can't save installation object");
+
 									}
 								});
 								//JS END

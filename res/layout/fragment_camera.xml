@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     >
-    
     <SurfaceView
         android:id="@+id/camera_surface_view"
         android:layout_marginTop="0dp"
-        android:layout_width="360dp"
-        android:layout_height="480dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_gravity="center" 
         
              
@@ -17,16 +17,20 @@
     <Button
         android:id="@+id/camera_photo_button"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_below="@id/camera_surface_view"
         android:layout_marginTop="20dp"        
-        android:text="Scramd" />
+        android:text="@string/shoot" />
     
     <ImageView
+        android:id="@+id/rect"
+        android:contentDescription="@string/RSV"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@color/black"
+        android:layout_height="0dp"
+        android:background="@color/white"
+
         ></ImageView>
-    
+      
+
 </RelativeLayout>

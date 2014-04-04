@@ -252,7 +252,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		//Updating row
 		//return db.update(TABLE_FRIENDS, values, KEY_USERNAME + " =?", new String[]{String.valueOf(friend.getUsername())} );
 		db.update(TABLE_FRIENDS, values, KEY_USERNAME + " =?", new String[]{String.valueOf(friend.getUsername())} );
-		db.close();
+		if(db != null)
+			db.close();
 		
 	}
 
