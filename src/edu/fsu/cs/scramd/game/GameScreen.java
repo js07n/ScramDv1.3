@@ -3,6 +3,8 @@ package edu.fsu.cs.scramd.game;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.parse.ParseUser;
+
 import edu.fsu.cs.scramd.R;
 import edu.fsu.cs.scramd.data.DatabaseHandler;
 import edu.fsu.cs.scramd.data.Friend;

@@ -19,10 +19,11 @@ import android.widget.Toast;
 
 public class MenuScreen extends Activity implements OnClickListener {
 
-	
-	Button soloB;
+	//**************************************************************
+	// Declaration
+	//**************************************************************
 	DialogDifficulty soloD;
-	
+	Button soloB;
 	Button friendsB;
 	Button settingsB;
 
@@ -32,11 +33,13 @@ public class MenuScreen extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu_screen);
 		
+		//**************************************************************
+		// Initialization 
+		//**************************************************************
 		soloB = (Button) findViewById(R.id.soloB);
-		soloD = new DialogDifficulty();
-		
 		friendsB = (Button) findViewById(R.id.friendsB);
 		settingsB = (Button) findViewById(R.id.settingsB);
+		soloD = new DialogDifficulty();
 	}
 
 	@Override
@@ -63,7 +66,6 @@ public class MenuScreen extends Activity implements OnClickListener {
 		else if(v == friendsB)
 		{
 			Intent friendIntent = new Intent(this, FriendScreen.class);
-			//friendIntent.putExtra("currUser", ParseUser.getCurrentUser().getObjectId());
 			startActivity(friendIntent);
 			
 		}else if(v == settingsB){

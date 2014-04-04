@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/firstTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First Name:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/firstEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/lastTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last Name:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/lastEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    <TextView
         android:id="@+id/emailTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pass2Tv"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp"
         android:text="Email:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/emailEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/pass2Tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/emailEt"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
         android:text="Password:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/pass2Et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword" />
-    
-    <TextView
-        android:id="@+id/pass3Tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Re-Enter Password:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:id="@+id/pass3Et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pass3Tv"
+        android:layout_marginTop="17dp"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/subBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cancelBtn"
+        android:layout_alignBottom="@+id/cancelBtn"
+        android:layout_toLeftOf="@+id/cancelBtn"
         android:text="Submit" />
 
     <Button
         android:id="@+id/cancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/pass3Et"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="78dp"
+        android:layout_toRightOf="@+id/pass2Tv"
         android:text="Cancel" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/pass3Tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pass2Tv"
+        android:layout_below="@+id/pass2Et"
+        android:layout_marginTop="30dp"
+        android:text="Re-Enter Password:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/pass2Et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pass2Tv"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/emailEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/emailTv"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+</RelativeLayout>

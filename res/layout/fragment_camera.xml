@@ -28,8 +28,13 @@
         android:id="@+id/rect"
         android:contentDescription="@string/RSV"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="0dp"
         android:background="@color/white"
+=======
+        android:layout_height="120dp"
+        android:background="@color/black"
+>>>>>>> 9a9d82a18b06b7c363c91de8c6a49beb78053c7d
         ></ImageView>
    
 </RelativeLayout>

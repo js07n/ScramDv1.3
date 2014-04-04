@@ -14,6 +14,7 @@ import com.parse.SaveCallback;
 import edu.fsu.cs.scramd.R;
 import edu.fsu.cs.scramd.data.DatabaseHandler;
 import edu.fsu.cs.scramd.data.Friend;
+import edu.fsu.cs.scramd.friend.DialogDifficulty;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -34,6 +35,9 @@ import android.widget.Toast;
 
 public class Settings extends Activity implements OnClickListener {
 
+	//**************************************************************
+	// Declarations
+	//**************************************************************
 	TextView changePassTv, deleteAccTv, 
 		aboutTv, ppTv, tosTv, loTv;
 	
@@ -44,18 +48,25 @@ public class Settings extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings_screen);
 		
+		//**************************************************************
+		// Initialization
+		//**************************************************************
 		changePassTv = (TextView) findViewById(R.id.passEdit);
 		deleteAccTv = (TextView) findViewById(R.id.deleteAcc);
 		aboutTv = (TextView) findViewById(R.id.about);
 		ppTv = (TextView) findViewById(R.id.pp);
 		tosTv = (TextView) findViewById(R.id.tos);	
 		loTv = (TextView) findViewById(R.id.lo);
+		
 		passAtv = (EditText) findViewById(R.id.newPassword1);
 		passBtv = (EditText) findViewById(R.id.newPassword2);
 
 		
 	}
 
+	//**************************************************************
+	// OnClick Settings Menu
+	//**************************************************************
 	@Override	
 	public void onClick(View v) {
 		if( v == changePassTv){
@@ -123,7 +134,9 @@ public class Settings extends Activity implements OnClickListener {
 				}
 			});
 			
-			//Clears Activities on stack before returning to Login screen.
+			// *
+			// * Clears Activities on stack before returning to Login screen.
+			// *
 			Intent intent = new Intent(this, LogIn.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -133,6 +146,9 @@ public class Settings extends Activity implements OnClickListener {
 		}
 	}
 	
+	//**************************************************************
+	// Change Password Dialog
+	//**************************************************************
 	protected void showCustomDialog(){
 		final Dialog dialog = new Dialog(Settings.this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -166,6 +182,10 @@ public class Settings extends Activity implements OnClickListener {
 				}
 			}
 		});
+		
+		//**************************************************************
+		// Cancel Button OnClick
+		//**************************************************************
 		Button cancelBtn = (Button)dialog.findViewById(R.id.noNewBtn);
 		cancelBtn.setOnClickListener(new View.OnClickListener() {
 			
@@ -181,20 +201,21 @@ public class Settings extends Activity implements OnClickListener {
 		
 	}
 	
+	//**************************************************************
+	// Delete Account Dialog
+	//**************************************************************
 	protected void showDeleteDialog(){
 		AlertDialog.Builder alert = new AlertDialog.Builder(Settings.this);
 		
 		//Set Title
 		alert.setTitle("Deleting Account")
-		.setMessage("Are you sure you want to delete your account? All your information will be lost.")
+		.setMessage("Are you sure?\nAll your information will be lost.")
 		.setCancelable(false)
-		.setPositiveButton("Yes, delete my account.", new DialogInterface.OnClickListener() {
+		.setPositiveButton("Delete my Account.", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				Toast.makeText(getApplicationContext(), "w/e i don't like u anyway.", Toast.LENGTH_SHORT).show();
-				
-					
+
 				ParseUser current = ParseUser.getCurrentUser();
 				current.deleteInBackground();
 				ParseUser.logOut();
@@ -208,12 +229,11 @@ public class Settings extends Activity implements OnClickListener {
 				
 			}
 		})
-		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		.setNegativeButton("Cancel\n", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				Toast.makeText(getApplicationContext(), "good ish pimp", Toast.LENGTH_SHORT).show();
-				
+				// DO Nothing.
 			}
 		});
 		
