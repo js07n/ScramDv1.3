@@ -166,8 +166,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         // change these offsets to determine where the moving pieces will be on the screen.
         // offsets are 3*(paddingValue in XML file)
-        xOFFSET = 90;
-        yOFFSET = 300 + 75;  // 75 will be added to the value bc of the header. 
+        //xOFFSET = 90;
+        //yOFFSET = 300 + 75;  // 75 will be added to the value bc of the header. 
         // Header = the black strip that tells the time, battery life, etc.
         // fixed!! changed theme in Manifest file.  set it to no title bar.
         
@@ -312,7 +312,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         
         //TESTING 03.31.2014 - JS
-        _root.setPadding(xOFFSET, yOFFSET-statusBarHeight, 0, 0);  //yOFFSET-75
+        //_root.setPadding(xOFFSET, yOFFSET-statusBarHeight, 0, 0);  //yOFFSET-75
+        _root.setPadding(xOFFSET, yOFFSET, 0, 0);  //yOFFSET-75
         
         System.out.println("Padding complete");
         
@@ -392,7 +393,15 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		final MyCounter timer = new MyCounter(time,1000);
     	//} 
     	
+    	// HINT IMAGE 
+    	mImage = new ImageView(this);
+    	mImage.setImageBitmap(b);
+    	//mImage.setPadding(xOFFSET, yOFFSET-statusBarHeight, 0, 0);
     	
+    	
+    	//addContentView(view, params)
+    		
+    		
      
     }
 
@@ -621,8 +630,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                    int bottom = location[1] + view.getHeight();  //this is weird !! i have to add height myself
                 
                    //This shows the actual coordinates of the display on the screen.
-                 //Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
-               		//                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
+                 Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
+               		                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
                    
                    Rect boundz = new Rect(location[0], location[1], right, bottom);
                   
