@@ -1,90 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/emailTv"
-        android:layout_width="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin_with_image"
+    android:orientation="vertical"
+    tools:context=".SignupScreen" >
+    
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/pass2Tv"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="25dp"
-        android:text="Email:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/pass2Tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/emailEt"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="18dp"
-        android:text="Password:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:contentDescription="@string/logo_description"
+        android:src="@drawable/applogo"
+        android:background="@color/logo_background" />
 
     <EditText
-        android:id="@+id/pass3Et"
+        android:id="@+id/firstEt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/pass3Tv"
-        android:layout_marginTop="17dp"
-        android:ems="10"
-        android:inputType="textPassword" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/subBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cancelBtn"
-        android:layout_alignBottom="@+id/cancelBtn"
-        android:layout_toLeftOf="@+id/cancelBtn"
-        android:text="Submit" />
-
-    <Button
-        android:id="@+id/cancelBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pass3Et"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="78dp"
-        android:layout_toRightOf="@+id/pass2Tv"
-        android:text="Cancel" />
-
-    <TextView
-        android:id="@+id/pass3Tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/pass2Tv"
-        android:layout_below="@+id/pass2Et"
-        android:layout_marginTop="30dp"
-        android:text="Re-Enter Password:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_height="@dimen/input_height"
+        android:layout_above="@+id/lastEt"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="30dp"
+        android:background="@drawable/input_field"
+        android:hint="@string/first_name_entry_field"
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/pass2Et"
+        android:id="@+id/lastEt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/pass2Tv"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:inputType="textPassword" />
+        android:layout_height="@dimen/input_height"
+        android:layout_above="@+id/emailEt"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="30dp"
+        android:background="@drawable/input_field"
+        android:hint="@string/last_name_entry_field"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/emailEt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/emailTv"
-        android:layout_marginTop="19dp"
-        android:ems="10"
+        android:layout_height="@dimen/input_height"
+        android:layout_above="@+id/pass2Et"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="30dp"
+        android:background="@drawable/input_field"
+        android:hint="@string/username_entry_field"
         android:inputType="textEmailAddress" />
+    
+    <EditText
+        android:id="@+id/pass2Et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_above="@+id/pass3Et"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="30dp"
+        android:background="@drawable/input_field"
+        android:hint="@string/password_entry_field"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/pass3Et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_above="@+id/buttons"
+        android:layout_marginBottom="50dp"
+        android:paddingLeft="30dp"
+        android:background="@drawable/input_field"
+        android:hint="@string/password_entry_field2"
+        android:inputType="textPassword" />
+    
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent"
+        android:weightSum="2" >
+    	
+    	<Button
+        	android:id="@+id/subBtn"
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:layout_weight="1"
+        	android:paddingLeft="30dp"
+        	android:background="@drawable/multi_button_left"
+        	android:text="@string/submit_text"
+        	android:singleLine="true" />
+
+    	<Button
+        	android:id="@+id/cancelBtn"
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:layout_weight="1"
+        	android:paddingLeft="30dp"
+        	android:background="@drawable/multi_button_right"
+        	android:text="@string/cancel_text"
+        	android:singleLine="true" />
+    	
+    	</LinearLayout>
 
 </RelativeLayout>

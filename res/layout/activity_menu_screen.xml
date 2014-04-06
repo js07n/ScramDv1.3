@@ -5,36 +5,50 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin_with_image"
     tools:context=".MenuScreen" >
 
-    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/logo_description"
+        android:background="@color/logo_background"
+        android:src="@drawable/applogo" />
+
     <Button
         android:id="@+id/soloB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
-        android:layout_marginLeft="100dp"
-        android:text="@string/solo" 
-        android:onClick="onClick"/>
-
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_above="@+id/friendsB"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/single_button"
+        android:text="@string/solo_text" 
+        android:textAlignment="center"
+        android:singleLine="true"
+        android:onClick="onClick" />
+    
     <Button
         android:id="@+id/friendsB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="100dp"
-        android:text="@string/friends" 
-        android:onClick="onClick"/>
-
-   	<Button
-   	    android:id="@+id/settingsB"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:layout_below="@+id/friendsB"
-   	    android:layout_centerHorizontal="true"
-   	    android:layout_marginTop="34dp"
-   	    android:onClick="onClick"
-   	    android:text="Settings" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_centerVertical="true"
+        android:background="@drawable/single_button"
+        android:text="@string/friends_text"
+        android:textAlignment="center"
+        android:singleLine="true" 
+        android:onClick="onClick" />
+    
+    <Button
+        android:id="@+id/settingsB"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_below="@+id/friendsB"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/single_button"
+        android:text="@string/settings_text"
+        android:textAlignment="center"
+        android:singleLine="true"
+   	    android:onClick="onClick" />
     
 </RelativeLayout>

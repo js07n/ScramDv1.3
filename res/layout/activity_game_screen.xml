@@ -6,16 +6,4 @@
     android:paddingLeft="0dp"
     android:paddingTop="0dp"
     android:background="@color/white">
-<!--    
-    <TextView
-    android:id="@+id/mTextField"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="300dp"
-    android:layout_marginLeft="0dp"
-    android:layout_marginRight="30dp"
-    android:textSize="50sp"
-    android:gravity="right"
-    ></TextView>
--->
 </RelativeLayout>

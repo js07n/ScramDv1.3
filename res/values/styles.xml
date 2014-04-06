@@ -1,5 +1,14 @@
 <resources>
 
+    <!-- this will be the main style used throughout the application -->
+    <style name="scramd_main_theme" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:background">@drawable/background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:typeface">serif</item>
+        <!-- android:textAppearance="?android:attr/textAppearanceLarge" -->
+    </style>
+
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

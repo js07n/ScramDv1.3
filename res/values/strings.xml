@@ -45,5 +45,57 @@
     
     
     <color name="white">#FFFFFF</color>
+
+    <!-- 
+    This is the start of Daniel's addons
+     -->
+    <string name="version_number">Version \- 1.3.3</string>
+    <string name="daniel_name">De Leon\, Daniel</string>
+    <string name="eduardo_name">Behar\, Eduardo</string>
+    <string name="james_name">Silvera\, James</string>
+    <string name="iosif_name">Vilcea\, Iosif</string>
+    <string name="username_entry_field">Username</string>
+    <string name="password_entry_field">Password</string>
+    <string name="password_entry_field2">Re-Enter Password</string>
+    <string name="newpass_entry_field">New Password</string>
+    <string name="newpass_entry_field2">Re-Enter New Password</string>
+    <string name="title_activity_main__menu">Main Menu</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="title_activity_solo__difficulty">Solo Difficulty</string>
+    <string name="title_activity_solo__game">Solo Game</string>
+    <string name="title_activity_friends__list">Friends List</string>
+    <string name="title_activity_game">Game</string>
+    <string name="login_bottom_text">Login</string>
+    <string name="signup_bottom_text">Signup</string>
+    <string name="logo_description">ScramD Logo</string>
+    <string name="shutter_descrip">The shutter button for the camera</string>
+    <string name="submit_text">Submit</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="last_name_entry_field">Last Name</string>
+    <string name="first_name_entry_field">First Name</string>
+    <string name="difficulty_hard_text">Hard</string>
+    <string name="difficulty_normal_text">Normal</string>
+    <string name="difficulty_easy_text">Easy</string>
+    <string name="solo_text">Solo</string>
+    <string name="friends_text">Freinds</string>
+    <string name="settings_text">Settings</string>
+    <string name="logout_text">Logout</string>
+    <string name="del_account">Delete Account</string>
+    <string name="ppolicy">Privacy Policy</string>
+    <string name="toservice">Terms of Service</string>
+    <string name="about_text">About</string>
+    <string name="chg_pass">Change Password</string>
+    <string name="lost_password">\?</string>
+    <string name="your_score">You: </string>
+    <string name="friend_score">Friend:</string>
+    
+    <color name="background_bottom">#002c6d</color>
+    <color name="background_top">#005be4</color>
+    <color name="logo_background">#00000000</color>
+    <color name="text_background">#00000000</color>
+    <color name="toast_background">#00000000</color>
+    <color name="tab_background">#00000000</color>
+    <color name="hint_grey">#c7c7c7</color>
+    <color name="transparent">#00000000</color>
     <color name="black">#000000</color>
 </resources>

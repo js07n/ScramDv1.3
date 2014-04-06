@@ -28,8 +28,8 @@
 
     <application
         android:name=".main.ScramDApplication"
-        android:icon="@drawable/ic_launcher"
-        android:theme="@android:style/Theme.NoTitleBar">
+        android:icon="@drawable/applogo"
+        android:theme="@style/scramd_main_theme">
         <activity
             android:name=".main.LogIn"
             android:label="@string/app_name" 

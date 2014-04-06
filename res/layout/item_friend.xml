@@ -3,25 +3,32 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/single_button"
+    android:paddingLeft="30dp"
     xmlns:android="http://schemas.android.com/apk/res/android" >
     
     <LinearLayout
         android:id="@+id/ltop"
     	android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-    	android:orientation="horizontal" >
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:background="@color/tab_background" >
     
     	<TextView 
         	android:id="@+id/lvtv"
-        	android:layout_width="0dp"
-    		android:layout_height="50dp"
-    		android:layout_weight="1.0"/>
+        	android:layout_width="match_parent"
+    		android:layout_height="match_parent"
+    		android:layout_weight="1.0"
+    		android:background="@color/tab_background"
+    		android:textColor="#000000" />
 
     	<TextView 
         	android:id="@+id/lvStatus"
-        	android:layout_width="0dp"
-    		android:layout_height="50dp"
-    		android:layout_weight="1.0"/>
+        	android:layout_width="match_parent"
+    		android:layout_height="match_parent"
+    		android:layout_weight="1.0"
+    		android:background="@color/tab_background"
+    		android:textColor="#000000" />
 
 	</LinearLayout>
 
@@ -30,42 +37,53 @@
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
     	android:layout_below="@+id/ltop"
-    	android:orientation="horizontal" >
+    	android:orientation="horizontal"
+    	android:background="@color/tab_background" >
     	
     	<RelativeLayout 
         	android:layout_weight="1.0"
         	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content">
+        	android:layout_height="wrap_content"
+        	android:background="@color/tab_background" >
     
     		<TextView
     		    android:id="@+id/your"
         		android:layout_width="wrap_content"
     			android:layout_height="wrap_content"
-    			android:text="your: "/>
+    			android:text="@string/your_score"
+    			android:background="@color/tab_background"
+    			android:textColor="#000000" />
     
     		<TextView 
         		android:id="@+id/lvScoreMe"
         		android:layout_width="wrap_content"
     			android:layout_height="wrap_content"
-    			android:layout_toRightOf="@+id/your"/>
+    			android:layout_toRightOf="@+id/your"
+    			android:background="@color/tab_background"
+    			android:textColor="#000000" />
     	</RelativeLayout>
 
     	<RelativeLayout 
         	android:layout_weight="1.0"
         	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content">
+        	android:layout_height="wrap_content"
+        	android:background="@color/tab_background" >
     
     		<TextView
     		    android:id="@+id/their"
         		android:layout_width="wrap_content"
     			android:layout_height="wrap_content"
-    			android:text="thier: "/>
+    			android:text="@string/friend_score"
+    			android:background="@color/tab_background"
+    			android:textColor="#000000" />
     
     		<TextView 
         		android:id="@+id/lvScoreFriend"
         		android:layout_width="wrap_content"
     			android:layout_height="wrap_content"
-    			android:layout_toRightOf="@+id/their"/>
+    			android:layout_toRightOf="@+id/their"
+    			android:background="@color/tab_background"
+    			android:textColor="#000000" />
     	</RelativeLayout>
 
 	</LinearLayout>
