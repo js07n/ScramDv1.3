@@ -225,7 +225,8 @@ public class LogIn extends Activity {
 					System.out.println("Object is null");			    	    				    	    	
 			    } 
 				else 
-				{	    	    	
+				{	    	   
+					UpdateChallenge updateChallenge = new UpdateChallenge(getApplicationContext());
 					for(int i = 0; i < objects.size(); i++)
 					{
 						UserAccount challenge = (UserAccount) objects.get(i);
@@ -239,12 +240,32 @@ public class LogIn extends Activity {
 			  	    	if(challenge.getString("status") == null)
 		    	    	{
 			  	    		System.out.println("ChallengeStatus is null");
-		    	    	}	    	    	
-				     	else if(status.equals("Received"))
+			  	    		System.out.println(1);
+		    	    	}
+			  	    	else if(status.equals("Sent"))
+				     	{
+				     		updateChallenge.received(challenge);
+				     		System.out.println(2);
+				     	}
+				     	else if(status.equals("Update"))
+				      	{
+				     		//03.21.14				     		
+				     		updateChallenge.update(challenge);
+				     		System.out.println(3);
+				    	    		
+				    	}
+				      	else if(status.equals("Done"))
+				      	{
+				      		updateChallenge.done(challenge);
+				      		System.out.println(4);
+				    	    		
+				      	}
+				      	else if(status.equals("Received"))
 				     	{
 				     		System.out.println("login activity - attempt to download received challenges");
-				     		UpdateChallenge updateChallenge = new UpdateChallenge(getApplicationContext());
+				     		
 				     		updateChallenge.received(challenge);
+				     		
 				     	}
 				      	else
 				      		;
@@ -254,6 +275,47 @@ public class LogIn extends Activity {
 			}// end done
 		});// end findInBG
 		
+	    
+	    
+	    //This adds friends to App DB if the user has sent challenges to them.
+	    ParseQuery<ParseObject> query1 = ParseQuery.getQuery("UserAccount");
+	    query1.whereEqualTo("sentBy", ParseUser.getCurrentUser());
+	    query1.findInBackground(new FindCallback<ParseObject>(){ //"find" retrieves all results, not just one.
+
+			@Override
+			public void done(List<ParseObject> objects, ParseException e) {
+				if (objects == null || objects.size() == 0) 
+				{
+					System.out.println("Object is null");
+					
+			    } 
+				else 
+				{	    	   
+					UpdateChallenge updateChallenge = new UpdateChallenge(getApplicationContext());
+					for(int i = 0; i < objects.size(); i++)
+					{
+						UserAccount challenge = (UserAccount) objects.get(i);
+		    	    	
+						System.out.println("Object is found");
+						System.out.println(6);
+				    	    	
+				      	//String status = challenge.getString("status");
+				    	
+				      	if(!UpdateChallenge.isUserAFriend(challenge.getSendTo()))
+				      	{
+				      		UpdateChallenge.addToFriendList(challenge.getSendTo(), 
+				      				"wait", 
+				      				null, 
+				      				challenge.getObjectId(), 
+				      				challenge.getScore());
+				      	}
+
+					}// end for loop
+			    	    	
+				}// end if objects.size == 0
+			}// end done
+		});// end findInBG
+	    
 	}// end AddFriendsToDB MEthod
 	
 	

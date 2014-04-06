@@ -83,7 +83,7 @@ public final class R {
         public static final int camera_photo_button=0x7f0a002d;
         public static final int camera_surface_view=0x7f0a002c;
         public static final int cancelBtn=0x7f0a0027;
-        public static final int cancel_button=0x7f0a002f;
+        public static final int cancel_button=0x7f0a0032;
         public static final int deleteAcc=0x7f0a001b;
         public static final int emailEt=0x7f0a0022;
         public static final int firstEt=0x7f0a0020;
@@ -111,14 +111,14 @@ public final class R {
         public static final int passEdit=0x7f0a001a;
         public static final int passEt=0x7f0a0013;
         public static final int pass_and_recovery=0x7f0a0011;
-        public static final int photo_button=0x7f0a0032;
+        public static final int photo_button=0x7f0a0031;
         public static final int pp=0x7f0a001d;
         public static final int preview_image=0x7f0a0030;
         public static final int rect=0x7f0a002e;
         public static final int removeBtn=0x7f0a000e;
         public static final int removeEt=0x7f0a000d;
         public static final int root=0x7f0a000f;
-        public static final int save_button=0x7f0a0031;
+        public static final int save_button=0x7f0a002f;
         public static final int settingsB=0x7f0a0018;
         public static final int soloB=0x7f0a0016;
         public static final int suBtn=0x7f0a0015;

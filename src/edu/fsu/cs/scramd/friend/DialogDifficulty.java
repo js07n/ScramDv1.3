@@ -76,6 +76,7 @@ public class DialogDifficulty extends DialogFragment {
 	        			
 	        			startActivity(sendIntent);
 	        			
+	        			getActivity().finish();
 	        			//don't think I need anything like this
 /*
 	        			// Close caller activity only if it ISN'T MenuScreen	        			

@@ -130,13 +130,13 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         if(bundle == null)
         {
-        	Toast.makeText(getApplicationContext(), "bundle is empty", Toast.LENGTH_SHORT).show();
+        	//Toast.makeText(getApplicationContext(), "bundle is empty", Toast.LENGTH_SHORT).show();
         	
         }
         else
         {
-        	Toast.makeText(getApplicationContext(), "bundle is NOT empty", Toast.LENGTH_SHORT).show();
-        	Toast.makeText(getApplicationContext(), bundle.getString("friendName"), Toast.LENGTH_SHORT).show();
+        	//Toast.makeText(getApplicationContext(), "bundle is NOT empty", Toast.LENGTH_SHORT).show();
+        	//Toast.makeText(getApplicationContext(), bundle.getString("friendName"), Toast.LENGTH_SHORT).show();
         }
         
         // check to see if there is anything in the bundle
@@ -155,7 +155,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         
         //TESTING !!!
-        Toast.makeText(getApplicationContext(), GameType, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), GameType, Toast.LENGTH_SHORT).show();
         
         NumOfPieces = DIFFICULTY * DIFFICULTY;
         
@@ -475,7 +475,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
   //  	{
     		if(time >= 1)
     		{
-    			Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
+    			//Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
     			cdTimer = new MyCounter(time, 1000);
     			cdTimer.start();  
     		}
@@ -714,11 +714,12 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                     {  	
                     	// Send Game Type to Dialog Fragment
                     	Bundle dialogBundle = new Bundle();	        			        			
-            			dialogBundle.putString("GameType", GameType);
+            			dialogBundle.putString("GameType", GameType);            			
                     	soloD.setArguments(dialogBundle);
                     	soloD.setCancelable(false); // prevents back button from canceling dialog
                     	// Launch Dialog Fragment
                     	soloD.show(getFragmentManager(), "DialogDifficulty");
+                    	
                     }
                     else //GameType == friendplay
                     {
@@ -787,8 +788,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	// if not it will still try to execute code once if finishes.
     	// that would result in error.
     	//if(GameType.equals("solo"))
-    		cdTimer.cancel();
-    	finish();
+    	cdTimer.cancel();
+    	//finish();
     }   
     
 }

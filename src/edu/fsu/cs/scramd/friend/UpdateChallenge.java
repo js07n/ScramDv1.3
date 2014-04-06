@@ -135,6 +135,11 @@ public class UpdateChallenge {
 	//Checks to see if Username entered in EditText is already the user's friend
 	public static boolean isUserAFriend(String v)
 	{			
+		if(user == null)
+		{
+			user = ParseUser.getCurrentUser();
+		}
+		
 		//This check prevents crashes from doing comparisons with NULL values
 		// Usually this is the case when accounts are just created and have
 		// zero friends in their friendList
@@ -158,7 +163,9 @@ public class UpdateChallenge {
 	
 	}    		
 	
-	private static void addToFriendList(String un, String status, byte[] img, String objectId, int tScore)
+	
+	
+	public static void addToFriendList(String un, String status, byte[] img, String objectId, int tScore)
 	{		
 		//Add to app DB
 		db.addFriend(new Friend(un, status, img, tScore, 0, 0, objectId)); 
