@@ -244,8 +244,21 @@ public class LogIn extends Activity {
 		    	    	}
 			  	    	else if(status.equals("Sent"))
 				     	{
-				     		updateChallenge.received(challenge);
-				     		System.out.println(2);
+			  	    		try {
+								challenge.getSentBy().fetchIfNeeded();
+							} catch (ParseException e1) {
+								
+								e1.printStackTrace();
+							}
+			  	    		//CHeck to see If this isn't a duplicated object on server.
+			  	    		//(an error on the server. there should only be one game between 
+			  	    		// 2 users)
+			  	    		if(!UpdateChallenge.isUserAFriend(challenge.getSentBy().getUsername()))
+			  	    		{
+			  	    			updateChallenge.received(challenge);
+			  	    			System.out.print(2.0);
+			  	    		}
+			  	    		System.out.println(2.1);
 				     	}
 				     	else if(status.equals("Update"))
 				      	{

@@ -72,6 +72,9 @@ public class UpdateChallenge {
     	final String objectId = challenge.getObjectId();
     	final int tScore = challenge.getScore();
     	
+    	//Null photo field has been sent
+    	if(challenge.getPhotoFile() == null)
+    		return;
     	
     	ParseFile newFile = (ParseFile) challenge.get("photo");
 
