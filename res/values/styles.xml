@@ -8,6 +8,14 @@
         <item name="android:typeface">serif</item>
         <!-- android:textAppearance="?android:attr/textAppearanceLarge" -->
     </style>
+    
+    
+    <!-- this is a special case of the Scramd_main_theme which will be used for the friends list -->
+    <style name="scramd_main_theme_special" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:typeface">serif</item>
+    </style>
 
     <!--
         Base application theme, dependent on API level. This theme is replaced

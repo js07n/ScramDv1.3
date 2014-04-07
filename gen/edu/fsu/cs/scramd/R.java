@@ -144,11 +144,12 @@ public final class R {
         public static final int activity_menu_screen=0x7f030004;
         public static final int activity_settings_screen=0x7f030005;
         public static final int activity_sign_up=0x7f030006;
-        public static final int dialog_change_pass=0x7f030007;
-        public static final int fragment_camera=0x7f030008;
-        public static final int fragment_camera_confirm=0x7f030009;
-        public static final int frame_camera=0x7f03000a;
-        public static final int item_friend=0x7f03000b;
+        public static final int delete_acc_dialog=0x7f030007;
+        public static final int dialog_change_pass=0x7f030008;
+        public static final int fragment_camera=0x7f030009;
+        public static final int fragment_camera_confirm=0x7f03000a;
+        public static final int frame_camera=0x7f03000b;
+        public static final int item_friend=0x7f03000c;
     }
     public static final class menu {
         public static final int log_in=0x7f090000;
@@ -247,14 +248,17 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080001;
+        public static final int AppBaseTheme=0x7f080002;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080002;
+        public static final int AppTheme=0x7f080003;
         /**  this will be the main style used throughout the application 
  android:textAppearance="?android:attr/textAppearanceLarge" 
          */
         public static final int scramd_main_theme=0x7f080000;
+        /**  this is a special case of the Scramd_main_theme which will be used for the friends list 
+         */
+        public static final int scramd_main_theme_special=0x7f080001;
     }
 }

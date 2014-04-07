@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:background="@color/black"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:background="@color/black"
+        android:textAlignment="center"
+        android:text="Deleting Account" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp"
+        android:text="Are you sure? \nAll your information will be lost." />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        
+        <Button 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/multi_button_left"
+            android:text="Delete"/>
+        
+        <Button 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/multi_button_right"
+            android:text="Cancel"/>
+        
+    </LinearLayout>
+    
+</LinearLayout>
