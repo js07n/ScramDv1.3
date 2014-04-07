@@ -25,8 +25,10 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,7 +42,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 	
 	ViewGroup _root;
 	
-	ImageView mImage;
+	ImageView hintImage;
 	
 	ImageView display[];
 	
@@ -361,7 +363,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	
     	//if(GameType.equals("solo"))
     	//{
-    		// TIMER !!!
+    		// TIMER !!! ===========================================================
         	//timerTV = (TextView) findViewById(R.id.timerTV);
     	
     		timerTV = new TextView(this);
@@ -393,17 +395,70 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		final MyCounter timer = new MyCounter(time,1000);
     	//} 
     	
-    	// HINT IMAGE 
-    	mImage = new ImageView(this);
-    	mImage.setImageBitmap(b);
-    	//mImage.setPadding(xOFFSET, yOFFSET-statusBarHeight, 0, 0);
-    	
-    	
-    	//addContentView(view, params)
     		
     		
+    	// HINT IMAGE =============================================================
+    		
+    	hintImage = new ImageView(this);
+
+    	hintImage.setPadding(xOFFSET, yOFFSET, 0, 0);
+    	//hintImage.setPadding(0, 0, 0, 0);
+    
+		RelativeLayout.LayoutParams hintParams = new RelativeLayout.LayoutParams(
+				iSize, 
+				iSize);
+			
+		hintParams.width = iSize + xOFFSET;
+		hintParams.height = iSize + yOFFSET;
+		//hintParams.leftMargin = xOFFSET;
+		//hintParams.topMargin = yOFFSET;
+		//hintParams.setMargins(100, 300, 100, 300);
+		hintImage.setLayoutParams(hintParams);		
+		hintImage.setImageBitmap(b);		
+		hintImage.setVisibility(ImageView.INVISIBLE);
+						
+    	addContentView(hintImage, hintParams);
+    		
+    	//HINT BUTTON ===================================================
+    	
+    	final Button hintBtn = new Button(this);
+    	hintBtn.setText("HINT");
+		hintBtn.setTextSize(size.x/30);
+		hintBtn.setGravity(1);
+		hintBtn.setPadding(0, 0, 0, 0);
+		
+		
+		//hintBtn.setBackgroundColor(Color.BLACK);
+		RelativeLayout.LayoutParams hintBtnParam = new RelativeLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, 
+				LayoutParams.WRAP_CONTENT);
+		//LayoutParams params = new LayoutParams(size.x, size.y);
+		
+		hintBtnParam.width = size.x / 3;
+		
+		hintBtnParam.height = LayoutParams.WRAP_CONTENT;
+		
+		hintBtnParam.setMargins((size.x/2) - (timerParams.width/2) - xOFFSET, iSize + ((size.y/24)), 0, 0);
+		//hintBtn.setOnTouchListener(l)
+		//hintBtn.setLayoutParams(hintBtnParam);
+		hintBtn.setOnTouchListener(new OnTouchListener() {
+			
+			public boolean onTouch(View v, MotionEvent event) {
+				if(event.getAction()== MotionEvent.ACTION_DOWN)
+					hintImage.setVisibility(ImageView.VISIBLE);
+				else if(event.getAction() == MotionEvent.ACTION_UP)
+				{
+					hintBtn.setVisibility(Button.INVISIBLE);
+					hintImage.setVisibility(ImageView.INVISIBLE);
+				}
+				//hintBtn.setVisibility(Button.INVISIBLE);
+				return false;
+			}
+		});
+    	_root.addView(hintBtn, hintBtnParam);
+    	
      
-    }
+    }// end onCreate()
 
 
 
@@ -630,8 +685,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                    int bottom = location[1] + view.getHeight();  //this is weird !! i have to add height myself
                 
                    //This shows the actual coordinates of the display on the screen.
-                 Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
-               		                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
+                 //Toast.makeText(getApplicationContext(), count + " " + Integer.toString(location[0]) + " " + Integer.toString(location[1])
+               		//                                         + " " + Integer.toString(right) + " " + Integer.toString(bottom), Toast.LENGTH_LONG).show();
                    
                    Rect boundz = new Rect(location[0], location[1], right, bottom);
                   
@@ -796,9 +851,11 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	//Timer has to be stopped,
     	// if not it will still try to execute code once if finishes.
     	// that would result in error.
-    	//if(GameType.equals("solo"))
-    	cdTimer.cancel();
-    	//finish();
+    	
+    	//cdTimer.cancel();
+    	
+    	if(GameType.equals("solo"))
+    		finish();
     }   
     
 }
