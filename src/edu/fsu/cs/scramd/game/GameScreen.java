@@ -10,6 +10,7 @@ import edu.fsu.cs.scramd.data.DatabaseHandler;
 import edu.fsu.cs.scramd.data.Friend;
 import edu.fsu.cs.scramd.friend.DialogDifficulty;
 import edu.fsu.cs.scramd.friend.UpdateChallenge;
+import edu.fsu.cs.scramd.main.MenuScreen;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.app.ActionBar.LayoutParams;
@@ -92,6 +93,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 	//CountDownTimer cdTimer;
 	TextView timerTV;
 	
+	private boolean isGameFinished;
+	
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,9 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                 
               
         setContentView(R.layout.activity_game_screen);
+        
+        isGameFinished = false;
+        
         
         db = new DatabaseHandler(this);
 
@@ -110,7 +116,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         _root = (ViewGroup)findViewById(R.id.root);
         
-
+        
 
         
         // ***************************************************************************************************
@@ -425,7 +431,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	hintBtn.setText("HINT");
 		hintBtn.setTextSize(size.x/30);
 		hintBtn.setGravity(1);
-		hintBtn.setPadding(0, 0, 0, 0);
+		//hintBtn.setPadding(0, 0, 0, 0);
 		
 		
 		//hintBtn.setBackgroundColor(Color.BLACK);
@@ -434,11 +440,11 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 				LayoutParams.WRAP_CONTENT);
 		//LayoutParams params = new LayoutParams(size.x, size.y);
 		
-		hintBtnParam.width = size.x / 3;
+		hintBtnParam.width = LayoutParams.WRAP_CONTENT;
 		
 		hintBtnParam.height = LayoutParams.WRAP_CONTENT;
 		
-		hintBtnParam.setMargins((size.x/2) - (timerParams.width/2) - xOFFSET, iSize + ((size.y/24)), 0, 0);
+		hintBtnParam.setMargins((size.x/2) - (timerParams.width/2) - xOFFSET, iSize, 0, 0);
 		//hintBtn.setOnTouchListener(l)
 		//hintBtn.setLayoutParams(hintBtnParam);
 		hintBtn.setOnTouchListener(new OnTouchListener() {
@@ -483,7 +489,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 
         @Override
         public void onFinish() {
-			Toast.makeText(getApplicationContext(), "LOST!", Toast.LENGTH_SHORT).show();
+        	if(!isGameFinished)
+        		Toast.makeText(getApplicationContext(), "LOST!", Toast.LENGTH_SHORT).show();
 			
 			timerTV.setText("Done!");
 			time = 0;
@@ -500,8 +507,11 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 			}
 			else
 			{
-				gameOver(0);
+				if(!isGameFinished)
+					gameOver(0);
 			}
+			
+			isGameFinished = true;
         }
 
         @Override
@@ -770,12 +780,13 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                 {
 
                 	cdTimer.cancel();
-                    Toast.makeText(getApplicationContext(), "WIN!", Toast.LENGTH_SHORT).show();
+                	if(!isGameFinished)
+                		Toast.makeText(getApplicationContext(), "WIN!", Toast.LENGTH_SHORT).show();
                     	
                     
                     
                     if(GameType.equals("solo"))
-                    {  	
+                    {                    	
                     	// Send Game Type to Dialog Fragment
                     	Bundle dialogBundle = new Bundle();	        			        			
             			dialogBundle.putString("GameType", GameType);            			
@@ -787,8 +798,12 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                     }
                     else //GameType == friendplay
                     {
-                    	gameOver(DIFFICULTY-2);
+                    	if(!isGameFinished)
+                    		gameOver(DIFFICULTY-2);
                     }//end Else GameType == friendPlay
+                    
+                    isGameFinished = true;
+                    
                 }//end if(win == true)
  
                 
@@ -814,6 +829,9 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 	
 	private void gameOver(int score)
 	{
+
+		
+		cdTimer.cancel();
 	 	//04.01.2014
     	//save temp Score on DB
     	//change status on DB
@@ -855,7 +873,11 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	//cdTimer.cancel();
     	
     	if(GameType.equals("solo"))
+    	{
+    		Intent menuIntent = new Intent(this, MenuScreen.class);
+    		startActivity(menuIntent);
     		finish();
+    	}
     }   
     
 }

@@ -49,7 +49,7 @@ public class DialogDifficulty extends DialogFragment {
 				// Play Button
 	        	.setPositiveButton(R.string.play, new DialogInterface.OnClickListener() {
 	        		public void onClick(DialogInterface dialog, int id) {
-	        			Toast.makeText(getActivity(), Integer.toString(DiffSelected), Toast.LENGTH_SHORT).show();	        	        				        			
+	        			//Toast.makeText(getActivity(), Integer.toString(DiffSelected), Toast.LENGTH_SHORT).show();	        	        				        			
 	        			
 	        			// Create the text message with a string
 	        			Intent sendIntent = new Intent(getActivity(), GameScreen.class);
@@ -63,7 +63,7 @@ public class DialogDifficulty extends DialogFragment {
 	        			{
 	        				GameType = b.getString("GameType");
 	        				bundle.putString("friendName", b.getString("friendName"));
-	        				Toast.makeText(getActivity(), "b is not null", Toast.LENGTH_SHORT).show();
+//	        				Toast.makeText(getActivity(), "b is not null", Toast.LENGTH_SHORT).show();
 	        			}
 	        			else
 	        				GameType = "solo";
@@ -98,13 +98,14 @@ public class DialogDifficulty extends DialogFragment {
 	        	// Cancel Button
 	        	.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 	        		public void onClick(DialogInterface dialog, int id) {	        		
-/*	        			
-	        			if(b != null && !b.containsKey("fromMenu"))
-	        			{
-	        				Toast.makeText(getActivity(), "closing non-menu activity", Toast.LENGTH_SHORT).show();
-	        				getActivity().finish();
-	        			}
-*/	        			
+	        			
+//	        			if(b != null && !b.containsKey("fromMenu"))
+//	        			{
+	        				//Toast.makeText(getActivity(), "closing non-menu activity", Toast.LENGTH_SHORT).show();
+	        				//getActivity().finish();
+	        			
+//	        			}
+	        			
 	        		}
 	        	});
 	        	
