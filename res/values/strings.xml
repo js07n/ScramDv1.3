@@ -88,6 +88,9 @@
     <string name="lost_password">\?</string>
     <string name="your_score">You: </string>
     <string name="friend_score">Friend:</string>
+    <string name="deleteAcc">Delete Account</string>
+    <string name="delete">Delete</string>
+    <string name="ruSure">Are you sure? \nAll your information will be lost.</string>
     
     <color name="background_bottom">#002c6d</color>
     <color name="background_top">#005be4</color>

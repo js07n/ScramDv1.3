@@ -205,42 +205,43 @@ public class Settings extends Activity implements OnClickListener {
 	// Delete Account Dialog
 	//**************************************************************
 	protected void showDeleteDialog(){
-		AlertDialog.Builder alert = new AlertDialog.Builder(Settings.this);
+		final Dialog alert = new Dialog(Settings.this);
+		//alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		alert.setContentView(R.layout.delete_acc_dialog);
 		
-		//Set Title
-		alert.setTitle("Deleting Account")
-		.setMessage("Are you sure?\nAll your information will be lost.")
-		.setCancelable(false)
-		.setPositiveButton("Delete my Account.", new DialogInterface.OnClickListener() {
+		Button removeAccBtn = (Button)alert.findViewById(R.id.deleteAccBtn);
+		removeAccBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
-			public void onClick(DialogInterface dialog, int which) {
-
+			public void onClick(View v) {
 				ParseUser current = ParseUser.getCurrentUser();
 				current.deleteInBackground();
 				ParseUser.logOut();
 				
 				//Clears Activities on stack before returning to Login screen.
 				Intent intent = new Intent(getApplicationContext(), LogIn.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
 				
-				
-			}
-		})
-		.setNegativeButton("Cancel\n", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// DO Nothing.
 			}
 		});
 		
-		//Create it
-		AlertDialog alertDialog = alert.create();
-		//Show It
-		alertDialog.show();
+		//**************************************************************
+		// Cancel Button OnClick
+		//**************************************************************
+		Button cancelBtn = (Button)alert.findViewById(R.id.delCancelBtn);
+		cancelBtn.setOnClickListener(new View.OnClickListener() {
+					
+			@Override
+			public void onClick(View v) {
+				//Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_SHORT).show();
+				alert.dismiss();
+			}
+		});
+				
+		alert.show();
 	}
 	
 	// **********************************
