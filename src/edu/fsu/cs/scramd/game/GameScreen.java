@@ -280,7 +280,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         
         
      
-        //Fisher–Yates shuffle
+        //Fisherï¿½Yates shuffle
         //Randomize tracking array
         Random rnd = new Random();
         for (int i = TrackArray.length - 1; i > 0; i--)
@@ -373,7 +373,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         	//timerTV = (TextView) findViewById(R.id.timerTV);
     	
     		timerTV = new TextView(this);
-    		timerTV.setTextSize(size.x/30);
+    		timerTV.setTextSize(size.x/20);
     		timerTV.setGravity(1);
     		
     		
