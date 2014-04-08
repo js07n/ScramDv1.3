@@ -492,7 +492,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         	if(!isGameFinished)
         		Toast.makeText(getApplicationContext(), "LOST!", Toast.LENGTH_SHORT).show();
 			
-			timerTV.setText("Done!");
+			timerTV.setText("0");
 			time = 0;
 			
 			if(GameType.equals("solo"))
@@ -847,15 +847,16 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		{
     			friend.setTScore(score);
     			friend.setStatus("fight"); //So that user will be allowed to send back a challenge
+    			db.updateFriend(friend);
     		}
     		else //This game contains the second score and a winner should be awarded points.
     		{
     			//THIS MUST BE CHANGED!!!!!
     			UpdateChallenge.calculateWinner(friendName, score);
-    			friend.setStatus("wait");
+    			//friend.setStatus("wait");
     		}
     		
-    		db.updateFriend(friend);
+    		
     		
     		//!!!
     		// CODE NEEDED HERE TO DISPLAY WINNER AND TO END ACTIVITY.

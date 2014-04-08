@@ -280,6 +280,21 @@ public class LogIn extends Activity {
 				     		updateChallenge.received(challenge);
 				     		
 				     	}
+				      	else if(status.equals(""))
+				     	{				      					    	    												    
+				      		try {
+								challenge.getSentBy().fetchIfNeeded();
+							} catch (ParseException e1) {
+								
+								e1.printStackTrace();
+							}
+					      	UpdateChallenge.addToFriendList(challenge.getSentBy().getUsername(), 
+					      			"wait", 
+					      			null, 
+					      			challenge.getObjectId(), 
+					      			challenge.getScore());
+				     		
+				     	}
 				      	else
 				      		;
 					}// end for loop
@@ -316,8 +331,13 @@ public class LogIn extends Activity {
 				    	
 				      	if(!UpdateChallenge.isUserAFriend(challenge.getSendTo()))
 				      	{
+				      		
+				      		String status = "wait";
+				      		if(challenge.getStatus().equals(""))
+				      			status = "fight";
+				      		
 				      		UpdateChallenge.addToFriendList(challenge.getSendTo(), 
-				      				"wait", 
+				      				status, 
 				      				null, 
 				      				challenge.getObjectId(), 
 				      				challenge.getScore());

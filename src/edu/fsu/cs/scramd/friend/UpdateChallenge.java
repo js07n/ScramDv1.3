@@ -335,6 +335,7 @@ public class UpdateChallenge {
 		int oScore = db.getFriend(friendName).getTScore();
 		int wScore = 0;
 		
+		Friend friend = db.getFriend(friendName);
 		
 		if(uScore == oScore)
 		{
@@ -347,21 +348,26 @@ public class UpdateChallenge {
 			System.out.println("User wins " + uScore);
 			//User wins
 			//User is awarded points
-			wScore = uScore * 10;
-			Friend friend = db.getFriend(friendName);
+			wScore = uScore * 10;			
 			friend.setUScore((friend.getUScore() + uScore));// add game score to old score
-			db.updateFriend(friend);
+			 // reset TScore
+
+
 		}
 		else //(uScore < oScore)
 		{
 			System.out.println("Opp wins " + oScore);
 			//Opponent wins
 			//Opponent is awarded points
-			wScore = oScore;
-			Friend friend = db.getFriend(friendName);
+			wScore = oScore;			
 			friend.setOScore((friend.getOScore() + oScore));// add game score to old score
-			db.updateFriend(friend);
+
+			
 		}
+		
+		friend.setStatus("wait");
+		friend.setTScore(-1); //reset TScore
+		db.updateFriend(friend);
 		
 		final int winScore = wScore;
 		

@@ -180,7 +180,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		
-		System.out.println("get all friends for adapter");
+		//System.out.println("get all friends for adapter");
 		
 		//Looping through all rows and adding to list.
 		if(cursor.moveToFirst()){
@@ -195,9 +195,9 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				//Adding contact to list
 				friendList.add(friend);
 				
-				System.out.println(cursor.getString(0) + " " + cursor.getInt(3));
-				System.out.println(cursor.getString(0) + " " + cursor.getInt(4));
-				System.out.println(cursor.getString(0) + " " + cursor.getInt(5));
+				//System.out.println(cursor.getString(0) + " " + cursor.getInt(3));
+				//System.out.println(cursor.getString(0) + " " + cursor.getInt(4));
+				//System.out.println(cursor.getString(0) + " " + cursor.getInt(5));
 			}while(cursor.moveToNext());
 		}
 		
@@ -252,7 +252,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		//Updating row
 		//return db.update(TABLE_FRIENDS, values, KEY_USERNAME + " =?", new String[]{String.valueOf(friend.getUsername())} );
 		db.update(TABLE_FRIENDS, values, KEY_USERNAME + " =?", new String[]{String.valueOf(friend.getUsername())} );
-		if(db != null)
+//		if(db != null)
 			db.close();
 		
 	}
@@ -262,7 +262,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		//not using
-		System.out.println(friend.getUsername() + " " + friend.getUsername());
+		//System.out.println(friend.getUsername() + " " + friend.getUsername());
 		
 		db.delete(TABLE_FRIENDS, KEY_USERNAME + " = ?", new String[]{String.valueOf(friend.getUsername())});
 		db.close();

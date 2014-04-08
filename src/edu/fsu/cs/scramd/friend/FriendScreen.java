@@ -162,7 +162,7 @@ public class FriendScreen extends Activity {
 		//Check if friendList is null //will crash if it is
 		if(user.getJSONArray("friendList") != null)
 		{
-			System.out.println("Friendlist is NOT null");
+			//System.out.println("Friendlist is NOT null");
 			
 			//Retrieve friendlist from user object
 			JSONArray jarr = user.getJSONArray("friendList");
@@ -197,7 +197,7 @@ public class FriendScreen extends Activity {
 		//TESTING - GET FRIENDS FROM APP DB		
 		if(db.getFriendsCount() != 0)
 		{
-			System.out.println("DB does NOT have ZERO friends");
+			//System.out.println("DB does NOT have ZERO friends");
 			//Toast.makeText(getApplicationContext(), "DB " + Integer.toString(db.getFriendsCount()), Toast.LENGTH_SHORT).show();
 			List<Friend> friends = db.getAllFriendsForAdapter();
 			/*
@@ -349,7 +349,7 @@ public class FriendScreen extends Activity {
 				if (objects == null || objects.size() == 0) 
 				{
 //			   		Log.d("score", "The getFirst request failed.");
-					System.out.println("Object is null");			    	    				    	    	
+					System.out.println(" downloadChallenges() - Object is null");			    	    				    	    	
 			    } 
 				else 
 				{
@@ -580,7 +580,8 @@ public class FriendScreen extends Activity {
 	public void onResume()
 	{
 		super.onResume();
-		refreshList();
+		downloadChallenges();
+		//refreshList();
 	}
 
 
