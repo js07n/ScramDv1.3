@@ -80,15 +80,17 @@ public class Settings extends Activity implements OnClickListener {
 			startActivity(i);
 		}
 		else if(v == ppTv){
-			String url = "https://parse.com/about/privacy";
-			Intent i = new Intent(Intent.ACTION_VIEW);
-			i.setData(Uri.parse(url));
+			//String url = "https://parse.com/about/privacy";
+			//Intent i = new Intent(Intent.ACTION_VIEW);
+			//i.setData(Uri.parse(url));
+			Intent i = new Intent(this, PPolicy.class);
 			startActivity(i);
 		}
 		else if(v == tosTv){
-			String url = "https://parse.com/about/terms";
-			Intent i = new Intent(Intent.ACTION_VIEW);
-			i.setData(Uri.parse(url));
+			//String url = "https://parse.com/about/terms";
+			//Intent i = new Intent(Intent.ACTION_VIEW);
+			//i.setData(Uri.parse(url));
+			Intent i = new Intent(this, ToService.class);
 			startActivity(i);
 		}
 		else if(v == loTv){
@@ -206,8 +208,8 @@ public class Settings extends Activity implements OnClickListener {
 	//**************************************************************
 	protected void showDeleteDialog(){
 		final Dialog alert = new Dialog(Settings.this);
-		//alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		alert.setContentView(R.layout.delete_acc_dialog);
+		alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		alert.setContentView(R.layout.dialog_delete_acc);
 		
 		Button removeAccBtn = (Button)alert.findViewById(R.id.deleteAccBtn);
 		removeAccBtn.setOnClickListener(new View.OnClickListener() {

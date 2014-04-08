@@ -71,13 +71,15 @@
     <string name="shutter_descrip">The shutter button for the camera</string>
     <string name="submit_text">Submit</string>
     <string name="cancel_text">Cancel</string>
+    <string name="send_text">Send</string>
     <string name="last_name_entry_field">Last Name</string>
     <string name="first_name_entry_field">First Name</string>
+    <string name="email_entry_field">Email</string>
     <string name="difficulty_hard_text">Hard</string>
     <string name="difficulty_normal_text">Normal</string>
     <string name="difficulty_easy_text">Easy</string>
     <string name="solo_text">Solo</string>
-    <string name="friends_text">Freinds</string>
+    <string name="friends_text">Friends</string>
     <string name="settings_text">Settings</string>
     <string name="logout_text">Logout</string>
     <string name="del_account">Delete Account</string>
@@ -85,6 +87,7 @@
     <string name="toservice">Terms of Service</string>
     <string name="about_text">About</string>
     <string name="chg_pass">Change Password</string>
+    <string name="passrecv">Password Recovery</string>
     <string name="lost_password">\?</string>
     <string name="your_score">You: </string>
     <string name="friend_score">Friend:</string>

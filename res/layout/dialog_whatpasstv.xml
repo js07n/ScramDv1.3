@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@color/black" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_separation_small"
+        android:background="@color/black"
+        android:gravity="center_horizontal"
+        android:textStyle="bold|normal"
+        android:text="@string/passrecv" />
+    
+    <EditText 
+        android:id="@+id/idkpassMail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginBottom="@dimen/button_separation_small"
+        android:background="@drawable/input_field"
+        android:hint="@string/email_entry_field" />
+    
+    <Button
+        android:id="@+id/recovBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:background="@drawable/single_button"
+        android:text="@string/submit_text" />
+    
+
+</LinearLayout>

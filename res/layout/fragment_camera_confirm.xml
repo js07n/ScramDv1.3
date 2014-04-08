@@ -8,12 +8,13 @@
         android:id="@+id/save_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
-        android:layout_below="@+id/preview_image"
-        android:layout_marginTop="@dimen/button_separation_big"
+        android:layout_above="@+id/recnlLyt"
+        android:layout_marginBottom="@dimen/button_separation_big"
         android:background="@drawable/single_button"
-        android:text="@string/submit_text" />
+        android:text="@string/send_text" />
 
     <LinearLayout
+        android:id="@+id/recnlLyt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

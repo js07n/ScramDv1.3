@@ -93,7 +93,7 @@ public class FriendScreen extends Activity {
         
         tabHost.addTab(spec1);
         tabHost.addTab(spec2);
-                      
+             
         tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			
 			@Override

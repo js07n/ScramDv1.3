@@ -18,7 +18,7 @@
         android:src="@drawable/applogo"
         android:background="@color/logo_background" />
 
-    <EditText
+    <!--EditText
         android:id="@+id/firstEt"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
@@ -27,17 +27,17 @@
         android:paddingLeft="30dp"
         android:background="@drawable/input_field"
         android:hint="@string/first_name_entry_field"
-        android:inputType="text" />
+        android:inputType="text" /-->
 
     <EditText
-        android:id="@+id/lastEt"
+        android:id="@+id/userEt"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
         android:layout_above="@+id/emailEt"
         android:layout_marginBottom="5dp"
         android:paddingLeft="30dp"
         android:background="@drawable/input_field"
-        android:hint="@string/last_name_entry_field"
+        android:hint="@string/username_entry_field"
         android:inputType="text" />
 
     <EditText
@@ -48,7 +48,7 @@
         android:layout_marginBottom="5dp"
         android:paddingLeft="30dp"
         android:background="@drawable/input_field"
-        android:hint="@string/username_entry_field"
+        android:hint="@string/email_entry_field"
         android:inputType="textEmailAddress" />
     
     <EditText

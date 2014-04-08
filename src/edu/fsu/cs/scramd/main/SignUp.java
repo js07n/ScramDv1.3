@@ -46,9 +46,10 @@ public class SignUp extends Activity{
 	// Declaration
 	//**************************************************************
 	EditText emailText;
+	EditText userText;
 	EditText pass2Text;
 	EditText pass3Text;
-	String firstName, lastName, email, password;
+	String username, email, password;
 	Button submitButton;
 	Button cancelButton;
 	
@@ -60,6 +61,7 @@ public class SignUp extends Activity{
 		//**************************************************************
 		// Initialization
 		//**************************************************************
+		userText = (EditText) findViewById(R.id.userEt);
 		emailText = (EditText) findViewById(R.id.emailEt);
 		pass2Text = (EditText) findViewById(R.id.pass2Et);
 		pass3Text = (EditText) findViewById(R.id.pass3Et);
@@ -100,6 +102,7 @@ public class SignUp extends Activity{
 				emailText.setError(null);
 				pass2Text.setError(null);
 				
+				username = userText.getText().toString();
 				email = emailText.getText().toString();
 				password = pass2Text.getText().toString();
 				
@@ -107,7 +110,8 @@ public class SignUp extends Activity{
 				// Save new user data into Parse.com Data Storage
 				//*********************************************************
 				ParseUser user = new ParseUser();
-				user.setUsername(email);
+				user.setUsername(username);
+				user.setEmail(email);
 				user.setPassword(password);
 
 				
