@@ -53,7 +53,7 @@ public class DialogCamera extends DialogFragment {
 	        	        b = intent.getExtras();
 	        			//if(b == null)
 	        			//{
-	        				Toast.makeText(getActivity(), "getArguments()", Toast.LENGTH_SHORT).show();
+	        				//Toast.makeText(getActivity(), "getArguments()", Toast.LENGTH_SHORT).show();
 	        	        	b = getArguments();	 
 	        			//}
 	        			String friendName; 
@@ -61,7 +61,7 @@ public class DialogCamera extends DialogFragment {
 	        			{
 	        				friendName = b.getString("friendName");
 	        				bundle.putString("friendName", friendName);	 
-	        				Toast.makeText(getActivity(), "bundle is not null", Toast.LENGTH_SHORT).show();
+	        				//Toast.makeText(getActivity(), "bundle is not null", Toast.LENGTH_SHORT).show();
 	        			}
 	        			else
 	        			{
