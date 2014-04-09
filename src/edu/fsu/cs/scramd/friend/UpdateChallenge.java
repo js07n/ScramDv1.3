@@ -89,7 +89,7 @@ public class UpdateChallenge {
     					return;
     				}
     				
-    				if(isUserAFriend(sentBy))
+    				if(isUserAFriend(sentBy) && db.getFriendsCount() != 0)
     				{	    	    	    		
     					//save image to database
     					Friend friend = db.getFriend(sentBy);
@@ -329,11 +329,12 @@ public class UpdateChallenge {
 	
 	
 	
-	public static void calculateWinner(final String friendName, int uScore)
+	public static int calculateWinner(final String friendName, int uScore)
 	{
 		//opponent's score
 		int oScore = db.getFriend(friendName).getTScore();
 		int wScore = 0;
+		int winner;
 		
 		Friend friend = db.getFriend(friendName);
 		
@@ -342,6 +343,7 @@ public class UpdateChallenge {
 			//game ends in Draw,
 			// no one is awarded points.
 			System.out.println("Game ended in a Draw");
+			winner = 0;
 		}
 		else if(uScore > oScore)
 		{
@@ -352,7 +354,7 @@ public class UpdateChallenge {
 			friend.setUScore((friend.getUScore() + uScore));// add game score to old score
 			 // reset TScore
 
-
+			winner = 1;
 		}
 		else //(uScore < oScore)
 		{
@@ -362,7 +364,7 @@ public class UpdateChallenge {
 			wScore = oScore;			
 			friend.setOScore((friend.getOScore() + oScore));// add game score to old score
 
-			
+			winner = 2;
 		}
 		
 		friend.setStatus("wait");
@@ -394,7 +396,7 @@ public class UpdateChallenge {
 		}//end getFirstInBG
 	    );
 		
-		
+		return winner;
 	}
 	
 	public void done(UserAccount challenge)
@@ -436,6 +438,8 @@ public class UpdateChallenge {
 		updateChallengeOnServer(sentBy.getUsername(), challenge.getObjectId(), "");
 		
 	}//end Done Method
+	
+
 	
 	
 }//end UpdateChallenge Class

@@ -105,9 +105,10 @@ public class Settings extends Activity implements OnClickListener {
 			
 			DatabaseHandler db = new DatabaseHandler(this);
 			
+			System.out.println("Friend count = " + db.getFriendsCount());
 			//If there are friends on the Database,
 			// then delete them
-			if(db.getFriendsCount() != 0)
+			do
 			{
 
 
@@ -117,9 +118,10 @@ public class Settings extends Activity implements OnClickListener {
 				//Remove friends from Database one by one
 				for (int i = 0; i < db.getFriendsCount(); i++)
 				{
-					db.deleteFriend(friendList.get(i));				
+					db.deleteFriend(friendList.get(i));	
+
 				}
-			}
+			}while(db.getFriendsCount() != 0);
 			
 			
 			// Associate the device with a user
@@ -139,6 +141,11 @@ public class Settings extends Activity implements OnClickListener {
 			// *
 			// * Clears Activities on stack before returning to Login screen.
 			// *
+			
+			System.out.println("Friend count = " + db.getFriendsCount());
+			
+			db.close();
+			
 			Intent intent = new Intent(this, LogIn.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -262,4 +269,12 @@ public class Settings extends Activity implements OnClickListener {
 	    return true;
 	}
 
+	
+	public void onDestroy()
+	{
+		super.onDestroy();
+		
+		
+	}
+	
 }

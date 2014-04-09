@@ -10,11 +10,14 @@ import edu.fsu.cs.scramd.data.DatabaseHandler;
 import edu.fsu.cs.scramd.data.Friend;
 import edu.fsu.cs.scramd.friend.DialogDifficulty;
 import edu.fsu.cs.scramd.friend.UpdateChallenge;
+import edu.fsu.cs.scramd.main.LogIn;
 import edu.fsu.cs.scramd.main.MenuScreen;
+import edu.fsu.cs.scramd.main.Settings;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +29,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnTouchListener;
 
 import android.view.ViewGroup;
@@ -848,11 +852,12 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     			friend.setTScore(score);
     			friend.setStatus("fight"); //So that user will be allowed to send back a challenge
     			db.updateFriend(friend);
+    			this.finish();
     		}
     		else //This game contains the second score and a winner should be awarded points.
     		{
     			//THIS MUST BE CHANGED!!!!!
-    			UpdateChallenge.calculateWinner(friendName, score);
+    			showWinnerDialog(UpdateChallenge.calculateWinner(friendName, score));
     			//friend.setStatus("wait");
     		}
     		
@@ -862,9 +867,48 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		// CODE NEEDED HERE TO DISPLAY WINNER AND TO END ACTIVITY.
     	}//end if friendName != null
     	
-    	this.finish();
+    	//this.finish();
     	
 	}
+	
+	
+	
+	protected void showWinnerDialog(int win){
+		final Dialog alert = new Dialog(GameScreen.this);
+		
+		System.out.println("showWinnerDialog");
+		
+		alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		alert.setContentView(R.layout.dialog_show_winner);
+		
+		TextView winnerTV = (TextView)alert.findViewById(R.id.winnerTV);
+		
+		if(win == 0)
+			winnerTV.setText("GAME ENDS IN A DRAW!");
+		else if(win == 1)
+			winnerTV.setText("YOU'VE WON!");
+		else 
+			winnerTV.setText("YOU'VE LOST!");
+		
+		Button okBtn = (Button)alert.findViewById(R.id.okBtn);
+		okBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+				finish();
+			}
+		});
+	
+		alert.show();
+	}
+	
+	public void onDestroy()
+	{
+		super.onDestroy();
+		db.close();
+	}
+	
 	
     public void onBackPressed() {
     	//Timer has to be stopped,
@@ -880,6 +924,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		finish();
     	}
     }   
+    
+        
     
 }
 

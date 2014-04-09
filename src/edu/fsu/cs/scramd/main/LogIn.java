@@ -276,7 +276,7 @@ public class LogIn extends Activity {
 				      	else if(status.equals("Received"))
 				     	{
 				     		System.out.println("login activity - attempt to download received challenges");
-				     		
+				     		System.out.println(5);
 				     		updateChallenge.received(challenge);
 				     		
 				     	}
@@ -293,7 +293,8 @@ public class LogIn extends Activity {
 					      			null, 
 					      			challenge.getObjectId(), 
 					      			challenge.getScore());
-				     		
+				     		System.out.println(5.5);
+					      	
 				     	}
 				      	else
 				      		;

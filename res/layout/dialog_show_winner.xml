@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:background="@color/black"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:background="@color/black"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="@string/gameResults" />
+    
+    <TextView 
+        android:id="@+id/winnerTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:layout_marginBottom="20dp"
+        android:text="@string/ruSure" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        
+        <Button 
+            android:id="@+id/okBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/multi_button_center"
+            android:text="@string/ok"/>
+        
+
+        
+    </LinearLayout>
+    
+</LinearLayout>

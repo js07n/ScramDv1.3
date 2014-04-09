@@ -95,6 +95,11 @@
     <string name="delete">Delete</string>
     <string name="ruSure">Are you sure? \nAll your information will be lost.</string>
     
+    <string name="gameResults">Game Results</string>
+    <string name="ok">OK</string>
+    
+    
+    
     <color name="background_bottom">#002c6d</color>
     <color name="background_top">#005be4</color>
     <color name="logo_background">#00000000</color>
