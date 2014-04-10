@@ -1,12 +1,16 @@
 package edu.fsu.cs.scramd.friend;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -236,15 +240,39 @@ public class UpdateChallenge {
 				    		ua.setSentBy(user);
 				    		ua.setSendTo(sentBy);
 				    		ua.setScore(-1);
+				    						    		
 				    	}
 				    	ua.saveInBackground(new SaveCallback(){
 
 							@Override
 							public void done(ParseException e) {
-								if(e == null){
+								if(e == null)
+								{
 									System.out.println("Challenge updated on server");
 									
-									
+									if(status.equals("Done"))
+									{
+										// Alert other user that they can start a new game
+										System.out.println("Push Notification ");
+										
+										// Find users near a given location
+										ParseQuery<ParseInstallation> userQuery = ParseInstallation.getQuery();
+										userQuery.whereEqualTo("user", sentBy);
+										
+										// Send push notification to query
+										ParsePush push = new ParsePush();
+										push.setQuery(userQuery); //pushQuery); // Set our Installation query			
+										
+										JSONObject jobj = new JSONObject();
+										try {
+											jobj.putOpt("action", "edu.fsu.cs.scramd.UPDATE");
+										} catch (JSONException e1) {
+											
+											e1.printStackTrace();
+										}
+										push.setData(jobj);
+										push.sendInBackground();	
+									}//end if status == "Done"
 								}else{
 									System.out.println("Challenge NOT updated on server : " + e.toString());
 									
@@ -267,63 +295,7 @@ public class UpdateChallenge {
 	
 	
 	
-	//03.26.14
-	public void update(UserAccount challenge)
-	{
-		final int tScore = challenge.getInt("score");		
-		ParseUser sentBy= challenge.getParseUser("sentBy");
-		
-		
-		//fetch ParseUser object info.
-		try {
-			sentBy.fetch();
-		} catch (ParseException e) {
-			
-			e.printStackTrace();
-		}
-		
-		if(!isUserAFriend(sentBy.getUsername()) || db.getFriendsCount() == 0)
-		{	    	    	    		    	    	    		
-			//if user isn't a friend,
-			//then create an entry for them in the database
-			addToFriendList(sentBy.getUsername(), "wait", null, challenge.getObjectId(), tScore);				
-		}
-		
-		
 
-		if(tScore == 0)
-		{
-			//No updates on App DB necessary
-		}
-		else
-		{					
-			//save image to database
-			Friend friend = db.getFriend(sentBy.getUsername());
-			
-
-			//update status
-			friend.setStatus("wait");
-			if(friend.getObjectId().equals(""))
-				friend.setObjectId(challenge.getObjectId());
-			
-			if (tScore < 10)
-			{
-				//user won
-				friend.setUScore(friend.getUScore() + tScore);
-			}
-			else // (tScore >= 10)
-			{
-				//opp won
-				friend.setOScore(friend.getOScore() + (tScore / 10));
-			}
-			
-			db.updateFriend(friend);
-		}
-		
-
-    	
-		updateChallengeOnServer(sentBy.getUsername(), challenge.getObjectId(), "Done");
-	}
 	
 	
 	
@@ -389,7 +361,35 @@ public class UpdateChallenge {
 					challenge.setSentBy(ParseUser.getCurrentUser());
 					challenge.setScore(winScore);
 					
-					challenge.saveInBackground();
+					challenge.saveInBackground(new SaveCallback() {
+						
+						@Override
+						public void done(ParseException e) {
+							// Alert other user that they can update their scores from server
+							System.out.println("Push Notification ");
+							
+							// Find users near a given location
+							ParseQuery<ParseInstallation> userQuery = ParseInstallation.getQuery();
+							userQuery.whereEqualTo("user", friendName);
+							
+							// Send push notification to query
+							ParsePush push = new ParsePush();
+							push.setQuery(userQuery); //pushQuery); // Set our Installation query			
+							//push.setMessage("NEW CHALLENGE!");
+							JSONObject jobj = new JSONObject();
+							try {
+								//jobj.putOpt("title", "ScramD");
+								//jobj.putOpt("alert", "NEW CHALLENGE!");
+								jobj.putOpt("action", "edu.fsu.cs.scramd.UPDATE");
+							} catch (JSONException e1) {
+								
+								e1.printStackTrace();
+							}
+							push.setData(jobj);
+							push.sendInBackground();
+							
+						}
+					});
 				}
 				
 			}//end Done
@@ -398,6 +398,63 @@ public class UpdateChallenge {
 		
 		return winner;
 	}
+	
+	
+	//03.26.14
+	public void update(UserAccount challenge)
+	{
+		final int tScore = challenge.getInt("score");		
+		ParseUser sentBy= challenge.getParseUser("sentBy");
+		
+		
+		//fetch ParseUser object info.
+		try {
+			sentBy.fetch();
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		if(!isUserAFriend(sentBy.getUsername()) || db.getFriendsCount() == 0)
+		{	    	    	    		    	    	    		
+			//if user isn't a friend,
+			//then create an entry for them in the database
+			addToFriendList(sentBy.getUsername(), "wait", null, challenge.getObjectId(), tScore);				
+		}
+		
+		
+		Friend friend = db.getFriend(sentBy.getUsername());
+		
+		if(tScore == 0)
+		{
+			//No User or Opp Score updates on App DB necessary
+		}
+		else
+		{					
+			//update status
+			friend.setStatus("wait");
+			if(friend.getObjectId().equals(""))
+				friend.setObjectId(challenge.getObjectId());
+			
+			if (tScore < 10)
+			{
+				//user won
+				friend.setUScore(friend.getUScore() + tScore);
+			}
+			else // (tScore >= 10)
+			{
+				//opp won
+				friend.setOScore(friend.getOScore() + (tScore / 10));
+			}
+
+		}
+		friend.setTScore(-1); //reset TScore
+		db.updateFriend(friend);
+
+    	
+		updateChallengeOnServer(sentBy.getUsername(), challenge.getObjectId(), "Done");
+	}
+	
 	
 	public void done(UserAccount challenge)
 	{

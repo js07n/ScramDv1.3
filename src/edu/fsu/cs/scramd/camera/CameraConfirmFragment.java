@@ -180,16 +180,16 @@ public class CameraConfirmFragment extends Fragment {
 								
 								// Find users near a given location
 								ParseQuery<ParseInstallation> userQuery = ParseInstallation.getQuery();
-								userQuery.whereContains("user", friendName);
+								userQuery.whereEqualTo("user", friendName);
 								
 								// Send push notification to query
 								ParsePush push = new ParsePush();
 								push.setQuery(userQuery); //pushQuery); // Set our Installation query			
-								push.setMessage("NEW CHALLENGE!");
+								//push.setMessage("NEW CHALLENGE!");
 								JSONObject jobj = new JSONObject();
 								try {
 									jobj.putOpt("title", "ScramD");
-									jobj.putOpt("body", "This is some great content.");
+									jobj.putOpt("alert", "NEW CHALLENGE!");
 								} catch (JSONException e1) {
 									
 									e1.printStackTrace();
