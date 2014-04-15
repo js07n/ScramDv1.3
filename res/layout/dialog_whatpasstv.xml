@@ -21,6 +21,7 @@
         android:layout_height="@dimen/input_height"
         android:layout_marginBottom="@dimen/button_separation_small"
         android:background="@drawable/input_field"
+        android:singleLine="true"
         android:hint="@string/email_entry_field" />
     
     <Button

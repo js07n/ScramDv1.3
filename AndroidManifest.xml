@@ -28,7 +28,7 @@
 
     <application
         android:name=".main.ScramDApplication"
-        android:icon="@drawable/applogo"
+        android:icon="@drawable/logo"
         android:theme="@style/scramd_main_theme"
         android:allowBackup="true" >
         

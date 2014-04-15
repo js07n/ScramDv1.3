@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/dialog_bkgd" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dialog_bkgd"
+        android:textAlignment="center"
+        android:text="@string/challenge_text" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/button_separation_small"
+        android:background="@color/dialog_bkgd"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+        
+        <Button
+            android:id="@+id/tPicBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/multi_button_left"
+            android:text="@string/take_photo" />
+        
+        <Button
+            android:id="@+id/tPicCancelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/multi_button_right"
+            android:text="@string/cancel_text" />
+        
+    </LinearLayout>
+    
+
+</LinearLayout>

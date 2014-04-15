@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/dialog_bkgd" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textColor="@color/dialog_text"
+        android:textAlignment="center"
+        android:text="@string/diff_title" />
+    
+    <RadioGroup 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/button_separation_small"
+        android:orientation="vertical"
+        android:background="@color/black" >
+        
+        <RadioButton android:id="@+id/easyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textColor="@color/dialog_text2"
+            android:text="@string/easy_diff" />
+        
+        <RadioButton android:id="@+id/mediumBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textColor="@color/dialog_text2"
+            android:text="@string/medium_diff" />
+        
+        <RadioButton android:id="@+id/hardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textColor="@color/dialog_text2"
+            android:text="@string/hard_diff" />
+        
+    </RadioGroup>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/button_separation_small"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:background="@color/black" >
+        
+        <Button 
+            android:id="@+id/playBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/multi_button_left"
+            android:text="@string/play" />
+        
+        <Button 
+            android:id="@+id/diffcanelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/multi_button_right"
+            android:text="@string/cancel_text" />
+        
+    </LinearLayout>
+
+</LinearLayout>

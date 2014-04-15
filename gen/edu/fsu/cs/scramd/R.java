@@ -17,6 +17,9 @@ public final class R {
         public static final int background_bottom=0x7f070001;
         public static final int background_top=0x7f070002;
         public static final int black=0x7f070009;
+        public static final int dialog_bkgd=0x7f07000c;
+        public static final int dialog_text=0x7f07000a;
+        public static final int dialog_text2=0x7f07000b;
         public static final int hint_grey=0x7f070007;
         public static final int logo_background=0x7f070003;
         public static final int tab_background=0x7f070006;
@@ -76,57 +79,64 @@ public final class R {
     public static final class id {
         public static final int about=0x7f0a001c;
         public static final int aboutTitle=0x7f0a0000;
-        public static final int action_settings=0x7f0a0042;
+        public static final int action_settings=0x7f0a0049;
         public static final int addBtn=0x7f0a000c;
         public static final int addEt=0x7f0a000b;
         public static final int buttons=0x7f0a0022;
-        public static final int camera_photo_button=0x7f0a0032;
-        public static final int camera_surface_view=0x7f0a0031;
+        public static final int camera_photo_button=0x7f0a0039;
+        public static final int camera_surface_view=0x7f0a0038;
         public static final int cancelBtn=0x7f0a0024;
-        public static final int cancel_button=0x7f0a0037;
-        public static final int delCancelBtn=0x7f0a002c;
+        public static final int cancel_button=0x7f0a003e;
+        public static final int delCancelBtn=0x7f0a002e;
         public static final int deleteAcc=0x7f0a001b;
-        public static final int deleteAccBtn=0x7f0a002b;
+        public static final int deleteAccBtn=0x7f0a002d;
+        public static final int diffcanelBtn=0x7f0a0033;
+        public static final int easyBtn=0x7f0a002f;
         public static final int emailEt=0x7f0a0025;
-        public static final int fragmentContainer=0x7f0a0039;
+        public static final int fragmentContainer=0x7f0a0040;
         public static final int friendsB=0x7f0a0017;
-        public static final int goNewBtn=0x7f0a0029;
-        public static final int idkpassMail=0x7f0a002f;
-        public static final int lbottom=0x7f0a003d;
+        public static final int goNewBtn=0x7f0a002b;
+        public static final int hardBtn=0x7f0a0031;
+        public static final int idkpassMail=0x7f0a0036;
+        public static final int lbottom=0x7f0a0044;
         public static final int lo=0x7f0a001f;
         public static final int logInBtn=0x7f0a0012;
         public static final int logoimg=0x7f0a0019;
-        public static final int ltop=0x7f0a003a;
+        public static final int ltop=0x7f0a0041;
         public static final int lv=0x7f0a0009;
-        public static final int lvScoreFriend=0x7f0a0041;
-        public static final int lvScoreMe=0x7f0a003f;
-        public static final int lvStatus=0x7f0a003c;
-        public static final int lvtv=0x7f0a003b;
+        public static final int lvScoreFriend=0x7f0a0048;
+        public static final int lvScoreMe=0x7f0a0046;
+        public static final int lvStatus=0x7f0a0043;
+        public static final int lvtv=0x7f0a0042;
         public static final int made=0x7f0a0002;
         public static final int mailEt=0x7f0a0010;
-        public static final int newPassword1=0x7f0a0027;
-        public static final int newPassword2=0x7f0a0028;
-        public static final int noNewBtn=0x7f0a002a;
-        public static final int okBtn=0x7f0a002e;
+        public static final int mediumBtn=0x7f0a0030;
+        public static final int newPassword1=0x7f0a0029;
+        public static final int newPassword2=0x7f0a002a;
+        public static final int noNewBtn=0x7f0a002c;
+        public static final int okBtn=0x7f0a0035;
         public static final int pass2Et=0x7f0a0020;
         public static final int pass3Et=0x7f0a0021;
         public static final int passEdit=0x7f0a001a;
         public static final int passEt=0x7f0a0013;
         public static final int pass_and_recovery=0x7f0a0011;
-        public static final int photo_button=0x7f0a0036;
+        public static final int photo_button=0x7f0a003d;
+        public static final int playBtn=0x7f0a0032;
         public static final int pp=0x7f0a001d;
-        public static final int preview_image=0x7f0a0038;
-        public static final int recnlLyt=0x7f0a0035;
-        public static final int recovBtn=0x7f0a0030;
-        public static final int rect=0x7f0a0033;
+        public static final int preview_image=0x7f0a003f;
+        public static final int recnlLyt=0x7f0a003c;
+        public static final int recovBtn=0x7f0a0037;
+        public static final int rect=0x7f0a003a;
         public static final int removeBtn=0x7f0a000e;
         public static final int removeEt=0x7f0a000d;
         public static final int root=0x7f0a000f;
-        public static final int save_button=0x7f0a0034;
+        public static final int save_button=0x7f0a003b;
         public static final int settingsB=0x7f0a0018;
         public static final int soloB=0x7f0a0016;
         public static final int suBtn=0x7f0a0015;
         public static final int subBtn=0x7f0a0023;
+        public static final int tPicBtn=0x7f0a0027;
+        public static final int tPicCancelBtn=0x7f0a0028;
         public static final int tab1=0x7f0a0008;
         public static final int tab2=0x7f0a000a;
         public static final int tabhost=0x7f0a0007;
@@ -134,13 +144,13 @@ public final class R {
         public static final int textView2=0x7f0a0004;
         public static final int textView3=0x7f0a0005;
         public static final int textView4=0x7f0a0006;
-        public static final int their=0x7f0a0040;
+        public static final int their=0x7f0a0047;
         public static final int tos=0x7f0a001e;
         public static final int userEt=0x7f0a0026;
         public static final int version=0x7f0a0001;
         public static final int whatPassTv=0x7f0a0014;
-        public static final int winnerTV=0x7f0a002d;
-        public static final int your=0x7f0a003e;
+        public static final int winnerTV=0x7f0a0034;
+        public static final int your=0x7f0a0045;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
@@ -152,14 +162,16 @@ public final class R {
         public static final int activity_settings_screen=0x7f030006;
         public static final int activity_sign_up=0x7f030007;
         public static final int activity_toservice=0x7f030008;
-        public static final int dialog_change_pass=0x7f030009;
-        public static final int dialog_delete_acc=0x7f03000a;
-        public static final int dialog_show_winner=0x7f03000b;
-        public static final int dialog_whatpasstv=0x7f03000c;
-        public static final int fragment_camera=0x7f03000d;
-        public static final int fragment_camera_confirm=0x7f03000e;
-        public static final int frame_camera=0x7f03000f;
-        public static final int item_friend=0x7f030010;
+        public static final int dialog_challenege=0x7f030009;
+        public static final int dialog_change_pass=0x7f03000a;
+        public static final int dialog_delete_acc=0x7f03000b;
+        public static final int dialog_difficulty=0x7f03000c;
+        public static final int dialog_show_winner=0x7f03000d;
+        public static final int dialog_whatpasstv=0x7f03000e;
+        public static final int fragment_camera=0x7f03000f;
+        public static final int fragment_camera_confirm=0x7f030010;
+        public static final int frame_camera=0x7f030011;
+        public static final int item_friend=0x7f030012;
     }
     public static final class menu {
         public static final int log_in=0x7f090000;
@@ -174,6 +186,7 @@ public final class R {
         public static final int camera=0x7f060017;
         public static final int cancel=0x7f06000a;
         public static final int cancel_text=0x7f060030;
+        public static final int challenge_text=0x7f060048;
         public static final int chg_pass=0x7f060040;
         public static final int current_games=0x7f060015;
         public static final int daniel_name=0x7f06001c;
@@ -183,17 +196,20 @@ public final class R {
         public static final int dialog_diff=0x7f06000b;
         public static final int dialog_friends=0x7f060014;
         public static final int dialog_win=0x7f06000d;
+        public static final int diff_title=0x7f06004b;
         public static final int difficulty_easy_text=0x7f060037;
         public static final int difficulty_hard_text=0x7f060035;
         public static final int difficulty_normal_text=0x7f060036;
         public static final int display=0x7f06001a;
+        public static final int easy_diff=0x7f06004c;
         public static final int eduardo_name=0x7f06001d;
         public static final int email_entry_field=0x7f060034;
         public static final int first_name_entry_field=0x7f060033;
         public static final int friend_score=0x7f060044;
         public static final int friends=0x7f060012;
         public static final int friends_text=0x7f060039;
-        public static final int gameResults=0x7f060048;
+        public static final int gameResults=0x7f060049;
+        public static final int hard_diff=0x7f06004e;
         public static final int hello=0x7f060000;
         public static final int iosif_name=0x7f06001f;
         public static final int james_name=0x7f06001e;
@@ -204,9 +220,10 @@ public final class R {
         public static final int logout_text=0x7f06003b;
         public static final int lost_password=0x7f060042;
         public static final int main_menu=0x7f06000f;
+        public static final int medium_diff=0x7f06004d;
         public static final int newpass_entry_field=0x7f060023;
         public static final int newpass_entry_field2=0x7f060024;
-        public static final int ok=0x7f060049;
+        public static final int ok=0x7f06004a;
         public static final int passrecv=0x7f060041;
         public static final int password_entry_field=0x7f060021;
         public static final int password_entry_field2=0x7f060022;
@@ -266,17 +283,18 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080002;
+        public static final int AppBaseTheme=0x7f080003;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080003;
+        public static final int AppTheme=0x7f080004;
+        public static final int dialog_theme=0x7f080001;
         /**  this will be the main style used throughout the application 
  android:textAppearance="?android:attr/textAppearanceLarge" 
          */
         public static final int scramd_main_theme=0x7f080000;
         /**  this is a special case of the Scramd_main_theme which will be used for the friends list 
          */
-        public static final int scramd_main_theme_special=0x7f080001;
+        public static final int scramd_main_theme_special=0x7f080002;
     }
 }

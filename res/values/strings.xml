@@ -94,9 +94,15 @@
     <string name="deleteAcc">Delete Account</string>
     <string name="delete">Delete</string>
     <string name="ruSure">Are you sure? \nAll your information will be lost.</string>
+    <string name="challenge_text">Challenge</string>
     
     <string name="gameResults">Game Results</string>
     <string name="ok">OK</string>
+    
+    <string name="diff_title">Select Difficulty</string>
+    <string name="easy_diff">Easy</string>
+    <string name="medium_diff">Medium</string>
+    <string name="hard_diff">Hard</string>
     
     
     
@@ -109,4 +115,7 @@
     <color name="hint_grey">#c7c7c7</color>
     <color name="transparent">#00000000</color>
     <color name="black">#000000</color>
+    <color name="dialog_text">#ffffff</color>
+    <color name="dialog_text2">#000000</color>
+    <color name="dialog_bkgd">#000000</color>
 </resources>
