@@ -28,6 +28,7 @@ Camera surface view is small and doesn't extend the full width of the screen
 
 Eduardo
 4/15/14
-Galaxy S4 International Edition Overclocked @3ghz slight frame damage battery 34 percent att
+-Galaxy S4 International Edition Overclocked @3ghz slight frame damage battery 34 percent att
 Pressing back button in take photo screen sends a blank image
+-Dont get notifications
 
