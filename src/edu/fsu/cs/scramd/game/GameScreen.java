@@ -215,7 +215,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         {
         	Random rand = new Random();
                         
-        	int pic = getPic(rand.nextInt(4)+1);        
+        	int pic = getPic(rand.nextInt(15)+3);        
         
         	//Call Garbage Collector to clean memory.
         	// If GC doesn't do this, then you will get java.lang.OutOfMemory Error
@@ -575,14 +575,34 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 		
     	switch(i)
     	{
-    		case 1:
-    			return R.drawable.solo1;   
-    		case 2:
-    			return R.drawable.solo2;
     		case 3:
     			return R.drawable.solo3;
+    		case 5:
+    			return R.drawable.solo5;
+    		case 6:
+    			return R.drawable.solo6;
+    		case 7:
+    			return R.drawable.solo7;
+    		case 8:
+    			return R.drawable.solo8;
+    		case 9:
+    			return R.drawable.solo9;
+    		case 10:
+    			return R.drawable.solo10;
+    		case 11:
+    			return R.drawable.solo11;
+    		case 12:
+    			return R.drawable.solo12;
+    		case 13:
+    			return R.drawable.solo13;
+    		case 14:
+    			return R.drawable.solo14;
+    		case 15:
+    			return R.drawable.solo15;
+    		case 16:
+    			return R.drawable.solo16;   			    		
     		default:
-    			return R.drawable.solo4;    			
+    			return R.drawable.solo17;    			
     	}
 		
 	}
