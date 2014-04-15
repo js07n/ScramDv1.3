@@ -78,12 +78,17 @@ public class SignUp extends Activity{
 		
 			// *********************************************************
 			// * Sign Up error checks.
+			// *	Username Validation.
 			// *	Email validated through isEmailValid()
 			// * 	Password
 			// *	 Error Displayed when: String == null or == " "
 			// * 						   String < 2 or pass2 != pass3
 			// *********************************************************
-			if(!isEmailValid(emailText.getText().toString()))
+			if((userText.getText().toString().length() > 12) || (userText.getText().toString().length() < 3) ||
+					(userText.getText().toString() == "") || (userText.getText().toString() == null)){
+				userText.setError("Username is invalid, Please Re-Enter.");
+			}
+			else if(!isEmailValid(emailText.getText().toString()))
 				emailText.setError("Email is Invalid. Please Re-Enter.");
 			
 			else if(pass2Text.getText().toString() == null || pass2Text.getText().toString() == " "

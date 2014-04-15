@@ -77,7 +77,7 @@ public class LogIn extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_log_in);
-		Parse.initialize(this, "UjzhrbcURnpbJppWdLLrFzpV3tVJLUfyMi8GhCY2", "ITxk2VtfXhJHTTrvlArAvIjz4Ut9fmhlqMs74RCn");
+		//Parse.initialize(this, "UjzhrbcURnpbJppWdLLrFzpV3tVJLUfyMi8GhCY2", "ITxk2VtfXhJHTTrvlArAvIjz4Ut9fmhlqMs74RCn");
 		
 		//*********************************************************
 		// Initialization
