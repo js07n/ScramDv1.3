@@ -79,15 +79,15 @@ public final class R {
         public static final int action_settings=0x7f0a0042;
         public static final int addBtn=0x7f0a000c;
         public static final int addEt=0x7f0a000b;
-        public static final int buttons=0x7f0a0024;
+        public static final int buttons=0x7f0a0022;
         public static final int camera_photo_button=0x7f0a0032;
         public static final int camera_surface_view=0x7f0a0031;
-        public static final int cancelBtn=0x7f0a0026;
+        public static final int cancelBtn=0x7f0a0024;
         public static final int cancel_button=0x7f0a0037;
         public static final int delCancelBtn=0x7f0a002c;
         public static final int deleteAcc=0x7f0a001b;
         public static final int deleteAccBtn=0x7f0a002b;
-        public static final int emailEt=0x7f0a0021;
+        public static final int emailEt=0x7f0a0025;
         public static final int fragmentContainer=0x7f0a0039;
         public static final int friendsB=0x7f0a0017;
         public static final int goNewBtn=0x7f0a0029;
@@ -108,8 +108,8 @@ public final class R {
         public static final int newPassword2=0x7f0a0028;
         public static final int noNewBtn=0x7f0a002a;
         public static final int okBtn=0x7f0a002e;
-        public static final int pass2Et=0x7f0a0022;
-        public static final int pass3Et=0x7f0a0023;
+        public static final int pass2Et=0x7f0a0020;
+        public static final int pass3Et=0x7f0a0021;
         public static final int passEdit=0x7f0a001a;
         public static final int passEt=0x7f0a0013;
         public static final int pass_and_recovery=0x7f0a0011;
@@ -126,7 +126,7 @@ public final class R {
         public static final int settingsB=0x7f0a0018;
         public static final int soloB=0x7f0a0016;
         public static final int suBtn=0x7f0a0015;
-        public static final int subBtn=0x7f0a0025;
+        public static final int subBtn=0x7f0a0023;
         public static final int tab1=0x7f0a0008;
         public static final int tab2=0x7f0a000a;
         public static final int tabhost=0x7f0a0007;
@@ -136,7 +136,7 @@ public final class R {
         public static final int textView4=0x7f0a0006;
         public static final int their=0x7f0a0040;
         public static final int tos=0x7f0a001e;
-        public static final int userEt=0x7f0a0020;
+        public static final int userEt=0x7f0a0026;
         public static final int version=0x7f0a0001;
         public static final int whatPassTv=0x7f0a0014;
         public static final int winnerTV=0x7f0a002d;

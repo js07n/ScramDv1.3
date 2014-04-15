@@ -17,6 +17,8 @@ package edu.fsu.cs.scramd.main;
 
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.os.Bundle;
 
@@ -40,11 +42,13 @@ import edu.fsu.cs.scramd.friend.UpdateChallenge;
 import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -168,43 +172,69 @@ public class LogIn extends Activity {
 		//*********************************************************
 		whatPass.setOnClickListener(new View.OnClickListener() {
 			
+			
 			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View v) {
-				final EditText passIn = new EditText(LogIn.this);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-		                  LinearLayout.LayoutParams.MATCH_PARENT,
-		                  LinearLayout.LayoutParams.MATCH_PARENT);
-				passIn.setLayoutParams(lp); 
+				passRetrieveDialog();
+			}
+		});
+	}
+	
+	private void passRetrieveDialog(){
+		final Dialog dialog = new Dialog(LogIn.this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.dialog_whatpasstv);
+		
+		final EditText idkPass = (EditText)dialog.findViewById(R.id.idkpassMail);
+		Button submitPass = (Button)dialog.findViewById(R.id.recovBtn);
+		submitPass.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				
-				// *
-				// * Create Dialog to retrieve password.
-				// *
-		        AlertDialog getPass = new AlertDialog.Builder(LogIn.this).create();
-		        getPass.setTitle("Enter Email Address");
-		        getPass.setView(passIn);
-		        
-		        getPass.setButton("OK", new DialogInterface.OnClickListener() {
-		        	public void onClick(DialogInterface dialog, int which) {
-		        		idkPassMail = passIn.getText().toString();
-		                        
-		        		ParseUser.requestPasswordResetInBackground(idkPassMail,
+				idkPassMail = idkPass.getText().toString();
+				
+				if(isEmailValid(idkPassMail)){
+	        		ParseUser.requestPasswordResetInBackground(idkPassMail,
 		        			new RequestPasswordResetCallback() {
 		        				public void done(ParseException e) {
 		        					if (e == null) {
-		        						//Good to Go.
+		        						Toast.makeText(getApplicationContext(), "Done! Please, check your email.", Toast.LENGTH_SHORT).show();
 		        					} else {
-		        						Toast.makeText(getApplicationContext(), "Error: Unable to retrieve password at this time.", 
+		        						Toast.makeText(getApplicationContext(), "Unable to retrieve password.", 
 		        								Toast.LENGTH_LONG).show();
 		        					}
 		        				}
-		            		});   
-		        	}
-		         });
-		        getPass.show();
-			}
-		});
+		            		});
+	        		dialog.dismiss();
+				}else
+					Toast.makeText(getApplicationContext(), "Invalid Email Address.", Toast.LENGTH_SHORT).show();
+			}});
 		
+		dialog.show();
+		
+	}
+	
+	// ***************************************************
+	// * method is used for checking valid email id format.
+	// *
+	// * @param email
+	// * @return boolean true for valid false for invalid
+	// ***************************************************
+	public static boolean isEmailValid(String email) {
+	    boolean isValid = false;
+
+	    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+	    CharSequence inputStr = email;
+
+	    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(inputStr);
+	    if (matcher.matches()) {
+	        isValid = true;
+	    }
+	    return isValid;
 	}
 
 	
