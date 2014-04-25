@@ -50,13 +50,8 @@ public class UpdateChallenge {
 	
 	public void received(UserAccount challenge)
 	{
-		//Download Image from Server and save to App DB
-		System.out.println("Method 'received' called");
-		
 		//update challenge status on Server
-    	ParseUser sb = ParseUser.getCurrentUser();
-    
-    	
+    	ParseUser sb = ParseUser.getCurrentUser();	
     	
     	//get information on User that sent challenge
     	try 
@@ -68,8 +63,6 @@ public class UpdateChallenge {
 			e1.printStackTrace();
 		}
     		
-    		
-    	System.out.println("sentby = " + sb.getUsername());
     	
     	// Store the challenge's sentBy User and Object ID
     	final String sentBy = sb.getUsername();
@@ -102,9 +95,6 @@ public class UpdateChallenge {
     					//Save oppnent's score if available
     					if(tScore != -1)
     						friend.setTScore(tScore);
-    					
-    					
-    					System.out.println("tScore " + tScore);
     					
     					//update status
     					friend.setStatus("play");

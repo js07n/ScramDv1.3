@@ -100,25 +100,8 @@ public class FriendScreen extends Activity {
 			public void onTabChanged(String tabId) {
 				if(tabId.equals("Friend List"))
 				{
-			        //delete ALL FRIENDS THIS IS FOR TESTING ONLY!!!
-			        List<Friend> friends = db.getAllFriends();
-			        //Toast.makeText(getApplicationContext(), "db size " + friends.size(), Toast.LENGTH_SHORT).show();
-					for(int i = 0; i < friends.size(); i++)
-					{
-						//friends.get(i).setUsername(Integer.toString(i));
-						//friends.get(i).setStatus(Integer.toString(i));
-						
-						//db.deleteFriend(new Friend(friends.get(i).getUsername()));
-						
-					//	addToFriendList(friends.get(i).getUsername(), "fight", null);
-						//saveList(null);
-						//removeFriend(friends.get(i).getUsername());
-						
-						
-					}
 					refreshList();	
 					downloadChallenges();
-
 				}
 			}
 		});
@@ -134,7 +117,7 @@ public class FriendScreen extends Activity {
         
         //refreshList();
         downloadChallenges();
-        //refreshList();
+
 
       
 		
@@ -143,8 +126,6 @@ public class FriendScreen extends Activity {
         
         addET = (EditText) findViewById(R.id.addEt);
         removeET = (EditText) findViewById(R.id.removeEt);
-        
-        
 
 	}
 	
@@ -152,24 +133,17 @@ public class FriendScreen extends Activity {
 
 	public void refreshList()
 	{		
-		//Toast.makeText(getApplicationContext(), "Tab changed", Toast.LENGTH_SHORT).show();
-		
+
 		String[] freunde;
 		
-		
-		
-		
+		//THIS NEEDS WORK !!!!!!
 		//Check if friendList is null //will crash if it is
 		if(user.getJSONArray("friendList") != null)
 		{
-			//System.out.println("Friendlist is NOT null");
-			
+
 			//Retrieve friendlist from user object
 			JSONArray jarr = user.getJSONArray("friendList");
 
-			//!!! Show length
-			//Toast.makeText(getApplicationContext(), Integer.toString(jarr.length()), Toast.LENGTH_SHORT).show();
-			
 			// If friendlist is not empty then perform copy
 			if(jarr.length() != 0)
 			{
@@ -197,17 +171,8 @@ public class FriendScreen extends Activity {
 		//TESTING - GET FRIENDS FROM APP DB		
 		if(db.getFriendsCount() != 0)
 		{
-			//System.out.println("DB does NOT have ZERO friends");
-			//Toast.makeText(getApplicationContext(), "DB " + Integer.toString(db.getFriendsCount()), Toast.LENGTH_SHORT).show();
 			List<Friend> friends = db.getAllFriendsForAdapter();
-			/*
-			freunde = new String[db.getFriendsCount()];
-			for(int i = 0; i < friends.size(); i++)
-				freunde[i] = friends.get(i).getUsername();
-			*/
-			
-			System.out.println("refreshList()");
-			
+		
 			//Temp solution
 			int uScore = 0;
 			int oScore = 0;
@@ -225,16 +190,6 @@ public class FriendScreen extends Activity {
 	            map.put("status", friends.get(i).getStatus());
 	            map.put("userScore", Integer.toString(friends.get(i).getUScore()));
 	            map.put("oppScore", Integer.toString(friends.get(i).getOScore()));
-	            
-	            //TEMP SOLUTION
-	            //uScore = db.getFriend(friends.get(i).getUsername()).getUScore();
-	            //oScore = db.getFriend(friends.get(i).getUsername()).getOScore();
-	            
-	            //map.put("userScore", Integer.toString(uScore));
-	            //map.put("oppScore", Integer.toString(oScore));
-	            // END TEMP SOLUTION
-	           //System.out.println(friends.get(i).getUsername() + " " + Integer.toString(friends.get(i).getUScore()));
-
 	            
 	            fillMaps.add(map);
 	        }
@@ -261,17 +216,11 @@ public class FriendScreen extends Activity {
 					HashMap<String,String> hm = (HashMap<String, String>) arg0.getItemAtPosition(arg2);
 					username = hm.get("username");
 					//JS - END
-					
-					//Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT).show();
-					
+
 					//fight Status
-					//if(db.getFriend(arg0.getAdapter().getItem(arg2).toString()).getStatus().equals("fight"))
 					if(db.getFriend(username).getStatus().equals("fight"))
 					{
-						//Toast.makeText(getApplicationContext(), 
-								//db.getFriend(username).getStatus(), 
-								//Toast.LENGTH_SHORT).show();
-						
+
 						// Send Friend Name to Dialog Bundle
 						Bundle dialogBundle = new Bundle();	        			        			
 						dialogBundle.putString("friendName", username);					
@@ -282,12 +231,6 @@ public class FriendScreen extends Activity {
 					//play Status
 					else if(db.getFriend(username).getStatus().equals("play"))
 					{
-						//Toast.makeText(getApplicationContext(), 
-								//db.getFriend(username).getStatus(), 
-								//Toast.LENGTH_SHORT).show();
-						
-						//String friendName = arg0.getAdapter().getItem(arg2).toString();
-						
 			        	// Send Game Type to Dialog Fragment
 			        	Bundle dialogBundle = new Bundle();	        			        			
 						dialogBundle.putString("GameType", "friend");
@@ -299,10 +242,7 @@ public class FriendScreen extends Activity {
 					}
 					else
 					{
-						//Toast.makeText(getApplicationContext(), 
-							//	db.getFriend(username).getStatus(), 
-								//Toast.LENGTH_SHORT)
-								//.show();
+						//???
 					}
 					
 					
@@ -312,7 +252,6 @@ public class FriendScreen extends Activity {
 		}//DB has zero friends
 		else
 		{
-			//Toast.makeText(getApplicationContext(), "DB has ZERO entries", Toast.LENGTH_SHORT).show();
 			//03.30.2014
 			freunde[0] = new String("");
 /*			
@@ -324,14 +263,6 @@ public class FriendScreen extends Activity {
 		//END TESTING
 		}
 
-
-		
-
-		
-
-
-
-		
 	}
 	
 
@@ -348,24 +279,19 @@ public class FriendScreen extends Activity {
 			public void done(List<ParseObject> objects, ParseException e) {
 				if (objects == null || objects.size() == 0) 
 				{
-//			   		Log.d("score", "The getFirst request failed.");
-					System.out.println(" downloadChallenges() - Object is null");			    	    				    	    	
+//			   		Log.d("score", "The getFirst request failed.");			    	    				    	    	
 			    } 
 				else 
 				{
 //			   		Log.d("score", "Retrieved the object.");
-					//Toast.makeText(getApplicationContext(), "found obj", Toast.LENGTH_SHORT).show();
-			    	    	
+
 					for(int i = 0; i < objects.size(); i++)
 					{
 						UserAccount challenge = (UserAccount) objects.get(i);
-		    	    	
-						System.out.println("Object is found");
-				    	    	
+
 				      	String status = challenge.getString("status");
 				    	    	
 				      	//testing 03.14.2014	    	    	    	    	
-				      	System.out.println("UpdateChallenge created");
 			  	    	if(challenge.getString("status") == null)
 		    	    	{
 			  	    		System.out.println("ChallengeStatus is null");
@@ -392,51 +318,7 @@ public class FriendScreen extends Activity {
 				}// end if objects.size == 0
 			}// end done
 		});// end findInBG
-/*	    
-	    query.getFirstInBackground(new GetCallback<ParseObject>() {
-	    	  public void done(ParseObject object, ParseException e) {
-	    	    if (object == null) {
-//	    	      Log.d("score", "The getFirst request failed.");
-	    	    	System.out.println("Object is null");
-	    	    	
-	    	    	
-	    	    } else {
-//	    	      Log.d("score", "Retrieved the object.");
-	    	    	Toast.makeText(getApplicationContext(), "found obj", Toast.LENGTH_SHORT).show();
-	    	    	
-	    	    	UserAccount challenge = (UserAccount) object;
-	    	    	
-	    	    	System.out.println("Object is found");
-	    	    	
-	    	    	String status = challenge.getString("status");
-	    	    	
-	    	    	//testing 03.14.2014	    	    	    	    	
-	    	    	System.out.println("UpdateChallenge created");
-	    	    	if(challenge.getString("status") == null)
-	    	    	{
-	    	    		System.out.println("ChallengeStatus is null");
-	    	    	}	    	    	
-	    	    	else if(status.equals("Sent"))
-	    	    	{
-	    	    		updateChallenge.received(challenge);
-	    	    	}
-	    	    	else if(status.equals("Update"))
-	    	    	{
-	    	    		
-	    	    		
-	    	    	}
-	    	    	else if(status.equals("Done"))
-	    	    	{
-	    	    		//change sentTo so that user stops downloading Challenge
-	    	    		
-	    	    	}
-	    	    	
-	    	    	
-	    	       }
-	    	  }
-	    	  
-	    	}); // end getFirstInBackground
-*/		
+
 		refreshList();
 	}
 	
@@ -445,9 +327,6 @@ public class FriendScreen extends Activity {
 
 	public void addFriend(View v)
 	{		
-		//TESTING !!
-		//Toast.makeText(getApplicationContext(), user.getUsername(), Toast.LENGTH_SHORT).show();
-
 		//1. Check to see if User doesn't ALREADY have friend in friendlist
 		if(UpdateChallenge.isUserAFriend(addET.getText().toString()) || addET.getText().toString().equals(""))
 			Toast.makeText(getApplicationContext(), "Invalid Request", Toast.LENGTH_SHORT).show();

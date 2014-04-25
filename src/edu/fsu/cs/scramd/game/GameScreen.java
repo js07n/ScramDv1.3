@@ -144,19 +144,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         DIFFICULTY = 5;  //not using! temporary filler
         // 3 = EASY, 4 = MEDIUM, 5 = HARD
         
-        //TESTING SEE IF VARIABLE ARE IN BUNDLE
-        
-        if(bundle == null)
-        {
-        	//Toast.makeText(getApplicationContext(), "bundle is empty", Toast.LENGTH_SHORT).show();
-        	
-        }
-        else
-        {
-        	//Toast.makeText(getApplicationContext(), "bundle is NOT empty", Toast.LENGTH_SHORT).show();
-        	//Toast.makeText(getApplicationContext(), bundle.getString("friendName"), Toast.LENGTH_SHORT).show();
-        }
-        
+
         // check to see if there is anything in the bundle
         if(bundle != null)
         {
@@ -171,12 +159,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         		friendName = bundle.getString("friendName");
         }
         
-        
-        //TESTING !!!
-        //Toast.makeText(getApplicationContext(), GameType, Toast.LENGTH_SHORT).show();
-        
-        NumOfPieces = DIFFICULTY * DIFFICULTY;
-        
+
+        NumOfPieces = DIFFICULTY * DIFFICULTY;      
         
         //this is status bar at top of screen that tells battery status, etc.
         int statusBarHeight = getStatusBarHeight(); 
@@ -244,10 +228,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
         //chunk = b.getWidth()/DIFFICULTY; //only works if image is 900x900
         int iSize = (size.x/10) * 9;
 
-        
-        
-        chunk = iSize / DIFFICULTY; //TEMPORARY SOLUTION?
-        
+        chunk = iSize / DIFFICULTY; //TEMPORARY SOLUTION?     
         
         //Recalibrate iSize so that it prevents further mathematical precision errors
         iSize  = (iSize / DIFFICULTY) * DIFFICULTY;
@@ -302,10 +283,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
             TrackArray[i] = a;
         }
        
-        
-        
-      
- //       Log.v("NumOfPieces", Integer.toString(NumOfPieces));
 
         //set parameters for each display
         // TrackArray is used to determine which display goes where on screen
@@ -323,7 +300,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     			lparams.height = chunk;
     			display[TrackArray[z++]].setLayoutParams(lparams);
 
-    			Log.v("x  y", Integer.toString(x) + "  " + Integer.toString(y));
+    			//Log.v("x  y", Integer.toString(x) + "  " + Integer.toString(y));
     			//!!! this is temp patch up to fix math issues
         	}      	        	        	
         }
@@ -367,7 +344,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 		
     			bounds[z++] = new Rect (x, y, x+chunk, y+chunk);
 
-    			Log.e("x  y", Integer.toString(x) + "  " + Integer.toString(y));
+    			//Log.e("x  y", Integer.toString(x) + "  " + Integer.toString(y));
     			
     		}
     		
@@ -376,40 +353,36 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 
     	
     	
-    	
-    	//if(GameType.equals("solo"))
-    	//{
-    		// TIMER !!! ===========================================================
-        	//timerTV = (TextView) findViewById(R.id.timerTV);
-    	
-    		timerTV = new TextView(this);
-    		timerTV.setTextSize(size.x/20);
-    		timerTV.setGravity(1);
-    		
-    		
-    		
-    		timerTV.setBackgroundColor(Color.BLACK);
-    		RelativeLayout.LayoutParams timerParams = new RelativeLayout.LayoutParams(
-    				LayoutParams.WRAP_CONTENT, 
-    				LayoutParams.WRAP_CONTENT);
-    		//LayoutParams params = new LayoutParams(size.x, size.y);
-    		
-    		timerParams.width = size.x / 3;
-    		
-    		timerParams.height = LayoutParams.WRAP_CONTENT;
-    		
-    		timerParams.setMargins((size.x/2) - (timerParams.width/2) - xOFFSET, iSize + (size.y/8), 0, 0);
-    		//params.setMargins(100, 0, 0, 0);
-    		//timerTV.setLayoutParams(params);
-    		_root.addView(timerTV, timerParams);
-    		
-    		//this.addContentView(timerTV, params);
+ 
+		// TIMER !!! ===========================================================
+    	 
+		timerTV = new TextView(this);
+		timerTV.setTextSize(size.x/20);
+		timerTV.setGravity(1);
+		
+		
+		
+		timerTV.setBackgroundColor(Color.BLACK);
+		RelativeLayout.LayoutParams timerParams = new RelativeLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, 
+				LayoutParams.WRAP_CONTENT);
 
-    		
-    		time = 15000 + (15000 * (DIFFICULTY - 2));//30000;
-    		//startCDTimer();
-    		final MyCounter timer = new MyCounter(time,1000);
-    	//} 
+		timerParams.width = size.x / 3;
+		
+		timerParams.height = LayoutParams.WRAP_CONTENT;
+		
+		timerParams.setMargins((size.x/2) - (timerParams.width/2) - xOFFSET, iSize + (size.y/8), 0, 0);
+		//params.setMargins(100, 0, 0, 0);
+		//timerTV.setLayoutParams(params);
+		_root.addView(timerTV, timerParams);
+		
+		//this.addContentView(timerTV, params);
+
+		
+		time = 15000 + (15000 * (DIFFICULTY - 2));//30000;
+
+		final MyCounter timer = new MyCounter(time,1000);
+
     	
     		
     		
@@ -418,7 +391,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	hintImage = new ImageView(this);
 
     	hintImage.setPadding(xOFFSET, yOFFSET, 0, 0);
-    	//hintImage.setPadding(0, 0, 0, 0);
     
 		RelativeLayout.LayoutParams hintParams = new RelativeLayout.LayoutParams(
 				iSize, 
@@ -426,9 +398,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 			
 		hintParams.width = iSize + xOFFSET;
 		hintParams.height = iSize + yOFFSET;
-		//hintParams.leftMargin = xOFFSET;
-		//hintParams.topMargin = yOFFSET;
-		//hintParams.setMargins(100, 300, 100, 300);
+
 		hintImage.setLayoutParams(hintParams);		
 		hintImage.setImageBitmap(b);		
 		hintImage.setVisibility(ImageView.INVISIBLE);
@@ -441,22 +411,18 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	hintBtn.setText("HINT");
 		hintBtn.setTextSize(size.x/30);
 		hintBtn.setGravity(1);
-		//hintBtn.setPadding(0, 0, 0, 0);
-		
-		
-		//hintBtn.setBackgroundColor(Color.BLACK);
+
+
 		RelativeLayout.LayoutParams hintBtnParam = new RelativeLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, 
 				LayoutParams.WRAP_CONTENT);
-		//LayoutParams params = new LayoutParams(size.x, size.y);
+
 		
 		hintBtnParam.width = LayoutParams.WRAP_CONTENT;
 		
 		hintBtnParam.height = LayoutParams.WRAP_CONTENT;
 		
 		hintBtnParam.setMargins((size.x/2) - (timerParams.width/2) - xOFFSET, iSize, 0, 0);
-		//hintBtn.setOnTouchListener(l)
-		//hintBtn.setLayoutParams(hintBtnParam);
 		hintBtn.setOnTouchListener(new OnTouchListener() {
 			
 			public boolean onTouch(View v, MotionEvent event) {
@@ -537,13 +503,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     public void onPause()
     {
     	super.onPause();
-//  	   if(cdTimer != null)    	
-    	//if(GameType.equals("solo"))
- 		   cdTimer.cancel();
- 		   //cdTimer = null;
- 		   //time = timeTick;
-  	   
- 	   	   
+ 		cdTimer.cancel();
     }
     
  
@@ -553,19 +513,14 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     public void onResume()
     {
     	super.onResume();
-  	//   if(cdTimer != null)
- 		   //startCDTimer();  //this doesn't work
-//    	if(GameType.equals("solo"))
-  //  	{
-    		if(time >= 1)
-    		{
-    			//Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
-    			cdTimer = new MyCounter(time, 1000);
-    			cdTimer.start();  
-    		}
-    //	}
-  	   
-  		 	   
+
+		if(time >= 1)
+		{
+
+			cdTimer = new MyCounter(time, 1000);
+			cdTimer.start();  
+		}
+  	     		 	   
     }
     
     
@@ -616,8 +571,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
- //       getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -678,7 +631,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                 // This records the coordinates for the region where the pieces is released.
                 for (int i = 0; i < bounds.length; i++)
                 {
-                	Log.v("DERP", "ippers " + Integer.toString(i));
+                	//Log.v("DERP", "ippers " + Integer.toString(i));
                 	//The bounds for the layout have to be different because it
                 	//is relative to the viewgroup NOT the screen.
                 	// Therefore, they must start at (0,0) despite what offset they have on 
@@ -688,8 +641,8 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                 		layParams.leftMargin = bounds[i].left - xOFFSET; 
                 		layParams.topMargin = bounds[i].top - yOFFSET;
                 		AP = i;
-                		Log.v("DERP1", "left top  " + Integer.toString(layParams.leftMargin) + " " + 
-                				Integer.toString(layParams.topMargin));
+                		//Log.v("DERP1", "left top  " + Integer.toString(layParams.leftMargin) + " " + 
+                			//	Integer.toString(layParams.topMargin));
                 		break;  //exit for loop
                 	       
                 	}
@@ -701,14 +654,13 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                   	   Toast.makeText(getApplicationContext(), "out of bounds", Toast.LENGTH_SHORT).show();
                  	   lock = 1;
                  	   v.setLayoutParams(layParams);
-                 	   //break;
                  	   return false;
                 	}
                 		
                 }      
                 
                 
-                Log.v("test", "index=" + 1);
+               // Log.v("test", "index=" + 1);
                 v.setLayoutParams(layParams);
                 
                 // scan through image pieces to find 
@@ -765,9 +717,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                       {
                     	  if(v == display[dc])
                     	  {
-//                    		  Toast.makeText(getApplicationContext(), "moving display " +Integer.toString(dc) + 
-//                    				  " from position: " + Integer.toString(SAP) +
-//                    				  " to position " + Integer.toString(AP), Toast.LENGTH_SHORT).show();
                     		  if(AP != SAP)
                     		  {
                                  int temp;
@@ -791,13 +740,11 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                 boolean win = true;
                 for(int ac = 0; ac < NumOfPieces; ac++)
                 {
-//                	Toast.makeText(getApplicationContext(), Integer.toString(TrackArray[ac]), Toast.LENGTH_SHORT).show();
-                	
+
                 	// If Track array numbers are not in order
                 	// {0, 1, 2, ...}, then pieces aren't in correct order.
               	  	if(TrackArray[ac] != ac)
               	  	{  
-//              		  Toast.makeText(getApplicationContext(), Integer.toString(ac) + "  LOST", Toast.LENGTH_SHORT).show();
               	  		win = false;
               	  		break; //
               	  	}
@@ -813,8 +760,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                 	if(!isGameFinished)
                 		Toast.makeText(getApplicationContext(), "WIN!", Toast.LENGTH_SHORT).show();
                     	
-                    
-                    
                     if(GameType.equals("solo"))
                     {                    	
                     	// Send Game Type to Dialog Fragment
@@ -840,7 +785,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
                 break;
 
             case MotionEvent.ACTION_MOVE:
- //           	Toast.makeText(getApplicationContext(), "MOVE", Toast.LENGTH_SHORT).show();
                 RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
                 layoutParams.leftMargin = X - _xDelta;
                 layoutParams.topMargin = Y - _yDelta;
@@ -888,9 +832,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     		}
     		
     		
-    		
-    		//!!!
-    		// CODE NEEDED HERE TO DISPLAY WINNER AND TO END ACTIVITY.
     	}//end if friendName != null
     	
     	//this.finish();
@@ -901,12 +842,6 @@ public class GameScreen extends Activity implements View.OnTouchListener{
 	
 	protected void showWinnerDialog(int win){
 		final Dialog alert = new Dialog(GameScreen.this);
-		
-
-		
-		
-		
-		System.out.println("showWinnerDialog");
 		
 		alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		alert.setContentView(R.layout.dialog_show_winner);
@@ -944,9 +879,7 @@ public class GameScreen extends Activity implements View.OnTouchListener{
     	//Timer has to be stopped,
     	// if not it will still try to execute code once if finishes.
     	// that would result in error.
-    	
-    	//cdTimer.cancel();
-    	
+
     	if(GameType.equals("solo"))
     	{
     		Intent menuIntent = new Intent(this, MenuScreen.class);

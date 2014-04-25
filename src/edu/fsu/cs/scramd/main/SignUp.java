@@ -98,9 +98,7 @@ public class SignUp extends Activity{
 			else if(!pass2Text.getText().toString().equals(pass3Text.getText().toString()))
 			{
 				pass3Text.setError("Password does not match.");
-			
-				//Toast.makeText(getApplicationContext(), pass2Text.getText().toString(), Toast.LENGTH_SHORT).show();
-				//Toast.makeText(getApplicationContext(), pass3Text.getText().toString(), Toast.LENGTH_SHORT).show();
+
 			}
 			else{	
 				//Clears errors once entries are valid.

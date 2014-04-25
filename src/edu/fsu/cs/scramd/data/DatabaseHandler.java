@@ -216,8 +216,6 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		    SQLiteDatabase db = this.getReadableDatabase();
 		    Cursor cursor = db.rawQuery(countQuery, null);
 
-
-
 		    if(cursor != null && !cursor.isClosed()){
 		        count = cursor.getCount();
 		        cursor.close();
@@ -253,7 +251,6 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 	public void deleteFriend(Friend friend){
 		SQLiteDatabase db = this.getWritableDatabase();
 		
-
 		db.delete(TABLE_FRIENDS, KEY_USERNAME + " = ?", new String[]{String.valueOf(friend.getUsername())});
 		db.close();
 	}

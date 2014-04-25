@@ -29,7 +29,6 @@ public class UpdateReceiver extends BroadcastReceiver {
 		//retrieve objects from server
 	    ParseQuery<ParseObject> query = ParseQuery.getQuery("UserAccount");
 	    query.whereEqualTo("sendTo", ParseUser.getCurrentUser().getUsername());
-	    //query.whereEqualTo("status", "Update");
 	    query.findInBackground(new FindCallback<ParseObject>(){ //"find" retrieves all results, not just one.
 
 			@Override
