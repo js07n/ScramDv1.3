@@ -103,6 +103,8 @@ public class CameraFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
+				photoButton.setClickable(false);//------------------------------------------------------------------------
+				
 				if (camera == null)
 					return;
 				camera.takePicture(new Camera.ShutterCallback() {

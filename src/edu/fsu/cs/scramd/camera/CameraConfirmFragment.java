@@ -1,5 +1,15 @@
 package edu.fsu.cs.scramd.camera;
-
+/******************************************************************************
+ * CameraConfirmFragment
+ * 		This is the java code behind the screen where the user is shown the
+ * 		picture they have captured for review.
+ * 		- The user can hit the send(save) button which will confirm and
+ * 			send the image to the challenge user.
+ * 		- The user can hit the Re-Take(photo_button) button which will delete
+ * 			the taken image and send the user back to the capture screen.
+ * 		- The user can hit the cancel(cancel_button) button which will should
+ * 			take the user back to the friend screen. 
+ *****************************************************************************/
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,6 +99,10 @@ public class CameraConfirmFragment extends Fragment {
 				
 				@Override
 				public void onClick(View v) {
+					//testing to see if multiple clicks are acceptable
+					saveButton.setClickable(false);//---------------------------------------------------------------------------------------------------
+					
+					
 					UserAccount myAccount = ((CameraActivity) getActivity()).getCurrentAccount();
 					
 					// When the user clicks "Save," upload the meal to Parse

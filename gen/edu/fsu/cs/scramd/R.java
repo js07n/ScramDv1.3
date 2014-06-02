@@ -74,7 +74,8 @@ public final class R {
         public static final int solo8=0x7f02001b;
         public static final int solo9=0x7f02001c;
         public static final int special_input_field=0x7f02001d;
-        public static final int texture=0x7f02001e;
+        public static final int splashlogo=0x7f02001e;
+        public static final int texture=0x7f02001f;
     }
     public static final class id {
         public static final int about=0x7f0a001c;
@@ -161,17 +162,18 @@ public final class R {
         public static final int activity_ppolicy=0x7f030005;
         public static final int activity_settings_screen=0x7f030006;
         public static final int activity_sign_up=0x7f030007;
-        public static final int activity_toservice=0x7f030008;
-        public static final int dialog_challenege=0x7f030009;
-        public static final int dialog_change_pass=0x7f03000a;
-        public static final int dialog_delete_acc=0x7f03000b;
-        public static final int dialog_difficulty=0x7f03000c;
-        public static final int dialog_show_winner=0x7f03000d;
-        public static final int dialog_whatpasstv=0x7f03000e;
-        public static final int fragment_camera=0x7f03000f;
-        public static final int fragment_camera_confirm=0x7f030010;
-        public static final int frame_camera=0x7f030011;
-        public static final int item_friend=0x7f030012;
+        public static final int activity_splash_screen=0x7f030008;
+        public static final int activity_toservice=0x7f030009;
+        public static final int dialog_challenege=0x7f03000a;
+        public static final int dialog_change_pass=0x7f03000b;
+        public static final int dialog_delete_acc=0x7f03000c;
+        public static final int dialog_difficulty=0x7f03000d;
+        public static final int dialog_show_winner=0x7f03000e;
+        public static final int dialog_whatpasstv=0x7f03000f;
+        public static final int fragment_camera=0x7f030010;
+        public static final int fragment_camera_confirm=0x7f030011;
+        public static final int frame_camera=0x7f030012;
+        public static final int item_friend=0x7f030013;
     }
     public static final class menu {
         public static final int log_in=0x7f090000;

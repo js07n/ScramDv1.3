@@ -35,6 +35,7 @@ import com.parse.RequestPasswordResetCallback;
 import com.parse.SaveCallback;
 
 import edu.fsu.cs.scramd.R;
+import edu.fsu.cs.scramd.R.color;
 import edu.fsu.cs.scramd.data.UserAccount;
 import edu.fsu.cs.scramd.friend.FriendScreen;
 import edu.fsu.cs.scramd.friend.UpdateChallenge;
@@ -45,6 +46,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -159,7 +161,10 @@ public class LogIn extends Activity {
 								});
 								//JS END
 						    } else {
-						    	Toast.makeText(LogIn.this, "Can't log on", Toast.LENGTH_SHORT).show();
+						    	Toast toast = Toast.makeText(LogIn.this, "Invalid account or no connection", Toast.LENGTH_SHORT);
+						    	TextView view = (TextView) toast.getView().findViewById(android.R.id.message);
+						    	view.setBackgroundColor(Color.TRANSPARENT);
+						    	toast.show();
 						    }
 						  }
 						});	
