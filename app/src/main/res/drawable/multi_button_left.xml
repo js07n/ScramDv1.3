@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+    <solid
+        android:color="@color/button_bkgd" />
+    <corners 
+        android:topLeftRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:topRightRadius="0dp"
+        android:bottomRightRadius="0dp" />
+    <!--gradient
+        android:startColor="@color/button_bkgd"
+        android:centerColor="@color/button_bkgd"
+        android:endColor="@color/button_bkgd"
+        android:angle="90" /-->
+    <!--gradient
+        android:startColor="#919191"
+        android:centerColor="#c6c6c6"
+        android:endColor="#c6c6c6"
+        android:angle="90" /-->
+    <!--stroke
+        android:width="2dp"
+        android:color="@color/button_bkgd" /-->
+</shape>
