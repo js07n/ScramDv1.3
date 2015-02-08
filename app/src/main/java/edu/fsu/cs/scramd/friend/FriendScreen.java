@@ -50,7 +50,6 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
-import android.support.v4.widget.SwipeRefreshLayout;
 
 public class FriendScreen extends Activity {
 
@@ -72,7 +71,7 @@ public class FriendScreen extends Activity {
 	
 	Timer refreshTimer;
 
-    SwipeRefreshLayout swipeLayout;
+    //SwipeRefreshLayout swipeLayout;
 	
 	
 	@Override
@@ -80,13 +79,13 @@ public class FriendScreen extends Activity {
 	    super.onCreate(savedInstanceState);	
 	    setContentView(R.layout.activity_friend_screen);
 
-        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.tab1);
-        swipeLayout.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) this);
-        swipeLayout.setColorSchemeColors(
-                R.color.friend_refresh_one,
-                R.color.friend_refresh_two,
-                R.color.friend_refresh_one,
-                R.color.friend_refresh_two);
+        //swipeLayout = (SwipeRefreshLayout) findViewById(R.id.tab1);
+        //swipeLayout.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) this);
+        //swipeLayout.setColorSchemeColors(
+        //        R.color.friend_refresh_one,
+        //        R.color.friend_refresh_two,
+        //        R.color.friend_refresh_one,
+        //        R.color.friend_refresh_two);
 
 	    
 	    db = new DatabaseHandler(this);
@@ -145,7 +144,7 @@ public class FriendScreen extends Activity {
 	}
 
 
-    public void onRefresh() {
+    /*public void onRefresh() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run(){
@@ -154,7 +153,7 @@ public class FriendScreen extends Activity {
                 downloadChallenges();
             }
         }, 5000);
-    }
+    }*/
 	
 
 	public void refreshList()
